@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { InfiniteSlider } from "@/components/motion-primitives/infinite-slider";
 
 const ROW_ONE = [
@@ -91,12 +90,6 @@ export function MeetTheTeam() {
               </div>
             ))}
           </div>
-          <Button
-            className="rounded-lg px-6 py-3"
-            style={{ backgroundColor: "rgb(255, 74, 3)" }}
-          >
-            Work with our team
-          </Button>
         </div>
       </div>
     </section>
