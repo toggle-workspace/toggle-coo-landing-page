@@ -3,7 +3,7 @@ import { buttonVariants } from "@/components/ui/button";
 
 export function Hero() {
   return (
-    <section className="dark relative h-[50svh] max-h-350 min-h-120 w-full bg-linear-to-br from-zinc-900 to-zinc-800 after:absolute after:inset-0 after:block after:size-full after:bg-zinc-950/50 after:content-[''] md:h-[60svh]">
+    <section className="dark relative h-[70svh] max-h-350 min-h-120 w-full bg-linear-to-br from-zinc-900 to-zinc-800 after:absolute after:inset-0 after:block after:size-full after:bg-zinc-950/50 after:content-[''] md:h-[80svh]">
       <div className="relative z-10 mx-auto flex size-full max-w-[125rem] px-4 py-9">
         <div className="flex w-full flex-col justify-between gap-10">
           <div className="mx-auto flex max-w-125 flex-1 flex-col items-center justify-center gap-7 sm:max-w-150 md:max-w-200">
