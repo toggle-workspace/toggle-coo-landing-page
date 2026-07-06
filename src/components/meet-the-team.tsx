@@ -86,7 +86,7 @@ export function MeetTheTeam() {
           <div className="flex gap-12">
             {STATS.map(({ value, label }) => (
               <div key={label} className="text-center">
-                <p className="text-4xl font-semibold">{value}</p>
+                <p className="text-4xl md:text-5xl font-semibold">{value}</p>
                 <p className="mt-1 text-sm text-muted-foreground">{label}</p>
               </div>
             ))}
