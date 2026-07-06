@@ -4,6 +4,25 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@keyframes infinite-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes infinite-scroll-reverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@theme inline {
+  --animate-infinite-scroll: infinite-scroll var(--scroll-speed, 40s) linear infinite;
+  --animate-infinite-scroll-reverse: infinite-scroll-reverse var(--scroll-speed, 40s) linear infinite;
+}
+
+.animate-infinite-scroll:hover {
+  animation-duration: var(--scroll-speed-hover, var(--scroll-speed, 40s));
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -115,6 +134,11 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 @layer base {
