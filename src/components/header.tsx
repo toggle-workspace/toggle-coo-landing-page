@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MenuIcon, XIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Sheet,
   SheetTrigger,
@@ -21,6 +21,13 @@ const NAV_LINKS = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const handler = (e: MediaQueryListEvent) => { if (e.matches) setOpen(false); };
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   return (
     <header className="sticky top-0 z-60 w-full border-b border-black/8 bg-white">
