@@ -6,14 +6,16 @@ interface InfiniteSliderProps {
   speed?: number;
   speedOnHover?: number;
   gap?: number;
+  reverse?: boolean;
   className?: string;
 }
 
 export function InfiniteSlider({
   children,
-  speed = 40,
+  speed = 60,
   speedOnHover,
   gap = 16,
+  reverse = false,
   className,
 }: InfiniteSliderProps) {
   return (
@@ -27,11 +29,8 @@ export function InfiniteSlider({
       }
     >
       <div
-        className={cn(
-          "flex w-max animate-infinite-scroll",
-          speedOnHover && "[&:hover>*]:pause"
-        )}
-        style={{ gap }}
+        className={cn("flex w-max animate-infinite-scroll", speedOnHover && "[&:hover>*]:pause")}
+        style={{ gap, animationDirection: reverse ? "reverse" : "normal" }}
       >
         {[0, 1].map((i) => (
           <div key={i} className="flex shrink-0" style={{ gap }} aria-hidden={i === 1}>
