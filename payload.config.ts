@@ -27,6 +27,47 @@ export default buildConfig({
         },
       ],
     },
+    {
+      slug: 'services',
+      admin: {
+        useAsTitle: 'name',
+      },
+      fields: [
+        { name: 'name', type: 'text', required: true },
+        { name: 'short_description', label: 'Short description' , type: 'textarea' },
+        { name: 'long_description', label: 'Long description', type: 'richText' },
+        { name: 'order', type: 'number' },
+        { name: 'slug', type: 'text' },
+      ],
+    },
+    {
+      slug: 'client',
+      admin: {
+        useAsTitle: 'company_name',
+      },
+      fields: [
+        { name: 'company_name', label: "Company name" , type: 'text', required: true },
+        { name: 'logo', label: 'Company Logo', type: 'upload', relationTo: 'media' },
+        { name: 'short_description', label: 'Short description' , type: 'textarea' },
+        { name: 'order', type: 'number' },
+        { name: 'slug', type: 'text' },
+      ],
+    },
+    {
+      slug: 'case-studies',
+      admin: {
+        useAsTitle: 'name',
+      },
+      fields: [
+        { name: 'name', type: 'text', required: true },
+        { name: 'short_description', label: 'Short description', type: 'textarea' },
+        { name: 'long_description', label: 'Long description', type: 'richText' },
+        { name: 'order', type: 'number' },
+        { name: 'slug', type: 'text' },
+        { name: 'client', type: 'relationship', relationTo: 'client', required: false },
+        { name: 'services', type: 'relationship', relationTo: 'services', hasMany: true },
+      ],
+    },
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
