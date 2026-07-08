@@ -54,7 +54,7 @@ export default buildConfig({
       ],
     },
     {
-      slug: 'case studies',
+      slug: 'case-studies',
       admin: {
         useAsTitle: 'name',
       },
