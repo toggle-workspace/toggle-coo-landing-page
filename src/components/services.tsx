@@ -198,8 +198,8 @@ export function Services() {
 
         {/* Accordion — shadcn, single open, first item open by default */}
         <Accordion
-          openMultiple={false}
-          defaultValue="01"
+          multiple={false}
+          defaultValue={["01"]}
           className="border-b border-black/10"
         >
           {SERVICES.map((service) => (
