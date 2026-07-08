@@ -43,13 +43,12 @@ export default buildConfig({
     {
       slug: 'client',
       admin: {
-        useAsTitle: 'name',
+        useAsTitle: 'company_name',
       },
       fields: [
         { name: 'company_name', label: "Company name" , type: 'text', required: true },
         { name: 'logo', label: 'Company Logo', type: 'upload', relationTo: 'media' },
         { name: 'short_description', label: 'Short description' , type: 'textarea' },
-        { name: 'long_description', label: 'Long description', type: 'richText' },
         { name: 'order', type: 'number' },
         { name: 'slug', type: 'text' },
       ],
