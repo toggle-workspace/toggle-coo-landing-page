@@ -13,6 +13,19 @@ export default buildConfig({
   },
   collections: [
     {
+      slug: 'services',
+      admin: {
+        useAsTitle: 'name',
+      },
+      fields: [
+        { name: 'name', type: 'text', required: true },
+        { name: 'short_description', label: 'Short description' , type: 'textarea' },
+        { name: 'long_description', label: 'Long description', type: 'richText' },
+        { name: 'order', type: 'number' },
+        { name: 'slug', type: 'text' },
+      ],
+    },
+    {
       slug: 'users',
       auth: true,
       fields: [],
