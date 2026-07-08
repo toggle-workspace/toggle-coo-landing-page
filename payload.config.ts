@@ -13,6 +13,21 @@ export default buildConfig({
   },
   collections: [
     {
+      slug: 'users',
+      auth: true,
+      fields: [],
+    },
+    {
+      slug: 'media',
+      upload: true,
+      fields: [
+        {
+          name: 'alt',
+          type: 'text',
+        },
+      ],
+    },
+    {
       slug: 'services',
       admin: {
         useAsTitle: 'name',
@@ -26,18 +41,32 @@ export default buildConfig({
       ],
     },
     {
-      slug: 'users',
-      auth: true,
-      fields: [],
+      slug: 'client',
+      admin: {
+        useAsTitle: 'name',
+      },
+      fields: [
+        { name: 'company_name', label: "Company name" , type: 'text', required: true },
+        { name: 'logo', label: 'Company Logo', type: 'upload', relationTo: 'media' },
+        { name: 'short_description', label: 'Short description' , type: 'textarea' },
+        { name: 'long_description', label: 'Long description', type: 'richText' },
+        { name: 'order', type: 'number' },
+        { name: 'slug', type: 'text' },
+      ],
     },
     {
-      slug: 'media',
-      upload: true,
+      slug: 'case studies',
+      admin: {
+        useAsTitle: 'name',
+      },
       fields: [
-        {
-          name: 'alt',
-          type: 'text',
-        },
+        { name: 'name', type: 'text', required: true },
+        { name: 'short_description', label: 'Short description', type: 'textarea' },
+        { name: 'long_description', label: 'Long description', type: 'richText' },
+        { name: 'order', type: 'number' },
+        { name: 'slug', type: 'text' },
+        { name: 'client', type: 'relationship', relationTo: 'client', required: false },
+        { name: 'services', type: 'relationship', relationTo: 'services', hasMany: true },
       ],
     },
   ],
