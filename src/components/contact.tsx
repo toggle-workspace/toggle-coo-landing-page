@@ -37,18 +37,18 @@ export function Contact() {
           {/* Header */}
           <div className="mb-16 flex flex-col items-center gap-4 text-center">
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              how we help
+              Get in touch
             </p>
             <h2 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-              Schedule a demo
+              Book a call with a growth strategist
             </h2>
             <p className="max-w-xl text-base text-muted-foreground">
-              Book a demo to explore our development platform and discover how
-              it can accelerate your team&apos;s productivity. If you have
-              technical questions, feel free to{" "}
+              Walk through your current numbers with Toggle. We will show you
+              where the gaps are and which channels to prioritise first. Free,
+              no obligation. Reach out at{" "}
               <a
                 href="mailto:hello@toggle.solutions"
-                className="text-foreground underline"
+                className="text-foreground underline underline-offset-4"
               >
                 reach out to our team
               </a>
