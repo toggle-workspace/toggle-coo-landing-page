@@ -15,7 +15,7 @@ import { Figma } from "@/components/ui/svgs/figma";
 
 export function Hero() {
   return (
-    <section className="dark relative h-[70svh] max-h-350 min-h-120 w-full bg-linear-to-br from-zinc-900 to-zinc-800 after:absolute after:inset-0 after:block after:size-full after:bg-zinc-950/50 after:content-[''] md:h-[80svh]">
+    <section className="dark relative h-[70svh] max-h-450 min-h-140 w-full bg-linear-to-br from-zinc-900 to-zinc-800 after:absolute after:inset-0 after:block after:size-full after:bg-zinc-950/50 after:content-[''] md:h-[80svh]">
       <div className="relative z-10 mx-auto flex size-full max-w-[125rem] px-4 py-9">
         <div className="flex w-full flex-col justify-between gap-10">
           <div className="mx-auto flex max-w-125 flex-1 flex-col items-center justify-center gap-7 sm:max-w-150 md:max-w-200">
@@ -31,7 +31,7 @@ export function Hero() {
                 href="#"
                 className={cn(
                   buttonVariants(),
-                  "h-fit w-fit rounded-sm px-6 py-3.5 text-sm font-semibold uppercase tracking-wider text-nowrap",
+                  "h-fit w-fit rounded-lg px-6 py-3.5 text-sm font-semibold uppercase tracking-wider text-nowrap",
                 )}
               >
                 Explore Projects
@@ -52,8 +52,16 @@ export function Hero() {
               <Figma height={24} width={24} />
               <Cisco height={30} width={60} />
             </InfiniteSlider>
-            <ProgressiveBlur className="pointer-events-none absolute left-0 top-0 h-full w-20" direction="left" blurIntensity={1} />
-            <ProgressiveBlur className="pointer-events-none absolute right-0 top-0 h-full w-20" direction="right" blurIntensity={1} />
+            <ProgressiveBlur
+              className="pointer-events-none absolute left-0 top-0 h-full w-20"
+              direction="left"
+              blurIntensity={1}
+            />
+            <ProgressiveBlur
+              className="pointer-events-none absolute right-0 top-0 h-full w-20"
+              direction="right"
+              blurIntensity={1}
+            />
           </div>
         </div>
       </div>

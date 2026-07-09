@@ -59,7 +59,7 @@ export function MeetTheTeam() {
     <section className="overflow-hidden py-24">
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
-        <div className="mb-12 flex flex-col items-center text-center">
+        <div className="mb-16 flex flex-col items-center text-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             One senior team for design and build
           </p>
