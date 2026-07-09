@@ -50,8 +50,8 @@ const PROJECTS = [
 
 export function Projects() {
   return (
-    <section className="w-full overflow-hidden py-16">
-      <div className="mx-auto max-w-6xl">
+    <section className="w-full overflow-hidden">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-16 flex flex-col items-center gap-4 text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
@@ -72,7 +72,7 @@ export function Projects() {
           {PROJECTS.map((project) => (
             <CarouselItem key={project.title} className="basis-auto pl-0 pr-8">
               <div className="w-[80vw] sm:w-125 space-y-6">
-                <div className="aspect-4/3 overflow-hidden rounded-md">
+                <div className="aspect-4/3 overflow-hidden rounded-lg">
                   <img
                     src={project.image}
                     alt={project.title}

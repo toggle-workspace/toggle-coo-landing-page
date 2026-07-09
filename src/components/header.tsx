@@ -30,7 +30,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-60 w-full border-b border-black/8 bg-white">
+    <header className="sticky top-0 z-60 w-full border-b border-border bg-background">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
         <Link href="/" className="shrink-0">
           <Image
@@ -47,7 +47,7 @@ export function Header() {
             <Link
               key={link.label}
               href={link.href}
-              className="rounded px-3 py-1.5 text-sm text-[#03111c] transition-colors hover:bg-black/4"
+              className="rounded-lg px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-accent"
             >
               {link.label}
             </Link>
@@ -56,14 +56,14 @@ export function Header() {
 
         <Link
           href="#booking"
-          className="hidden rounded-lg border border-black/5 bg-primary px-4 py-2 text-sm font-medium tracking-wide text-primary-foreground transition-opacity hover:opacity-90 md:block"
+          className="hidden rounded-lg border border-border bg-primary px-4 py-2 text-sm font-medium tracking-wide text-primary-foreground transition-opacity hover:opacity-90 md:block"
         >
           Book a call
         </Link>
 
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
-            className="md:hidden rounded p-2 text-[#03111c] transition-colors hover:bg-black/4"
+            className="md:hidden rounded-lg p-2 text-foreground transition-colors hover:bg-accent"
             render={<button />}
           >
             {open ? (
@@ -85,7 +85,7 @@ export function Header() {
                   render={
                     <Link
                       href={link.href}
-                      className="rounded px-3 py-3 text-lg text-[#03111c] transition-colors hover:bg-black/4"
+                      className="rounded-lg px-3 py-3 text-lg text-foreground transition-colors hover:bg-accent"
                     />
                   }
                 >
@@ -98,7 +98,7 @@ export function Header() {
                 render={
                   <Link
                     href="#booking"
-                    className="flex w-full items-center justify-center rounded-lg border border-black/5 bg-primary px-4 py-3 text-sm font-medium tracking-wide text-primary-foreground transition-opacity hover:opacity-90"
+                    className="flex w-full items-center justify-center rounded-lg border border-border bg-primary px-4 py-3 text-sm font-medium tracking-wide text-primary-foreground transition-opacity hover:opacity-90"
                   />
                 }
               >

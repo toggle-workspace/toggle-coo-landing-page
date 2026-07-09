@@ -31,8 +31,8 @@ const LOGOS = Array.from({ length: 10 }, (_, i) => ({
 
 export function Contact() {
   return (
-    <section className="py-32 w-full">
-      <div className="mx-auto w-full max-w-7xl px-4">
+    <section className="w-full">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center">
           {/* Header */}
           <div className="mb-16 flex flex-col items-center gap-4 text-center">

@@ -5,8 +5,8 @@ const LOGOS = Array.from({ length: 12 }, (_, i) => ({
 
 export function ClientLogos() {
   return (
-    <section className="py-32 w-full">
-      <div className="mx-auto w-full max-w-7xl px-4">
+    <section className="w-full">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-8 lg:gap-12">
           <div className="flex flex-col items-center gap-4 text-center">
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
@@ -21,7 +21,10 @@ export function ClientLogos() {
           </div>
           <div className="grid w-full grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-3 md:grid-cols-4 lg:gap-12">
             {LOGOS.map(({ src, alt }) => (
-              <div key={alt} className="flex aspect-3/1 items-center justify-center">
+              <div
+                key={alt}
+                className="flex aspect-3/1 items-center justify-center"
+              >
                 <img
                   alt={alt}
                   className="h-auto max-h-7 w-auto object-contain dark:invert"

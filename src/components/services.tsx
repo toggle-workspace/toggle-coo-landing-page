@@ -180,7 +180,7 @@ const TOOL_LOGOS = [
 
 export function Services() {
   return (
-    <section className="w-full bg-background px-4 py-20 md:px-8 lg:px-16">
+    <section className="w-full px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         {/* Header */}
         <div className="mb-16 flex flex-col items-center gap-4 text-center">
@@ -200,13 +200,13 @@ export function Services() {
         <Accordion
           multiple={false}
           defaultValue={["01"]}
-          className="border-b border-black/10"
+          className="border-b border-border"
         >
           {SERVICES.map((service) => (
             <AccordionItem
               key={service.num}
               value={service.num}
-              className="border-t border-black/10 border-b-0"
+              className="border-t border-border border-b-0"
             >
               <AccordionTrigger
                 className={cn(
