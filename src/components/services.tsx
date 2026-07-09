@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Minus, Plus } from "lucide-react";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 
 const SERVICES = [
   {
@@ -178,21 +179,36 @@ const TOOL_LOGOS = [
   </svg>,
 ];
 
-export function Services() {
+type PayloadService = {
+  title: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  description: any; // Lexical JSON
+};
+
+export function Services({ payload = [] }: { payload?: PayloadService[] }) {
+  const services = SERVICES.map((s, i) =>
+    payload[i]
+      ? {
+          ...s,
+          title: payload[i].title,
+          payloadDescription: payload[i].description,
+        }
+      : s,
+  );
   return (
     <section className="w-full px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         {/* Header */}
         <div className="mb-16 flex flex-col items-center gap-4 text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            how we help
+            What we do
           </p>
           <h2 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-            Support for every stage
+            Every growth channel managed by one team
           </h2>
           <p className="max-w-xl text-base text-muted-foreground">
-            Bring us in when your idea, product, website, or brand needs to feel
-            sharper, clearer, and ready for what comes next.
+            Bring us in when a channel needs to perform. Toggle handles paid
+            media, SEO, content, creative, and lifecycle marketing.
           </p>
         </div>
 
@@ -202,7 +218,7 @@ export function Services() {
           defaultValue={["01"]}
           className="border-b border-border"
         >
-          {SERVICES.map((service) => (
+          {services.map((service) => (
             <AccordionItem
               key={service.num}
               value={service.num}
@@ -239,9 +255,17 @@ export function Services() {
                   </div>
                   {/* Content */}
                   <div className="flex flex-col gap-6">
-                    <p className="text-base text-muted-foreground">
-                      {service.description}
-                    </p>
+                    {"payloadDescription" in service &&
+                    service.payloadDescription ? (
+                      <RichText
+                        data={service.payloadDescription}
+                        className="text-base text-muted-foreground"
+                      />
+                    ) : (
+                      <p className="text-base text-muted-foreground">
+                        {service.description}
+                      </p>
+                    )}
                     <ul className="flex flex-col gap-1.5">
                       {service.bullets.map((b) => (
                         <li key={b} className="text-sm text-foreground">
