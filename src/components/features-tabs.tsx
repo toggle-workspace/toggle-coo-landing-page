@@ -53,12 +53,12 @@ export function FeaturesTabs() {
             {/* Left: text content + tab list */}
             <div className="flex flex-col-reverse justify-between gap-8 lg:flex-col">
               {/* Tab panels — text */}
-              <div>
+              <div className="flex-1">
                 {tabs.map((tab) => (
                   <Tabs.Panel
                     key={tab.value}
                     value={tab.value}
-                    className="flex animate-in flex-col gap-6 duration-300 fade-in outline-none"
+                    className="flex h-full animate-in flex-col gap-6 duration-300 fade-in outline-none"
                   >
                     <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                       {tab.eyebrow}
@@ -68,6 +68,18 @@ export function FeaturesTabs() {
                         {tab.heading}
                       </h2>
                       <p className="text-muted-foreground">{tab.body}</p>
+                    </div>
+                    <div className="hidden lg:flex gap-10 pt-2 mt-auto">
+                      {tab.stats.map((stat) => (
+                        <div key={stat.label} className="flex flex-col gap-1">
+                          <p className="text-4xl font-semibold tracking-tight lg:text-5xl">
+                            {stat.value}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            {stat.label}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   </Tabs.Panel>
                 ))}
@@ -120,7 +132,7 @@ export function FeaturesTabs() {
                       className="h-110 w-full rounded-3xl object-cover lg:h-135"
                     />
                     <div className="absolute inset-0 rounded-3xl bg-linear-to-tr from-primary/80 via-transparent to-transparent" />
-                    <div className="absolute bottom-0 left-0 flex flex-col justify-center gap-8 p-6 text-background">
+                    <div className="absolute bottom-0 left-0 flex flex-col justify-center gap-8 p-6 text-background lg:hidden">
                       {tab.stats.map((stat) => (
                         <div key={stat.label} className="flex flex-col gap-1.5">
                           <p className="text-4xl font-medium lg:text-5xl">
