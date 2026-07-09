@@ -4,42 +4,42 @@ import Image from "next/image";
 
 const tabs = [
   {
-    value: "efficiency",
-    label: "Efficiency",
-    eyebrow: "Efficiency",
-    heading: "Streamline. Automate. Focus.",
-    body: "Our AI-powered workspace eliminates repetitive tasks and centralizes your workflow. Spend time on what matters.",
+    value: "results",
+    label: "Results",
+    eyebrow: "Results",
+    heading: "Every campaign tied to revenue.",
+    body: "Toggle measures campaigns by cost per qualified lead, customer acquisition cost, and revenue generated. Impressions stay off the dashboard unless they connect to pipeline. Toggle ties every reporting cycle back to a business outcome.",
     image:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/annie-spratt-hCb3lIB8L8E-unsplash.jpg",
     stats: [
-      { value: "40%", label: "less time on admin tasks" },
-      { value: "$720", label: "saved per employee monthly" },
+      { value: "47%", label: "CPL reduction for UNITAR year-on-year" },
+      { value: "RM60M+", label: "in ad spend managed with full attribution" },
     ],
   },
   {
-    value: "collaboration",
-    label: "Collaboration",
-    eyebrow: "Collaboration",
-    heading: "Work better, together.",
-    body: "Real-time tools that keep your team aligned no matter where they are. Less friction, more output.",
+    value: "integration",
+    label: "Integration",
+    eyebrow: "Integration",
+    heading: "One strategy runs every channel",
+    body: "At Toggle, paid search, paid social, SEO, email, and creative feed the same funnel, share the same data, and target the same revenue goal. When SEO uncovers a high-intent keyword cluster, paid picks it up. When retention metrics fall, CRM and creative iterate on the same brief.",
     image:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/annie-spratt-hCb3lIB8L8E-unsplash.jpg",
     stats: [
-      { value: "3×", label: "faster decision-making" },
-      { value: "95%", label: "team satisfaction rate" },
+      { value: "50+", label: "brands run on one integrated strategy" },
+      { value: "4.9/5", label: "average client rating" },
     ],
   },
   {
-    value: "insights",
-    label: "Insights",
-    eyebrow: "Insights",
-    heading: "Data that drives decisions.",
-    body: "Turn raw metrics into actionable intelligence. Know what's working before your competitors do.",
+    value: "speed",
+    label: "Speed",
+    eyebrow: "Speed",
+    heading: "Performance improves within 90 days.",
+    body: "Toggle delivers 3–5x ROAS improvement on performance accounts within 90 days. SEO clients reach 3x organic traffic within six months. The same team that sets the strategy executes it. No brief changes hands between planner and buyer.",
     image:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/annie-spratt-hCb3lIB8L8E-unsplash.jpg",
     stats: [
-      { value: "2×", label: "revenue growth on average" },
-      { value: "60%", label: "reduction in reporting time" },
+      { value: "3–5×", label: "ROAS improvement within 90 days" },
+      { value: "3x", label: "organic traffic growth within 6 months" },
     ],
   },
 ];
@@ -64,7 +64,9 @@ export function FeaturesTabs() {
                       {tab.eyebrow}
                     </span>
                     <div className="flex flex-col gap-4">
-                      <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">{tab.heading}</h2>
+                      <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
+                        {tab.heading}
+                      </h2>
                       <p className="text-muted-foreground">{tab.body}</p>
                     </div>
                   </Tabs.Panel>

@@ -187,7 +187,13 @@ type PayloadService = {
 
 export function Services({ payload = [] }: { payload?: PayloadService[] }) {
   const services = SERVICES.map((s, i) =>
-    payload[i] ? { ...s, title: payload[i].title, payloadDescription: payload[i].description } : s,
+    payload[i]
+      ? {
+          ...s,
+          title: payload[i].title,
+          payloadDescription: payload[i].description,
+        }
+      : s,
   );
   return (
     <section className="w-full px-4 sm:px-6 lg:px-8">
@@ -195,14 +201,14 @@ export function Services({ payload = [] }: { payload?: PayloadService[] }) {
         {/* Header */}
         <div className="mb-16 flex flex-col items-center gap-4 text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            how we help
+            What we do
           </p>
           <h2 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-            Support for every stage
+            Every growth channel managed by one team
           </h2>
           <p className="max-w-xl text-base text-muted-foreground">
-            Bring us in when your idea, product, website, or brand needs to feel
-            sharper, clearer, and ready for what comes next.
+            Bring us in when a channel needs to perform. Toggle handles paid
+            media, SEO, content, creative, and lifecycle marketing.
           </p>
         </div>
 
@@ -249,7 +255,8 @@ export function Services({ payload = [] }: { payload?: PayloadService[] }) {
                   </div>
                   {/* Content */}
                   <div className="flex flex-col gap-6">
-                    {"payloadDescription" in service && service.payloadDescription ? (
+                    {"payloadDescription" in service &&
+                    service.payloadDescription ? (
                       <RichText
                         data={service.payloadDescription}
                         className="text-base text-muted-foreground"

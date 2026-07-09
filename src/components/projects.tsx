@@ -55,14 +55,14 @@ export function Projects() {
         {/* Header */}
         <div className="mb-16 flex flex-col items-center gap-4 text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            how we help
+            Our work
           </p>
           <h2 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-            Support for every stage
+            Results across six engagements
           </h2>
           <p className="max-w-xl text-base text-muted-foreground">
-            Bring us in when your idea, product, website, or brand needs to feel
-            sharper, clearer, and ready for what comes next.
+            Toggle has run campaigns across education, banking, insurance, real
+            estate, fashion, and fintech. These are six of the results.
           </p>
         </div>
       </div>

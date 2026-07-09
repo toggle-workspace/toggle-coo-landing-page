@@ -20,11 +20,12 @@ export function Hero() {
         <div className="flex w-full flex-col justify-between gap-10">
           <div className="mx-auto flex max-w-125 flex-1 flex-col items-center justify-center gap-7 sm:max-w-150 md:max-w-200">
             <h1 className="text-center text-4xl font-medium leading-tight text-foreground sm:text-5xl md:text-6xl">
-              Transform Your Vision Into Digital Reality
+              The Agency Behind 50+ Growing Brands
             </h1>
             <p className="text-balance text-center text-lg text-foreground md:text-2xl">
-              We craft exceptional digital solutions that help brands stand out
-              and make a lasting impact in the digital landscape.
+              We run paid media, SEO, creative, and lifecycle marketing as one
+              system. Every channel shares one target: more revenue, less wasted
+              spend.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <a
