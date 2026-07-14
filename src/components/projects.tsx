@@ -1,102 +1,183 @@
 "use client";
 
+import * as React from "react";
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
+  type CarouselApi,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
 
-const PROJECTS = [
+const CASE_STUDIES = [
   {
-    title: "Crystal Clear Tropical Waters",
-    location: "Maldives",
+    title: "Unified pipeline analytics in a single view",
+    company: "Northwind Analytics",
+    description:
+      "How a revenue team unified CRM data and product telemetry to shorten sales cycles and make forecasting review meetings less painful.",
     image:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/jeremy-bishop-iEjCQtcsVPY-unsplash.jpg",
   },
   {
-    title: "Aerial View of Rice Terraces",
-    location: "Southeast Asia",
+    title: "Coordinating a multi-team product launch",
+    company: "Stacklane",
+    description:
+      "Design, engineering, and go-to-market aligned on one timeline with shared blocks and checklists so launch week stayed predictable.",
     image:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/ivan-bandura-hqnUYXsN5oY-unsplash.jpg",
   },
   {
-    title: "Desert Canyon Formations",
-    location: "Southwestern United States",
+    title: "Scaling onboarding without growing headcount",
+    company: "Railway Apps",
+    description:
+      "Automated nudges and in-app guidance replaced one-off emails while support kept a clear view of who needed a human touch.",
     image:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/ivan-bandura-3QqzCTIfUJI-unsplash.jpg",
   },
   {
-    title: "Golden Terraced Fields",
-    location: "Yunnan, China",
+    title: "Passing enterprise security review faster",
+    company: "CipherTrust",
+    description:
+      "The team turned a checklist-heavy review into a tracked workflow so legal and IT could sign off without thrashing the roadmap.",
     image:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/kevin-charit-1fL2Q1JcbNc-unsplash.jpg",
   },
   {
-    title: "Tidal Sand Patterns",
-    location: "Iceland",
+    title: "One design system across marketing and product",
+    company: "Glyph Studio",
+    description:
+      "Shared tokens and documented sections cut duplicate UI work and made brand updates roll out consistently across surfaces.",
     image:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/ines-alvarez-fdez-VjRc6HDXJ5s-unsplash.jpg",
   },
   {
-    title: "Red Rock Canyon Labyrinth",
-    location: "Utah, United States",
+    title: "Revenue ops that fits how teams actually work",
+    company: "Cedarline",
+    description:
+      "Forecasting and pipeline hygiene moved out of spreadsheets into one place so leadership could see risk early without extra ceremony.",
     image:
       "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/john-murphey-ZWUWSEY6OGk-unsplash.jpg",
   },
 ];
 
 export function Projects() {
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!api) return;
+    setSelectedIndex(api.selectedScrollSnap());
+    api.on("select", () => setSelectedIndex(api.selectedScrollSnap()));
+  }, [api]);
+
   return (
-    <section className="w-full overflow-hidden">
+    <section className="w-full">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-16 flex flex-col items-center gap-4 text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            Our work
-          </p>
-          <h2 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-            Results across six engagements
-          </h2>
-          <p className="max-w-xl text-base text-muted-foreground">
-            Toggle has run campaigns across education, banking, insurance, real
-            estate, fashion, and fintech. These are six of the results.
-          </p>
+        <div className="mb-16 flex items-end justify-between gap-6">
+          <div className="flex flex-col gap-4">
+            <h2 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+              Case studies
+            </h2>
+            <p className="max-w-xl text-base text-muted-foreground md:text-lg">
+              A horizontal carousel of customer stories with full-bleed
+              imagery, company logos, short summaries, and links to read the
+              full write-up.
+            </p>
+          </div>
+          <div className="hidden shrink-0 gap-2 md:flex">
+            <Button
+              variant="ghost"
+              size="icon-lg"
+              disabled={!api?.canScrollPrev()}
+              onClick={() => api?.scrollPrev()}
+            >
+              <ArrowLeftIcon className="size-5" />
+              <span className="sr-only">Previous slide</span>
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon-lg"
+              disabled={!api?.canScrollNext()}
+              onClick={() => api?.scrollNext()}
+            >
+              <ArrowRightIcon className="size-5" />
+              <span className="sr-only">Next slide</span>
+            </Button>
+          </div>
+        </div>
+
+        <Carousel
+          opts={{ align: "start" }}
+          setApi={setApi}
+          className="relative w-full"
+        >
+          <div
+            aria-hidden="true"
+            className={cn(
+              "pointer-events-none absolute inset-y-0 left-0 z-20 w-20 bg-[linear-gradient(90deg,var(--background)_0%,color-mix(in_oklab,var(--background)_28%,transparent)_34%,color-mix(in_oklab,var(--background)_8%,transparent)_68%,transparent_100%)] transition-opacity duration-300 sm:w-28 md:w-36",
+              api?.canScrollPrev() ? "opacity-100" : "opacity-0"
+            )}
+          />
+          <div
+            aria-hidden="true"
+            className={cn(
+              "pointer-events-none absolute inset-y-0 right-0 z-20 w-20 bg-[linear-gradient(270deg,var(--background)_0%,color-mix(in_oklab,var(--background)_52%,transparent)_34%,color-mix(in_oklab,var(--background)_14%,transparent)_68%,transparent_100%)] transition-opacity duration-300 sm:w-28 md:w-36",
+              api?.canScrollNext() ? "opacity-100" : "opacity-0"
+            )}
+          />
+          <CarouselContent className="-ml-5">
+            {CASE_STUDIES.map((study) => (
+              <CarouselItem
+                key={study.title}
+                className="basis-[85%] pl-5 md:basis-[45%]"
+              >
+                <a href="#" className="group block rounded-xl">
+                  <div className="group relative aspect-4/3 w-full max-w-full overflow-hidden rounded-xl">
+                    <img
+                      alt={study.title}
+                      src={study.image}
+                      className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 h-full bg-linear-to-t from-black/80 via-black/28 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 text-white md:p-8">
+                      <div className="mb-3 flex h-9 items-center pt-3 text-sm font-semibold md:mb-4">
+                        {study.company}
+                      </div>
+                      <div className="mb-2 line-clamp-1 text-xl font-semibold md:mb-3 md:text-2xl">
+                        {study.title}
+                      </div>
+                      <div className="mb-8 line-clamp-2 text-sm text-pretty text-white/90 md:mb-10">
+                        {study.description}
+                      </div>
+                      <div className="mt-auto flex items-center text-sm">
+                        Read more
+                        <ArrowRightIcon className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+
+        <div className="mt-8 flex justify-center gap-2">
+          {CASE_STUDIES.map((study, index) => (
+            <button
+              key={study.title}
+              type="button"
+              onClick={() => api?.scrollTo(index)}
+              className={cn(
+                "h-2 w-2 rounded-full transition-colors",
+                index === selectedIndex ? "bg-primary" : "bg-primary/20"
+              )}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
-
-      <Carousel opts={{ align: "start", dragFree: true }} className="w-full">
-        <CarouselContent className="pl-8 lg:pl-40">
-          {PROJECTS.map((project) => (
-            <CarouselItem key={project.title} className="basis-auto pl-0 pr-8">
-              <div className="w-[80vw] sm:w-125 space-y-6">
-                <div className="aspect-4/3 overflow-hidden rounded-lg">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <h2 className="text-2xl tracking-tight">{project.title}</h2>
-                    <p className="text-sm text-muted-foreground">
-                      {project.location}
-                    </p>
-                  </div>
-                  <Button variant="secondary">View Project</Button>
-                </div>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-
-        {/* Nav buttons positioned inside the image area */}
-        <CarouselPrevious className="left-4 size-10 bottom-10 rounded-full border-gray-200 bg-white/90 hover:bg-white" />
-        <CarouselNext className="right-4 size-10 bottom-10 rounded-full border-gray-200 bg-white/90 hover:bg-white" />
-      </Carousel>
     </section>
   );
 }
