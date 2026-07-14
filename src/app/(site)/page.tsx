@@ -1,11 +1,11 @@
 import { Hero } from "@/components/hero";
-import { Services } from "@/components/services";
 import { Projects } from "@/components/projects";
 import { Contact } from "@/components/contact";
 import { ClientLogos } from "@/components/client-logos";
 import { FeaturesTabs } from "@/components/features-tabs";
 import { getPayload } from "payload";
 import config from "../../../payload.config";
+import { Services } from "@/components/services";
 
 async function getServices() {
   const payload = await getPayload({ config });
@@ -16,6 +16,7 @@ async function getServices() {
   });
   return docs.map((doc) => ({
     title: doc.name,
+    shortDescription: doc.short_description ?? "",
     description: doc.long_description,
   }));
 }
