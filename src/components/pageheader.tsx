@@ -22,7 +22,7 @@ export function PageHeader({
 }) {
   return (
     <section className="relative flex min-h-40 w-full items-center overflow-hidden py-8 md:min-h-48 lg:min-h-56">
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-4 sm:py-15 md:py-0 px-6 lg:px-8">
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 sm:px-6 sm:py-15 md:py-0 lg:px-8">
         <Breadcrumb>
           <BreadcrumbList className="flex-nowrap gap-2 text-sm">
             {breadcrumbs.map((crumb, index) => {
