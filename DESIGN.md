@@ -67,11 +67,10 @@ Base: `--radius: 0.625rem` (10px)
 
 | Breakpoint | Class | px |
 |------------|-------|----|
-| base | `px-4` | 16 |
-| sm | `px-6` | 24 |
+| base/sm | `px-6` | 24 |
 | lg | `px-8` | 32 |
 
-Header uses `px-6 lg:px-8`.
+All section containers use `px-6 lg:px-8`.
 
 ### Vertical spacing (page-level)
 
@@ -95,12 +94,11 @@ Header uses `px-6 lg:px-8`.
 
 | Token | rem | px | Used in |
 |-------|-----|-----|---------|
-| `max-w-7xl` | 80rem | 1280px | Header, Footer outer wrapper |
-| `max-w-6xl` | 72rem | 1152px | Most section containers |
+| `max-w-7xl` | 80rem | 1280px | All section-level outer containers (Header, Footer, and every page section) |
 | `max-w-3xl` | 48rem | 768px | Narrow content blocks |
 | `max-w-xl` | 36rem | 576px | Subtext / descriptions |
 
-All containers use `mx-auto` for centering.
+All section containers use `max-w-7xl mx-auto px-6 lg:px-8`.
 
 ## Breakpoints (Tailwind defaults)
 
@@ -190,7 +188,7 @@ contains: LogoCloud infinite slider (bottom)
 ### Services
 
 ```
-max-w-6xl mx-auto px-4 sm:px-6 lg:px-8
+max-w-7xl mx-auto px-6 lg:px-8
 Section header gap: gap-4
 Accordion item: border-t py-6
 Accordion icon: size-8 (collapsed) / size-10 (expanded)
@@ -202,7 +200,7 @@ Gap between title and bullets: gap-6 / gap-12
 ### Features Tabs
 
 ```
-max-w-6xl mx-auto
+max-w-7xl mx-auto px-6 lg:px-8
 container: rounded-4xl border p-4 lg:p-8
 TabsList: h-12 inline-flex rounded-full
 Tab indicator: absolute, animated underline
@@ -213,7 +211,7 @@ Tab indicator: absolute, animated underline
 ### Client Logos
 
 ```
-max-w-6xl mx-auto px-4 sm:px-6 lg:px-8
+max-w-7xl mx-auto px-6 lg:px-8
 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4
 gap-x-8 gap-y-6 lg:gap-12
 Logo aspect: aspect-3/1
@@ -225,7 +223,7 @@ dark:invert applied to images
 ### Projects
 
 ```
-max-w-6xl mx-auto px-4 sm:px-6 lg:px-8
+max-w-7xl mx-auto px-6 lg:px-8
 Section header: flex row, title+description left, prev/next icon-lg buttons right (md+)
 Carousel: Embla, edge fade masks (linear-gradient)
 Carousel item: basis-[85%] md:basis-[45%]
@@ -237,7 +235,7 @@ Dot pagination: size-2 rounded-full, bg-primary (active) / bg-primary/20
 ### Contact
 
 ```
-max-w-6xl mx-auto px-4 sm:px-6 lg:px-8
+max-w-7xl mx-auto px-6 lg:px-8
 grid grid-cols-1 lg:grid-cols-2
 Form panel: border-b lg:border-r, rounded-lg border, p-8
 Form fields: gap-x-3 gap-y-6

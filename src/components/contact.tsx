@@ -32,7 +32,7 @@ const LOGOS = Array.from({ length: 10 }, (_, i) => ({
 export function Contact() {
   return (
     <section className="w-full">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col items-center">
           {/* Header */}
           <div className="mb-16 flex flex-col items-center gap-4 text-center">
@@ -56,7 +56,7 @@ export function Contact() {
           </div>
 
           {/* Form + Testimonial */}
-          <div className="grid max-w-6xl grid-cols-1 rounded-lg border lg:grid-cols-2">
+          <div className="grid max-w-7xl grid-cols-1 rounded-lg border lg:grid-cols-2">
             {/* Form */}
             <div className="border-b p-8 lg:border-r lg:border-b-0">
               <form className="grid grid-cols-2 gap-x-3 gap-y-6">

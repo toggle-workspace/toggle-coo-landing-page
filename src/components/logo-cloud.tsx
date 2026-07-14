@@ -14,7 +14,7 @@ import { Figma } from "@/components/ui/svgs/figma";
 export function LogoCloud() {
   return (
     <section className="bg-background overflow-hidden py-16">
-      <div className="group relative m-auto max-w-7xl px-6">
+      <div className="group relative m-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col items-center md:flex-row">
           <div className="md:max-w-44 md:border-r md:pr-6">
             <p className="text-end text-sm">Powering the best teams</p>

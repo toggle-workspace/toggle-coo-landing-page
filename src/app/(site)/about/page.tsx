@@ -47,7 +47,7 @@ export default async function Home() {
 
       <div className="space-y-16 py-16 sm:space-y-32 sm:py-32">
         <section className="w-full">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid gap-7 lg:grid-cols-3">
               <img
                 alt="about"
@@ -91,7 +91,7 @@ export default async function Home() {
         </section>
 
         <section className="w-full overflow-hidden">
-          <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
             <InfiniteSlider speed={30} gap={64} className="**:fill-foreground">
               {LOGOS.map((logo) => (
                 <img
@@ -108,7 +108,7 @@ export default async function Home() {
         </section>
 
         <section className="w-full">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="rounded-xl bg-muted p-7 md:p-16">
               <div className="flex flex-col gap-4 text-center md:text-left">
                 <h2 className="text-3xl font-medium md:text-4xl">
@@ -137,7 +137,7 @@ export default async function Home() {
         </section>
 
         <section className="w-full">
-          <div className="mx-auto grid max-w-6xl gap-16 px-4 sm:px-6 md:grid-cols-2 md:gap-28 lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-16 px-6 md:grid-cols-2 md:gap-28 lg:px-8">
             <div>
               <h2 className="mb-5 text-4xl font-medium">Our Vision</h2>
               <p className="whitespace-pre-line text-lg leading-7 text-muted-foreground">

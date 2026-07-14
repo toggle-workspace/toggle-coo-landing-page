@@ -74,7 +74,7 @@ export function Projects() {
 
   return (
     <section className="w-full">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-16 flex items-end justify-between gap-6">
           <div className="flex flex-col gap-4">
             <h2 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
