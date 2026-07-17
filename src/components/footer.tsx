@@ -2,17 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 
 const NAV_LINKS = [
-  { label: "Work", href: "#works" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Services", href: "/services" },
+  { label: "Case studies", href: "/case-studies" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
   { label: "Book a strategy call.", href: "#booking" },
 ];
 
 const SERVICE_LINKS = [
-  { label: "Homepage sprint", href: "#pricing" },
-  { label: "Full website redesign", href: "#pricing" },
-  { label: "Webflow development", href: "#pricing" },
-  { label: "UX/UI Design", href: "#pricing" },
+  { label: "Homepage sprint", href: "/services" },
+  { label: "Full website redesign", href: "/services" },
+  { label: "Webflow development", href: "/services" },
+  { label: "UX/UI Design", href: "/services" },
 ];
 
 const SOCIALS = [

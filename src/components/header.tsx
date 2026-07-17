@@ -12,11 +12,10 @@ import {
 } from "@/components/ui/sheet";
 
 const NAV_LINKS = [
-  { label: "Services", href: "#services" },
-  { label: "Our work", href: "#works" },
-  { label: "Company", href: "#company" },
+  { label: "Services", href: "/services" },
+  { label: "Case studies", href: "/case-studies" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "Insights", href: "/insights" },
 ];
 
 export function Header() {
