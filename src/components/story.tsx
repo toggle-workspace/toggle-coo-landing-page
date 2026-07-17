@@ -3,14 +3,14 @@ export function Story() {
     <section className="w-full">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-15 lg:grid-cols-7 lg:gap-1">
-          <div className="col-span-4 h-120 border">
+          <div className="h-120 border lg:col-span-4">
             <img
               src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/guri4/img2.png"
               alt=""
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="col-span-3 ml-auto max-w-4xl space-y-15 lg:pl-15">
+          <div className="space-y-15 lg:col-span-3 lg:ml-auto lg:max-w-4xl lg:pl-15">
             <h1 className="text-2xl font-medium tracking-tight">
               We are a team of creators, thinkers, and builders who believe in
               crafting experiences that truly connect. Our story is built on
