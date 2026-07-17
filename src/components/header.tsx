@@ -12,10 +12,9 @@ import {
 } from "@/components/ui/sheet";
 
 const NAV_LINKS = [
+  { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Case studies", href: "/case-studies" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
 ];
 
 export function Header() {
@@ -23,7 +22,9 @@ export function Header() {
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
-    const handler = (e: MediaQueryListEvent) => { if (e.matches) setOpen(false); };
+    const handler = (e: MediaQueryListEvent) => {
+      if (e.matches) setOpen(false);
+    };
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
   }, []);
@@ -54,7 +55,7 @@ export function Header() {
         </nav>
 
         <Link
-          href="#booking"
+          href="/contact"
           className="hidden rounded-lg border border-border bg-primary px-4 py-2 text-sm font-medium tracking-wide text-primary-foreground transition-opacity hover:opacity-90 md:block"
         >
           Book a call
@@ -77,7 +78,7 @@ export function Header() {
             showCloseButton={false}
             className="inset-0! w-screen h-screen max-w-none! flex flex-col p-0"
           >
-            <nav className="flex flex-1 flex-col gap-1 p-6">
+            <nav className="flex flex-1 flex-col gap-1 p-6 pt-16">
               {NAV_LINKS.map((link) => (
                 <SheetClose
                   key={link.label}
@@ -96,7 +97,7 @@ export function Header() {
               <SheetClose
                 render={
                   <Link
-                    href="#booking"
+                    href="/contact"
                     className="flex w-full items-center justify-center rounded-lg border border-border bg-primary px-4 py-3 text-sm font-medium tracking-wide text-primary-foreground transition-opacity hover:opacity-90"
                   />
                 }
