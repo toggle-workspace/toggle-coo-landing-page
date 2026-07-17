@@ -20,8 +20,8 @@ export function Services({ payload = [] }: { payload?: PayloadService[] }) {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-16 flex flex-col items-center justify-between gap-6 lg:flex-row lg:gap-x-12">
           <h2 className="w-full text-center text-4xl font-semibold tracking-tight text-foreground lg:w-1/2 lg:text-left md:text-5xl">
-            <span className="text-muted-foreground">Built</span> with the
-            latest technology stack
+            <span className="text-muted-foreground">Built</span> with the latest
+            technology stack
           </h2>
           <p className="w-full text-center text-base text-muted-foreground lg:w-1/2 lg:text-left md:text-lg">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
@@ -31,7 +31,7 @@ export function Services({ payload = [] }: { payload?: PayloadService[] }) {
         <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {payload.map((item, i) => (
             <li key={item.title}>
-              <Card className="p-6">
+              <Card className="p-6 ring-0">
                 <img src={ICONS[i]} alt={item.title} className="w-14 pt-6" />
                 <h3 className="mt-4 mb-1 text-base font-semibold text-foreground">
                   {item.title}

@@ -6,6 +6,7 @@ import { FeaturesTabs } from "@/components/features-tabs";
 import { getPayload } from "payload";
 import config from "../../../payload.config";
 import { Services } from "@/components/services";
+import { Story } from "@/components/story";
 
 async function getServices() {
   const payload = await getPayload({ config });
@@ -27,8 +28,8 @@ export default async function Home() {
     <>
       <Hero />
       <div className="py-16 space-y-16 sm:py-32 sm:space-y-32">
+        <Story />
         <Services payload={payloadServices} />
-        <FeaturesTabs />
         <ClientLogos />
         <Projects />
         <Contact />
