@@ -1,9 +1,11 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
@@ -12,6 +14,25 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+const contactFormSchema = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  email: z.email("Enter a valid email address"),
+  companySize: z.string().min(1, "Select a company size"),
+  role: z.string().min(1, "Select a role"),
+  message: z.string().min(1, "Message is required"),
+});
+
+type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 const TESTIMONIAL = {
   quote:
@@ -30,96 +51,160 @@ const LOGOS = Array.from({ length: 10 }, (_, i) => ({
 }));
 
 export function Contact() {
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      companySize: "",
+      role: "",
+      message: "",
+    },
+  });
+
+  function onSubmit(values: ContactFormValues) {
+    console.log(values);
+  }
+
   return (
     <section className="w-full">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col items-center">
-          {/* Header */}
-          <div className="mb-16 flex flex-col items-center gap-4 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              Get in touch
-            </p>
-            <h2 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-              Book a call with a growth strategist
-            </h2>
-            <p className="max-w-xl text-base text-muted-foreground">
-              Walk through your current numbers with Toggle. We will show you
-              where the gaps are and which channels to prioritise first. Free,
-              no obligation. Reach out at{" "}
-              <a
-                href="mailto:hello@toggle.solutions"
-                className="text-foreground underline underline-offset-4"
-              >
-                reach out to our team
-              </a>
-            </p>
-          </div>
-
           {/* Form + Testimonial */}
           <div className="grid max-w-7xl grid-cols-1 rounded-lg border lg:grid-cols-2">
             {/* Form */}
             <div className="border-b p-8 lg:border-r lg:border-b-0">
-              <form className="grid grid-cols-2 gap-x-3 gap-y-6">
-                <div className="flex flex-col gap-2 col-span-2 sm:col-span-1">
-                  <Label htmlFor="first-name">First Name</Label>
-                  <Input id="first-name" placeholder="Bruce" type="text" />
-                </div>
-                <div className="flex flex-col gap-2 col-span-2 sm:col-span-1">
-                  <Label htmlFor="last-name">Last Name</Label>
-                  <Input id="last-name" placeholder="Wayne" type="text" />
-                </div>
-                <div className="flex flex-col gap-2 col-span-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    placeholder="bruce@wayne.com"
-                    type="email"
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="grid grid-cols-2 gap-x-3 gap-y-6"
+                >
+                  <FormField
+                    control={form.control}
+                    name="firstName"
+                    render={({ field }) => (
+                      <FormItem className="col-span-2 sm:col-span-1">
+                        <FormLabel>First Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Bruce" type="text" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                <div className="flex flex-col gap-2 col-span-2 sm:col-span-1">
-                  <Label>Company size</Label>
-                  <Select>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select a company size" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {["1-10", "11-50", "51-100", "101-500", "501-1000"].map(
-                        (s) => (
-                          <SelectItem key={s} value={s}>
-                            {s}
-                          </SelectItem>
-                        ),
-                      )}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="flex flex-col gap-2 col-span-2 sm:col-span-1">
-                  <Label>Role</Label>
-                  <Select>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select a role" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {["CEO", "CTO", "CFO", "Other"].map((r) => (
-                        <SelectItem key={r} value={r}>
-                          {r}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="flex flex-col gap-2 col-span-2">
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea
-                    id="message"
-                    className="min-h-32"
-                    placeholder="Share more about your use case, product, tech stack and what you want to accomplish"
+                  <FormField
+                    control={form.control}
+                    name="lastName"
+                    render={({ field }) => (
+                      <FormItem className="col-span-2 sm:col-span-1">
+                        <FormLabel>Last Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Wayne" type="text" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                <Button type="submit" size="lg" className="col-span-2">
-                  Continue <ArrowRight aria-hidden="true" />
-                </Button>
-              </form>
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem className="col-span-2">
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="bruce@wayne.com"
+                            type="email"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="companySize"
+                    render={({ field }) => (
+                      <FormItem className="col-span-2 sm:col-span-1">
+                        <FormLabel>Company size</FormLabel>
+                        <Select
+                          value={field.value}
+                          onValueChange={field.onChange}
+                        >
+                          <FormControl>
+                            <SelectTrigger className="w-full">
+                              <SelectValue placeholder="Select a company size" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {[
+                              "1-10",
+                              "11-50",
+                              "51-100",
+                              "101-500",
+                              "501-1000",
+                            ].map((s) => (
+                              <SelectItem key={s} value={s}>
+                                {s}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="role"
+                    render={({ field }) => (
+                      <FormItem className="col-span-2 sm:col-span-1">
+                        <FormLabel>Role</FormLabel>
+                        <Select
+                          value={field.value}
+                          onValueChange={field.onChange}
+                        >
+                          <FormControl>
+                            <SelectTrigger className="w-full">
+                              <SelectValue placeholder="Select a role" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {["CEO", "CTO", "CFO", "Other"].map((r) => (
+                              <SelectItem key={r} value={r}>
+                                {r}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem className="col-span-2">
+                        <FormLabel>Message</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            className="min-h-32"
+                            placeholder="Share more about your use case, product, tech stack and what you want to accomplish"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button type="submit" size="lg" className="col-span-2">
+                    Continue <ArrowRight aria-hidden="true" />
+                  </Button>
+                </form>
+              </Form>
             </div>
 
             {/* Testimonial */}
