@@ -1,8 +1,8 @@
 import { Services } from "@/components/services";
-import { Contact } from "@/components/contact";
 import { PageHeader } from "@/components/pageheader";
 import { getPayload } from "payload";
 import config from "../../../../payload.config";
+import { CTA } from "@/components/cta";
 
 async function getServices() {
   const payload = await getPayload({ config });
@@ -21,18 +21,15 @@ async function getServices() {
 export default async function ServicesPage() {
   const payloadServices = await getServices();
   return (
-    <div className="space-y-16 sm:space-y-32">
+    <div>
       <PageHeader
         title="Services"
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Services" },
-        ]}
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
-      <div className="pb-16 sm:pb-32">
+      <div className="space-y-16 py-16 sm:space-y-32 sm:py-32">
         <Services payload={payloadServices} />
+        <CTA />
       </div>
-      <Contact />
     </div>
   );
 }

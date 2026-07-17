@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { getPayload } from "payload";
 import { Contact } from "@/components/contact";
+import { PageHeader } from "@/components/pageheader";
 import config from "../../../../../payload.config";
 
 async function getService(slug: string) {
@@ -24,26 +25,35 @@ export default async function ServicePage({
   if (!service) notFound();
 
   return (
-    <div className="py-16 space-y-16 sm:py-32 sm:space-y-32">
-      <section className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-3xl flex-col gap-6">
-          <h1 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-            {service.name}
-          </h1>
-          {service.short_description ? (
-            <p className="text-lg text-muted-foreground">
-              {service.short_description}
-            </p>
-          ) : null}
-          {service.long_description ? (
-            <RichText
-              data={service.long_description}
-              className="text-base text-muted-foreground"
-            />
-          ) : null}
-        </div>
-      </section>
-      <Contact />
+    <div>
+      <PageHeader
+        title={service.name}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: service.name },
+        ]}
+      />
+      <div className="space-y-16 py-16 sm:space-y-32 sm:py-32">
+        <section className="w-full">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="flex max-w-3xl flex-col gap-6">
+              {service.short_description ? (
+                <p className="text-lg text-muted-foreground">
+                  {service.short_description}
+                </p>
+              ) : null}
+              {service.long_description ? (
+                <RichText
+                  data={service.long_description}
+                  className="text-base text-muted-foreground"
+                />
+              ) : null}
+            </div>
+          </div>
+        </section>
+        <Contact />
+      </div>
     </div>
   );
 }

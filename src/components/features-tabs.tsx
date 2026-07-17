@@ -46,7 +46,8 @@ const tabs = [
 
 export function FeaturesTabs() {
   return (
-    <section className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="w-full">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
       <Tabs.Root defaultValue="efficiency">
         <div className="grid grid-cols-1 gap-8 rounded-4xl border border-border p-4 lg:grid-cols-2 lg:p-8 xl:gap-20">
           {/* Left: text content + tab list */}
@@ -147,6 +148,7 @@ export function FeaturesTabs() {
           </div>
         </div>
       </Tabs.Root>
+      </div>
     </section>
   );
 }
