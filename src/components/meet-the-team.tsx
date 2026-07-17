@@ -56,8 +56,8 @@ function FaceSlider({
 
 export function MeetTheTeam() {
   return (
-    <section className="overflow-hidden py-24">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="w-full overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div className="mb-16 flex flex-col items-center text-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
@@ -71,17 +71,15 @@ export function MeetTheTeam() {
             We bring the right people together and move fast.
           </p>
         </div>
-      </div>
 
-      {/* Sliders */}
-      <div className="flex flex-col gap-2 max-w-6xl mx-auto">
-        <FaceSlider images={[...ROW_ONE, ...ROW_ONE, ...ROW_ONE]} />
-        <FaceSlider images={[...ROW_TWO, ...ROW_TWO, ...ROW_TWO]} reverse />
-      </div>
+        {/* Sliders */}
+        <div className="flex flex-col gap-2">
+          <FaceSlider images={[...ROW_ONE, ...ROW_ONE, ...ROW_ONE]} />
+          <FaceSlider images={[...ROW_TWO, ...ROW_TWO, ...ROW_TWO]} reverse />
+        </div>
 
-      {/* Stats + CTA */}
-      <div className="mx-auto mt-16 max-w-6xl px-6">
-        <div className="flex flex-col items-center gap-12">
+        {/* Stats + CTA */}
+        <div className="mt-16 flex flex-col items-center gap-12">
           <div className="flex gap-12">
             {STATS.map(({ value, label }) => (
               <div key={label} className="text-center">
