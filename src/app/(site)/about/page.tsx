@@ -2,6 +2,7 @@ import { PageHeader } from "@/components/pageheader";
 import { buttonVariants } from "@/components/ui/button";
 import { InfiniteSlider } from "@/components/motion-primitives/infinite-slider";
 import { cn } from "@/lib/utils";
+import { CTA } from "@/components/cta";
 
 const LOGOS = [
   {
@@ -45,7 +46,7 @@ export default async function Home() {
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
       />
 
-      <div className="space-y-16 py-16 sm:space-y-32 sm:py-32">
+      <div className="space-y-16 pt-16 sm:space-y-32 sm:pt-32">
         <section className="w-full">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid gap-7 lg:grid-cols-3">
@@ -55,7 +56,7 @@ export default async function Home() {
                 src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/annie-spratt-MChSQHxGZrQ-unsplash.jpg"
               />
               <div className="flex flex-col gap-7 md:flex-row lg:flex-col">
-                <div className="flex flex-col justify-between gap-6 rounded-xl bg-muted p-7 md:w-1/2 lg:w-auto">
+                <div className="flex flex-col justify-between gap-6 rounded-xl bg-muted/5 p-7 md:w-1/2 lg:w-auto">
                   <img
                     alt="logo"
                     className="mr-auto h-12 dark:invert"
@@ -177,6 +178,7 @@ export default async function Home() {
             </div>
           </div>
         </section>
+        <CTA />
       </div>
     </div>
   );

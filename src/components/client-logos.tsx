@@ -9,9 +9,6 @@ export function ClientLogos() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col items-center gap-8 lg:gap-12">
           <div className="flex flex-col items-center gap-4 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              our clients
-            </p>
             <h2 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
               Trusted by these companies
             </h2>

@@ -13,6 +13,7 @@ async function getServices() {
   });
   return docs.map((doc) => ({
     title: doc.name,
+    slug: doc.slug,
     shortDescription: doc.short_description ?? "",
     description: doc.long_description,
   }));
