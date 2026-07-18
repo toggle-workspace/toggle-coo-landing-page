@@ -4,9 +4,9 @@
 > **Every new page in this site should be built from the "Marketing
 > Section Family" component catalog below** — skip straight to that
 > section. It's the current, actively maintained reference, covering
-> `/`, `/about`, `/services`, `/services/[slug]`, and `/case-studies`.
-> The sections above it describe the original shadcn-based theme and
-> legacy components, kept only for the pages (`/contact`) not yet migrated.
+> `/`, `/about`, `/services`, `/services/[slug]`, `/case-studies`, and
+> `/contact`. The sections above it describe the original shadcn-based
+> theme, kept only as history — every page is now on this family.
 
 ## Fonts
 
@@ -209,7 +209,7 @@ Gap between title and bullets: gap-6 / gap-12
 
 ---
 
-### Features Tabs
+### Features Tabs (deleted — `features-tabs.tsx` had no remaining callers)
 
 ```
 max-w-7xl mx-auto px-6 lg:px-8
@@ -235,7 +235,7 @@ below — this entry is kept only as history.
 
 ---
 
-### Projects
+### Projects (deleted — `projects.tsx` was superseded by `CaseStudiesGrid`)
 
 ```
 max-w-7xl mx-auto px-6 lg:px-8
@@ -270,7 +270,7 @@ Divider: border-border
 
 ---
 
-### Meet the Team
+### Meet the Team (deleted — `meet-the-team.tsx` was superseded by `TeamGrid`)
 
 ```
 py-24
@@ -281,7 +281,7 @@ overflow-hidden with mask-image gradient (progressive blur)
 
 ---
 
-### Logo Cloud (infinite slider)
+### Logo Cloud (infinite slider) (deleted — `logo-cloud.tsx` was superseded by `ClientLogos`)
 
 ```
 overflow-hidden
@@ -362,20 +362,18 @@ the file.
 | `BlogPreview` | 3-col blog post cards over full-bleed photos | `eyebrow`, `title`, `linkLabel`, `linkHref`, `posts[]` |
 | `CTA` | closing call-to-action band | `title`, `description`, `buttonLabel`, `buttonHref`, `footnote?` |
 
-`/`, `/about`, `/services`, `/services/[slug]`, and `/case-studies` are
-now built entirely on this catalog. The other legacy components
-described in the sections above (`PageHeader`, `FeaturesTabs`, the
-legacy `Hero`/`ClientLogos` markup, `MeetTheTeam`, `LogoCloud`) are
-still used by `/contact`. `FAQ` and `ServiceWhy` are also still legacy
-— used on `/services/[slug]` alongside the migrated components, not
-yet folded into the catalog. Don't extend any legacy component for
-new brand-design work — prefer the components above, and for a
-genuinely novel section, build a new one that follows their shape
-(see "Building a new page" below) rather than reaching for a legacy
-one. Migrating `/contact` onto this family, or
-folding `FAQ`/`ServiceWhy` into it, is a fine idea, but do it as its
-own deliberate task, not a drive-by change while building something
-else.
+Every page (`/`, `/about`, `/services`, `/services/[slug]`,
+`/case-studies`, `/contact`) is now built entirely on this catalog.
+`PageHeader`, `FeaturesTabs`, `MeetTheTeam`, and `LogoCloud` have been
+deleted — the sections describing them above are kept only as history,
+don't resurrect them. `FAQ` and `ServiceWhy` are still legacy — used on
+`/services/[slug]` alongside the migrated components, not yet folded
+into the catalog. Don't reach for a legacy component for new
+brand-design work — prefer the components above, and for a genuinely
+novel section, build a new one that follows their shape (see "Building
+a new page" below). Folding `FAQ`/`ServiceWhy` into the catalog is a
+fine idea, but do it as its own deliberate task, not a drive-by change
+while building something else.
 
 ### Data files
 
