@@ -12,6 +12,7 @@ export function CaseStudiesGrid({
   title = "Our work speaks for itself",
   linkLabel = "Discover all case studies",
   linkHref = "/case-studies",
+  showHeader = true,
   studies = CASE_STUDIES,
   limit = 6,
 }: {
@@ -19,26 +20,29 @@ export function CaseStudiesGrid({
   title?: React.ReactNode;
   linkLabel?: string;
   linkHref?: string;
+  showHeader?: boolean;
   studies?: CaseStudy[];
   limit?: number;
 }) {
   return (
     <section className="w-full bg-white">
       <div className="mx-auto max-w-[1300px] px-6 lg:px-8">
-        <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
-          <div className="flex flex-col gap-6">
-            <Eyebrow>{eyebrow}</Eyebrow>
-            <h2 className="text-4xl font-semibold text-[#292b2c] md:text-5xl">
-              {title}
-            </h2>
+        {showHeader && (
+          <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
+            <div className="flex flex-col gap-6">
+              <Eyebrow>{eyebrow}</Eyebrow>
+              <h2 className="text-4xl font-semibold text-[#292b2c] md:text-5xl">
+                {title}
+              </h2>
+            </div>
+            <a
+              href={linkHref}
+              className="w-fit border-b-2 border-[#eb332d] pb-1.5 text-base font-semibold text-[#292b2c]"
+            >
+              {linkLabel}
+            </a>
           </div>
-          <a
-            href={linkHref}
-            className="w-fit border-b-2 border-[#eb332d] pb-1.5 text-base font-semibold text-[#292b2c]"
-          >
-            {linkLabel}
-          </a>
-        </div>
+        )}
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
           {studies.slice(0, limit).map((study) => (
             <a

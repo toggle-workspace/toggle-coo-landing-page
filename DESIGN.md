@@ -4,9 +4,9 @@
 > **Every new page in this site should be built from the "Marketing
 > Section Family" component catalog below** — skip straight to that
 > section. It's the current, actively maintained reference, covering
-> `/`, `/about`, `/services`, and `/services/[slug]`. The sections above
-> it describe the original shadcn-based theme and legacy components,
-> kept only for the pages (`/contact`, `/case-studies`) not yet migrated.
+> `/`, `/about`, `/services`, `/services/[slug]`, and `/case-studies`.
+> The sections above it describe the original shadcn-based theme and
+> legacy components, kept only for the pages (`/contact`) not yet migrated.
 
 ## Fonts
 
@@ -354,7 +354,7 @@ the file.
 | `VideoPanel` | the "watch a video" image card with red play button, used inside `Story` | `image`, `title?`, `description?` |
 | `IconFeatureGrid` | 2-col icon+text feature grid, generic (not services-specific) | `eyebrow`, `title`, `items[]` (`icon: string \| ReactNode`, `title`, `description`, `href?`, `linkLabel?`) |
 | `ClientLogos` | logo marquee (`InfiniteSlider`) on a light gray band | `title`, `logos[]` |
-| `CaseStudiesGrid` | 3-col case study cards with red bottom accent | `eyebrow`, `title`, `linkLabel`, `linkHref`, `studies[]`, `limit` |
+| `CaseStudiesGrid` | 3-col case study cards with red bottom accent | `eyebrow`, `title`, `linkLabel`, `linkHref`, `showHeader`, `studies[]`, `limit` |
 | `NumberedFeatureGrid` | 3-col numbered ("01.", "02.", "03.") feature list, generic (not "why us"-specific) | `eyebrow`, `title`, `items[]` |
 | `IconLabelGrid` | 2x4 icon+label tile grid, generic (not values-specific) | `eyebrow`, `title`, `description`, `items[]` |
 | `TeamGrid` | 4-col team member photo grid with red accent bar | `eyebrow`, `title`, `description`, `members[]` |
@@ -362,17 +362,17 @@ the file.
 | `BlogPreview` | 3-col blog post cards over full-bleed photos | `eyebrow`, `title`, `linkLabel`, `linkHref`, `posts[]` |
 | `CTA` | closing call-to-action band | `title`, `description`, `buttonLabel`, `buttonHref`, `footnote?` |
 
-`/`, `/about`, `/services`, and `/services/[slug]` are now built
-entirely on this catalog. The other legacy components described in the
-sections above (`PageHeader`, `FeaturesTabs`, the legacy
-`Hero`/`ClientLogos` markup, `MeetTheTeam`, `LogoCloud`) are still used
-by `/contact` and `/case-studies`. `FAQ` and `ServiceWhy` are also still
-legacy — used on `/services/[slug]` alongside the migrated components,
-not yet folded into the catalog. Don't extend any legacy component for
+`/`, `/about`, `/services`, `/services/[slug]`, and `/case-studies` are
+now built entirely on this catalog. The other legacy components
+described in the sections above (`PageHeader`, `FeaturesTabs`, the
+legacy `Hero`/`ClientLogos` markup, `MeetTheTeam`, `LogoCloud`) are
+still used by `/contact`. `FAQ` and `ServiceWhy` are also still legacy
+— used on `/services/[slug]` alongside the migrated components, not
+yet folded into the catalog. Don't extend any legacy component for
 new brand-design work — prefer the components above, and for a
 genuinely novel section, build a new one that follows their shape
 (see "Building a new page" below) rather than reaching for a legacy
-one. Migrating `/contact` or `/case-studies` onto this family, or
+one. Migrating `/contact` onto this family, or
 folding `FAQ`/`ServiceWhy` into it, is a fine idea, but do it as its
 own deliberate task, not a drive-by change while building something
 else.
@@ -439,6 +439,12 @@ section component.
   (Northwind Analytics, Stacklane, etc.), not the Figma-specific ones
   (Lumora, Summit Systems, etc.) — avoided introducing a second parallel
   fake dataset.
+- **`/case-studies` drops the Industry/Service sidebar filters** from
+  the Figma design (`the7.io/fse-marketing-agency/success-stories/`).
+  `case-studies.ts` has no industry/service taxonomy, and the reference
+  filters aren't wired to real filtering logic — reproducing them here
+  would just be decorative. Add real filtering (and the taxonomy fields
+  it needs) as its own task if this data becomes CMS-backed.
 - **`IconFeatureGrid`'s services callers assume a 4-icon set.** The real Payload
   `services` collection currently has 5 entries that don't match the
   Figma taxonomy (Marketing strategy / Paid advertising / Content
