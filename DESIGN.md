@@ -356,7 +356,8 @@ the file.
 | Component | Purpose | Key props |
 |---|---|---|
 | `Eyebrow` | small bullet-icon + label, used above section headings | `children` |
-| `Hero` | page hero. `align="center"` = homepage-style landing hero with CTA buttons; `align="left"` (default) = inner-page header | `eyebrow`, `title`, `description`, `actions[]`, `align` |
+| `Hero` | homepage-only landing hero: centered, with CTA `actions[]` | `eyebrow`, `title`, `description`, `actions[]` |
+| `PageHeader` | inner-page header: left-aligned, no actions. Used by every non-homepage page (`/about`, `/services`, `/services/[slug]`, `/case-studies`, `/case-studies/[slug]`, `/contact`) | `eyebrow`, `title`, `description` |
 | `Story` | two-column text + `VideoPanel`. Optional `stats[]` and `link` cover both the homepage and about-page variants | `title`, `description?`, `link?`, `stats?`, `videoImage`, `videoTitle?`, `videoDescription?` |
 | `VideoPanel` | the "watch a video" image card with red play button, used inside `Story` | `image`, `title?`, `description?` |
 | `IconFeatureGrid` | 2-col icon+text feature grid, generic (not services-specific) | `eyebrow`, `title`, `items[]` (`icon: string \| ReactNode`, `title`, `description`, `href?`, `linkLabel?`) |
@@ -392,9 +393,12 @@ tiles, client logo box) are square-cornered. Only `default` gets
 Every page (`/`, `/about`, `/services`, `/services/[slug]`,
 `/case-studies`, `/case-studies/[slug]`, `/contact`) is now built
 entirely on this catalog.
-`PageHeader`, `FeaturesTabs`, `MeetTheTeam`, and `LogoCloud` have been
-deleted — the sections describing them above are kept only as history,
-don't resurrect them. `FAQ` and `ServiceWhy` are still legacy — used on
+`FeaturesTabs`, `MeetTheTeam`, and `LogoCloud` have been deleted — the
+sections describing them above are kept only as history, don't
+resurrect them. (Note: `PageHeader` is back as a real component in the
+catalog above — a new, unrelated component built for this family, not
+a resurrection of the deleted legacy one.) `FAQ` and `ServiceWhy` are
+still legacy — used on
 `/services/[slug]` alongside the migrated components, not yet folded
 into the catalog. Don't reach for a legacy component for new
 brand-design work — prefer the components above, and for a genuinely

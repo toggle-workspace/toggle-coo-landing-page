@@ -1,4 +1,4 @@
-import { Hero } from "@/components/hero";
+import { PageHeader } from "@/components/page-header";
 import { Story } from "@/components/story";
 import { IconLabelGrid } from "@/components/icon-label-grid";
 import { NumberedFeatureGrid } from "@/components/numbered-feature-grid";
@@ -9,7 +9,7 @@ import { CTA } from "@/components/cta";
 export default function AboutPage() {
   return (
     <div>
-      <Hero
+      <PageHeader
         eyebrow="About us"
         title="Building digital experiences that inspire and perform"
         description="Explore our values, philosophy, and approach that guide every project and help our clients build stronger, lasting brands."

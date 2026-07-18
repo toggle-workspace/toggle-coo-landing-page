@@ -1,11 +1,11 @@
-import { Hero } from "@/components/hero";
+import { PageHeader } from "@/components/page-header";
 import { CaseStudiesGrid } from "@/components/case-studies-grid";
 import { CTA } from "@/components/cta";
 
 export default function CaseStudiesPage() {
   return (
     <div>
-      <Hero
+      <PageHeader
         eyebrow="Success stories"
         title="Wins worth sharing"
         description="Explore real examples of how our strategy, creativity, and marketing expertise drive growth and deliver meaningful outcomes for our clients."

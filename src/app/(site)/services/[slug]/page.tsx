@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getPayload } from "payload";
-import { Hero } from "@/components/hero";
+import { PageHeader } from "@/components/page-header";
 import { ServiceWhy } from "@/components/service-why";
 import { IconFeatureGrid } from "@/components/icon-feature-grid";
 import {
@@ -36,7 +36,7 @@ export default async function ServicePage({
 
   return (
     <div>
-      <Hero
+      <PageHeader
         eyebrow={service.name}
         title="Ideas that capture attention and drive action"
         description={service.short_description}

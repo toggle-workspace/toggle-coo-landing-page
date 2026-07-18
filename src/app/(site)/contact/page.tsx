@@ -1,10 +1,10 @@
-import { Hero } from "@/components/hero";
+import { PageHeader } from "@/components/page-header";
 import { Contact } from "@/components/contact";
 
 export default function ContactPage() {
   return (
     <div>
-      <Hero
+      <PageHeader
         eyebrow="Contact"
         title="Let's talk about your next campaign"
         description="Tell us about your brand and goals, and our team will follow up to map out how we can help you grow."

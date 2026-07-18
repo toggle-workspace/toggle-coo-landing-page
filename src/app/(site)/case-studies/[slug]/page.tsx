@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { Hero } from "@/components/hero";
+import { PageHeader } from "@/components/page-header";
 import { MarkerList } from "@/components/marker-list";
 import { StatGrid } from "@/components/stat-grid";
 import { ClientInfoCard } from "@/components/client-info-card";
@@ -20,7 +20,7 @@ export default async function CaseStudyPage({
 
   return (
     <div>
-      <Hero
+      <PageHeader
         eyebrow={`${study.category}  |  ${study.services}`}
         title={study.title}
       />
