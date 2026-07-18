@@ -1,4 +1,5 @@
-import { Services } from "@/components/services";
+import { ServiceCard } from "@/components/service-card";
+import { ICONS } from "@/components/services";
 import { PageHeader } from "@/components/pageheader";
 import { getPayload } from "payload";
 import config from "../../../../payload.config";
@@ -28,7 +29,28 @@ export default async function ServicesPage() {
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
       <div className="space-y-16 pt-16 sm:space-y-32 sm:pt-32">
-        <Services payload={payloadServices} />
+        <section className="w-full">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {payloadServices.map((item, i) => (
+                <li key={item.title} className="h-full">
+                  <ServiceCard
+                    icon={
+                      <img
+                        src={ICONS[i]}
+                        alt={item.title}
+                        className="w-14"
+                      />
+                    }
+                    title={item.title}
+                    description={item.shortDescription}
+                    href={`/services/${item.slug}`}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
         <CTA />
       </div>
     </div>

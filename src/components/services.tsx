@@ -1,7 +1,6 @@
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import Link from "next/link";
+import { ServiceCard } from "@/components/service-card";
 
-const ICONS = [
+export const ICONS = [
   "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/block-1.svg",
   "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/block-2.svg",
   "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/block-3.svg",
@@ -41,25 +40,12 @@ export function Services({
         <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {payload.map((item, i) => (
             <li key={item.title} className="h-full">
-              <Card className="h-full ring-0">
-                <CardContent className="flex-1">
-                  <img src={ICONS[i]} alt={item.title} className="w-14" />
-                  <h3 className="mt-4 mb-1 text-base font-semibold text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {item.shortDescription}
-                  </p>
-                </CardContent>
-                <CardFooter className="bg-transparent! border-none rounded-none">
-                  <Link
-                    href={`/services/${item.slug}`}
-                    className="underline underline-offset-3"
-                  >
-                    Learn more
-                  </Link>
-                </CardFooter>
-              </Card>
+              <ServiceCard
+                icon={<img src={ICONS[i]} alt={item.title} className="w-14" />}
+                title={item.title}
+                description={item.shortDescription}
+                href={`/services/${item.slug}`}
+              />
             </li>
           ))}
         </ul>

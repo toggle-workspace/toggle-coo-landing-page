@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { RichText } from "@payloadcms/richtext-lexical/react";
 import { getPayload } from "payload";
 import { PageHeader } from "@/components/pageheader";
 import { ServiceWhy } from "@/components/service-why";
@@ -41,22 +40,9 @@ export default async function ServicePage({
       />
       <div className="space-y-16 py-16 sm:space-y-32 sm:py-32">
         <ServiceWhy
-          title={`Why ${service.name.toLowerCase()} is important for your brand`}
-          description={
-            service.short_description ??
-            "To stand out in today's digital landscape, brands need work that is both strategic and performance-driven."
-          }
+          title="Why effective marketing strategy is important for your brand"
+          description="To stand out in today’s digital landscape, brands need creative that is both strategic and performance-driven. Our marketing agency creates compelling assets that capture attention, align with your goals, and drive results at every stage of the marketing funnel."
         />
-        {service.long_description ? (
-          <section className="w-full">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-              <RichText
-                data={service.long_description}
-                className="max-w-3xl text-base text-muted-foreground"
-              />
-            </div>
-          </section>
-        ) : null}
         <ServiceDeliver />
         <Projects />
         <ServiceApproach />
