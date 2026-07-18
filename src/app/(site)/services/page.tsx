@@ -1,6 +1,5 @@
-import { ServiceCard } from "@/components/service-card";
-import { ICONS } from "@/components/services";
-import { PageHeader } from "@/components/pageheader";
+import { WhatWeDo } from "@/components/what-we-do";
+import { Hero } from "@/components/hero";
 import { getPayload } from "payload";
 import config from "../../../../payload.config";
 import { CTA } from "@/components/cta";
@@ -24,34 +23,25 @@ export default async function ServicesPage() {
   const payloadServices = await getServices();
   return (
     <div>
-      <PageHeader
-        title="Services"
-        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
+      <Hero
+        eyebrow="Services"
+        title="Marketing services built to grow your brand"
+        description="Explore the strategy, creative, and campaign services we use to help brands increase visibility, engagement, and long-term growth."
       />
-      <div className="space-y-16 pt-16 sm:space-y-32 sm:pt-32">
-        <section className="w-full">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {payloadServices.map((item, i) => (
-                <li key={item.title} className="h-full">
-                  <ServiceCard
-                    icon={
-                      <img
-                        src={ICONS[i]}
-                        alt={item.title}
-                        className="w-14"
-                      />
-                    }
-                    title={item.title}
-                    description={item.shortDescription}
-                    href={`/services/${item.slug}`}
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-        <CTA />
+      <div className="space-y-16 pb-16 sm:space-y-32 sm:pb-32">
+        <WhatWeDo payload={payloadServices} />
+        <CTA
+          title="Ready to grow your brand?"
+          description="Take the first step toward marketing success."
+          buttonLabel="Schedule a call with our experts"
+          buttonHref="/contact"
+          footnote={
+            <>
+              We&rsquo;ll respond within <b className="text-[#292b2c]">24 hours</b>. No
+              pressure, just expert advice.
+            </>
+          }
+        />
       </div>
     </div>
   );
