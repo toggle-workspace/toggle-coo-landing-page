@@ -9,9 +9,20 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { Eyebrow } from "@/components/eyebrow";
 import { TESTIMONIALS } from "@/data/testimonials";
 
-export function Testimonials() {
+type Testimonial = { title: string; quote: string; name: string; role: string };
+
+export function Testimonials({
+  eyebrow = "Testimonials",
+  title = "Real feedback from businesses we've helped grow",
+  testimonials = TESTIMONIALS,
+}: {
+  eyebrow?: string;
+  title?: React.ReactNode;
+  testimonials?: Testimonial[];
+}) {
   const [api, setApi] = React.useState<CarouselApi>();
 
   return (
@@ -19,12 +30,9 @@ export function Testimonials() {
       <div className="mx-auto max-w-[1300px] px-6 lg:px-8">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <div className="flex flex-col gap-6">
-            <div className="flex items-center gap-2">
-              <img alt="" className="size-3.5" src="/marketing/icon-bullet.svg" />
-              <span className="font-semibold text-[#292b2c]">Testimonials</span>
-            </div>
+            <Eyebrow>{eyebrow}</Eyebrow>
             <h2 className="text-4xl font-semibold text-[#292b2c] md:text-5xl">
-              Real feedback from businesses we&rsquo;ve helped grow
+              {title}
             </h2>
           </div>
           <div className="hidden shrink-0 gap-2 md:flex">
@@ -50,7 +58,7 @@ export function Testimonials() {
         </div>
         <Carousel opts={{ align: "start" }} setApi={setApi} className="w-full">
           <CarouselContent className="-ml-5">
-            {TESTIMONIALS.map((testimonial) => (
+            {testimonials.map((testimonial) => (
               <CarouselItem
                 key={testimonial.name}
                 className="basis-[85%] pl-5 sm:basis-[55%] lg:basis-[35%]"

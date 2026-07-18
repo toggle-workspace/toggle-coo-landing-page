@@ -1,5 +1,5 @@
-import { AboutHero } from "@/components/about-hero";
-import { StoryStats } from "@/components/story-stats";
+import { Hero } from "@/components/hero";
+import { Story } from "@/components/story";
 import { ValuesGrid } from "@/components/values-grid";
 import { WhyUs } from "@/components/why-us";
 import { TeamGrid } from "@/components/team-grid";
@@ -9,9 +9,21 @@ import { CTA } from "@/components/cta";
 export default function AboutPage() {
   return (
     <div>
-      <AboutHero />
+      <Hero
+        eyebrow="About us"
+        title="Building digital experiences that inspire and perform"
+        description="Explore our values, philosophy, and approach that guide every project and help our clients build stronger, lasting brands."
+      />
       <div className="space-y-24 pb-16 sm:space-y-32 sm:pb-24">
-        <StoryStats />
+        <Story
+          title="We believe marketing should deliver more than promises"
+          description="Over the years, our team of strategists, creatives, and marketers has worked with brands of all sizes to build meaningful connections with their audiences, grow their businesses, and deliver measurable results. Every project reflects our commitment to strategy, creativity, and long-term success."
+          stats={[
+            { value: "15+", label: "Years of marketing experience" },
+            { value: "100+", label: "Successful cases" },
+          ]}
+          videoImage="/about/video-bg.jpg"
+        />
         <ValuesGrid />
         <WhyUs />
         <TeamGrid />

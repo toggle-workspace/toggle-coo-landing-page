@@ -1,23 +1,60 @@
 import { VideoPanel } from "@/components/video-panel";
 
-export function Story() {
+type Stat = { value: string; label: string };
+
+export function Story({
+  title,
+  description,
+  link,
+  stats,
+  videoImage,
+  videoTitle,
+  videoDescription,
+}: {
+  title: React.ReactNode;
+  description?: React.ReactNode;
+  link?: { label: string; href: string };
+  stats?: Stat[];
+  videoImage: string;
+  videoTitle?: React.ReactNode;
+  videoDescription?: React.ReactNode;
+}) {
   return (
     <section className="w-full bg-white">
-      <div className="mx-auto flex max-w-[1300px] flex-col items-center justify-between gap-10 px-6 lg:flex-row lg:px-8">
-        <div className="flex flex-1 flex-col gap-6">
+      <div className="mx-auto flex max-w-[1300px] flex-col items-center gap-10 px-6 lg:flex-row lg:items-stretch lg:px-8">
+        <div className="flex flex-1 flex-col justify-center gap-6">
           <h2 className="text-2xl leading-snug font-medium text-[#292b2c] lg:text-3xl">
-            We&rsquo;re a team of strategists, creatives, and marketers
-            working together to produce standout content and ensure it
-            reaches the right audience.
+            {title}
           </h2>
-          <a
-            href="/about"
-            className="w-fit border-b-2 border-[#eb332d] pb-1.5 text-base font-semibold text-[#292b2c]"
-          >
-            More about us
-          </a>
+          {description && <p className="text-[#565b5d]">{description}</p>}
+          {stats && stats.length > 0 && (
+            <div className="flex flex-wrap gap-10">
+              {stats.map((stat) => (
+                <div key={stat.label} className="flex flex-col gap-1">
+                  <span className="text-4xl font-semibold text-[#eb332d]">
+                    {stat.value}
+                  </span>
+                  <p className="max-w-40 font-semibold text-[#292b2c]">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+          {link && (
+            <a
+              href={link.href}
+              className="w-fit border-b-2 border-[#eb332d] pb-1.5 text-base font-semibold text-[#292b2c]"
+            >
+              {link.label}
+            </a>
+          )}
         </div>
-        <VideoPanel image="/marketing/hero-video-bg.jpg" />
+        <VideoPanel
+          image={videoImage}
+          title={videoTitle}
+          description={videoDescription}
+        />
       </div>
     </section>
   );

@@ -1,4 +1,8 @@
-const TEAM = [
+import { Eyebrow } from "@/components/eyebrow";
+
+type Member = { name: string; role: string; image: string };
+
+const DEFAULT_TEAM: Member[] = [
   { name: "Alexander Cole", role: "Founder / CEO", image: "/about/team-alexander-cole.jpg" },
   { name: "Sophia Turner", role: "Chief Operating Officer", image: "/about/team-sophia-turner.jpg" },
   { name: "Isabella Reed", role: "Senior Content Marketing Manager", image: "/about/team-isabella-reed.jpg" },
@@ -9,26 +13,31 @@ const TEAM = [
   { name: "Ethan Brooks", role: "Senior SEO Specialist", image: "/about/team-ethan-brooks.jpg" },
 ];
 
-export function TeamGrid() {
+export function TeamGrid({
+  eyebrow = "Our team",
+  title = "Meet the heart of our agency",
+  description = "We embrace diversity of thought, continuous learning, and open-minded collaboration, building a reliable team that moves forward with a shared goal.",
+  members = DEFAULT_TEAM,
+}: {
+  eyebrow?: string;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  members?: Member[];
+}) {
   return (
     <section className="w-full bg-white">
       <div className="mx-auto max-w-[1300px] px-6 lg:px-8">
         <div className="mb-14 flex flex-col gap-6">
-          <div className="flex items-center gap-2">
-            <img alt="" className="size-3.5" src="/marketing/icon-bullet.svg" />
-            <span className="font-semibold text-[#292b2c]">Our team</span>
-          </div>
+          <Eyebrow>{eyebrow}</Eyebrow>
           <h2 className="max-w-2xl text-4xl font-semibold text-[#292b2c] md:text-5xl">
-            Meet the heart of our agency
+            {title}
           </h2>
-          <p className="max-w-2xl text-[#565b5d]">
-            We embrace diversity of thought, continuous learning, and
-            open-minded collaboration, building a reliable team that moves
-            forward with a shared goal.
-          </p>
+          {description && (
+            <p className="max-w-2xl text-[#565b5d]">{description}</p>
+          )}
         </div>
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {TEAM.map((member) => (
+          {members.map((member) => (
             <div key={member.name} className="flex flex-col gap-5">
               <div className="relative aspect-square overflow-hidden">
                 <img

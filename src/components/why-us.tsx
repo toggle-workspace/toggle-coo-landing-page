@@ -1,4 +1,8 @@
-const REASONS = [
+import { Eyebrow } from "@/components/eyebrow";
+
+type Reason = { number: string; title: string; description: string };
+
+const DEFAULT_REASONS: Reason[] = [
   {
     number: "01.",
     title: "Focused on what truly matters",
@@ -19,19 +23,26 @@ const REASONS = [
   },
 ];
 
-export function WhyUs() {
+export function WhyUs({
+  eyebrow = "Why work with us",
+  title = "What sets us apart",
+  reasons = DEFAULT_REASONS,
+}: {
+  eyebrow?: string;
+  title?: React.ReactNode;
+  reasons?: Reason[];
+}) {
   return (
     <section className="w-full bg-white">
       <div className="mx-auto max-w-[1300px] px-6 lg:px-8">
-        <div className="mb-14 flex items-center gap-2">
-          <img alt="" className="size-3.5" src="/marketing/icon-bullet.svg" />
-          <span className="font-semibold text-[#292b2c]">Why work with us</span>
+        <div className="mb-14">
+          <Eyebrow>{eyebrow}</Eyebrow>
         </div>
         <h2 className="mb-14 text-4xl font-semibold text-[#292b2c] md:text-5xl">
-          What sets us apart
+          {title}
         </h2>
         <div className="grid grid-cols-1 gap-16 md:grid-cols-3">
-          {REASONS.map((reason) => (
+          {reasons.map((reason) => (
             <div key={reason.number} className="flex flex-col gap-5">
               <span className="text-6xl font-semibold text-[#d7dada]">
                 {reason.number}
