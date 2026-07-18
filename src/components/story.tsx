@@ -1,47 +1,60 @@
-export function Story() {
+import { VideoPanel } from "@/components/video-panel";
+
+type Stat = { value: string; label: string };
+
+export function Story({
+  title,
+  description,
+  link,
+  stats,
+  videoImage,
+  videoTitle,
+  videoDescription,
+}: {
+  title: React.ReactNode;
+  description?: React.ReactNode;
+  link?: { label: string; href: string };
+  stats?: Stat[];
+  videoImage: string;
+  videoTitle?: React.ReactNode;
+  videoDescription?: React.ReactNode;
+}) {
   return (
-    <section className="w-full">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-15 lg:grid-cols-7 lg:gap-1">
-          <div className="h-120 border lg:col-span-4">
-            <img
-              src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/guri4/img2.png"
-              alt=""
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div className="space-y-15 lg:col-span-3 lg:ml-auto lg:max-w-4xl lg:pl-15">
-            <h1 className="text-2xl font-medium tracking-tight">
-              We are a team of creators, thinkers, and builders who believe in
-              crafting experiences that truly connect. Our story is built on
-              passion, innovation, and the drive to bring meaningful ideas to
-              life.
-            </h1>
-            <p className="text-base text-foreground/40 lg:text-lg">
-              We ask: What&apos;s the goal? Who&apos;s it for? How do we make it
-              effortless? we begin with why, who, and how to make it better.
-            </p>
-            <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
-              <p className="flex-1 text-sm text-foreground/40">
-                We aim to bring diverse minds together, turning ideas into
-                experiences that matter.
-              </p>
-              <div className="flex w-fit items-center gap-2">
-                <img
-                  src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/guri3/avatar1.png"
-                  alt="avatar"
-                  className="size-10"
-                />
-                <div>
-                  <h3 className="font-medium tracking-tight">John Doe</h3>
-                  <p className="text-sm text-foreground/40">
-                    Creative Director
+    <section className="w-full bg-white">
+      <div className="mx-auto flex max-w-[1300px] flex-col items-center gap-10 px-6 lg:flex-row lg:items-stretch lg:px-8">
+        <div className="flex flex-1 flex-col justify-center gap-6">
+          <h2 className="text-2xl leading-snug font-medium text-[#292b2c] lg:text-3xl">
+            {title}
+          </h2>
+          {description && <p className="text-[#565b5d]">{description}</p>}
+          {stats && stats.length > 0 && (
+            <div className="flex flex-wrap gap-10">
+              {stats.map((stat) => (
+                <div key={stat.label} className="flex flex-col gap-1">
+                  <span className="text-4xl font-semibold text-[#eb332d]">
+                    {stat.value}
+                  </span>
+                  <p className="max-w-40 font-semibold text-[#292b2c]">
+                    {stat.label}
                   </p>
                 </div>
-              </div>
+              ))}
             </div>
-          </div>
+          )}
+          {link && (
+            <a
+              href={link.href}
+              className="w-fit border-b-2 border-[#eb332d] pb-1.5 text-base font-semibold text-[#292b2c]"
+            >
+              {link.label}
+            </a>
+          )}
         </div>
+        <VideoPanel
+          image={videoImage}
+          title={videoTitle}
+          description={videoDescription}
+        />
       </div>
     </section>
   );

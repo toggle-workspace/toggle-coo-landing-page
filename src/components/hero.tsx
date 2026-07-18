@@ -1,70 +1,80 @@
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { InfiniteSlider } from "@/components/motion-primitives/infinite-slider";
-import { ProgressiveBlur } from "@/components/motion-primitives/progressive-blur";
-import { Spotify } from "@/components/ui/svgs/spotify";
-import { VercelFull } from "@/components/ui/svgs/vercel";
-import { SupabaseFull } from "@/components/ui/svgs/supabase";
-import { Hulu } from "@/components/ui/svgs/hulu";
-import { Bolt } from "@/components/ui/svgs/bolt";
-import { FirebaseFull } from "@/components/ui/svgs/firebase";
-import { Beacon } from "@/components/ui/svgs/beacon";
-import { Claude } from "@/components/ui/svgs/claude";
-import { Cisco } from "@/components/ui/svgs/cisco";
-import { Figma } from "@/components/ui/svgs/figma";
+import { Eyebrow } from "@/components/eyebrow";
 
-export function Hero() {
+type HeroAction = {
+  label: string;
+  href: string;
+  variant?: "primary" | "outline";
+};
+
+export function Hero({
+  eyebrow,
+  title,
+  description,
+  actions = [],
+  align = "left",
+}: {
+  eyebrow?: string;
+  title: React.ReactNode;
+  description?: React.ReactNode;
+  actions?: HeroAction[];
+  /** "center" matches the homepage-style landing hero; "left" matches an inner-page header. */
+  align?: "left" | "center";
+}) {
+  const centered = align === "center";
+
   return (
-    <section className="dark relative h-[70svh] max-h-450 min-h-140 w-full bg-linear-to-br from-zinc-900 to-zinc-800 after:absolute after:inset-0 after:block after:size-full after:bg-zinc-950/50 after:content-[''] md:h-[80svh]">
-      <div className="relative z-10 mx-auto flex size-full max-w-[125rem] px-4 py-9">
-        <div className="flex w-full flex-col justify-between gap-10">
-          <div className="mx-auto flex max-w-125 flex-1 flex-col items-center justify-center gap-7 sm:max-w-150 md:max-w-200">
-            <h1 className="text-center text-4xl font-medium leading-tight text-foreground sm:text-5xl md:text-6xl">
-              The Agency Behind 50+ Growing Brands
-            </h1>
-            <p className="text-balance text-center text-lg text-foreground md:text-2xl">
-              We run paid media, SEO, creative, and lifecycle marketing as one
-              system. Every channel shares one target: more revenue, less wasted
-              spend.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+    <section className="w-full bg-white">
+      <div
+        className={cn(
+          "mx-auto flex max-w-[1300px] flex-col gap-6 px-6 pb-16 pt-16 lg:px-8 lg:pt-24",
+          centered && "items-center text-center",
+        )}
+      >
+        {eyebrow &&
+          (centered ? (
+            <p className="text-[#292b2c]">{eyebrow}</p>
+          ) : (
+            <Eyebrow>{eyebrow}</Eyebrow>
+          ))}
+        <h1
+          className={cn(
+            "max-w-4xl text-4xl font-bold tracking-tight text-[#292b2c] md:text-6xl",
+            centered && "lg:text-7xl",
+          )}
+        >
+          {title}
+        </h1>
+        {description && (
+          <p className="max-w-2xl text-lg text-[#565b5d]">{description}</p>
+        )}
+        {actions.length > 0 && (
+          <div
+            className={cn(
+              "mt-2 flex flex-wrap items-center gap-4",
+              centered && "justify-center",
+            )}
+          >
+            {actions.map((action) => (
               <a
-                href="#"
+                key={action.label}
+                href={action.href}
                 className={cn(
-                  buttonVariants(),
-                  "h-fit w-fit rounded-lg px-6 py-3.5 text-sm font-semibold uppercase tracking-wider text-nowrap",
+                  buttonVariants({
+                    variant: action.variant === "outline" ? "outline" : "default",
+                  }),
+                  "h-fit rounded-full px-8 py-5 text-base font-semibold",
+                  action.variant === "outline"
+                    ? "border-[#292b2c] text-[#292b2c] hover:bg-[#292b2c] hover:text-white"
+                    : "bg-[#eb332d] hover:bg-[#eb332d]/90",
                 )}
               >
-                Explore Projects
+                {action.label}
               </a>
-            </div>
+            ))}
           </div>
-
-          <div className="**:fill-foreground relative overflow-hidden py-4">
-            <InfiniteSlider speedOnHover={20} speed={40} gap={112}>
-              <Bolt height={22} width={56} />
-              <VercelFull height={22} width={84} />
-              <SupabaseFull className="h-6" />
-              <Hulu height={18} width={56} />
-              <Spotify height={24} width={80} />
-              <FirebaseFull height={24} width={80} />
-              <Beacon height={24} width={80} />
-              <Claude height={26} width={90} />
-              <Figma height={24} width={24} />
-              <Cisco height={30} width={60} />
-            </InfiniteSlider>
-            <ProgressiveBlur
-              className="pointer-events-none absolute left-0 top-0 h-full w-20"
-              direction="left"
-              blurIntensity={1}
-            />
-            <ProgressiveBlur
-              className="pointer-events-none absolute right-0 top-0 h-full w-20"
-              direction="right"
-              blurIntensity={1}
-            />
-          </div>
-        </div>
+        )}
       </div>
     </section>
   );
