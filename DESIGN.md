@@ -4,9 +4,10 @@
 > **Every new page in this site should be built from the "Marketing
 > Section Family" component catalog below** — skip straight to that
 > section. It's the current, actively maintained reference, covering
-> `/`, `/about`, `/services`, `/services/[slug]`, `/case-studies`, and
-> `/contact`. The sections above it describe the original shadcn-based
-> theme, kept only as history — every page is now on this family.
+> `/`, `/about`, `/services`, `/services/[slug]`, `/case-studies`,
+> `/case-studies/[slug]`, and `/contact`. The sections above it describe
+> the original shadcn-based theme, kept only as history — every page is
+> now on this family.
 
 ## Fonts
 
@@ -354,7 +355,10 @@ the file.
 | `VideoPanel` | the "watch a video" image card with red play button, used inside `Story` | `image`, `title?`, `description?` |
 | `IconFeatureGrid` | 2-col icon+text feature grid, generic (not services-specific) | `eyebrow`, `title`, `items[]` (`icon: string \| ReactNode`, `title`, `description`, `href?`, `linkLabel?`) |
 | `ClientLogos` | logo marquee (`InfiniteSlider`) on a light gray band | `title`, `logos[]` |
-| `CaseStudiesGrid` | 3-col case study cards with red bottom accent | `eyebrow`, `title`, `linkLabel`, `linkHref`, `showHeader`, `studies[]`, `limit` |
+| `CaseStudiesGrid` | 3-col case study cards with red bottom accent, links to `/case-studies/[slug]` | `eyebrow?`, `title`, `linkLabel`, `linkHref`, `showHeader`, `studies[]` (`slug?`), `limit` |
+| `MarkerList` | single-column list, marker+title header row per item with indented description below | `title`, `description?`, `items[]` (`marker: ReactNode`, `title`, `description`) |
+| `StatGrid` | 2-col (or 4-col) stat tiles on a light card background | `title`, `description?`, `items[]` (`value`, `label`), `columns` (`2 \| 4`) |
+| `ClientInfoCard` | sidebar card: logo, description, industry/location, website link | `name`, `logo`, `description`, `industry`, `location`, `website` |
 | `NumberedFeatureGrid` | 3-col numbered ("01.", "02.", "03.") feature list, generic (not "why us"-specific) | `eyebrow`, `title`, `items[]` |
 | `IconLabelGrid` | 2x4 icon+label tile grid, generic (not values-specific) | `eyebrow`, `title`, `description`, `items[]` |
 | `TeamGrid` | 4-col team member photo grid with red accent bar | `eyebrow`, `title`, `description`, `members[]` |
@@ -363,7 +367,8 @@ the file.
 | `CTA` | closing call-to-action band | `title`, `description`, `buttonLabel`, `buttonHref`, `footnote?` |
 
 Every page (`/`, `/about`, `/services`, `/services/[slug]`,
-`/case-studies`, `/contact`) is now built entirely on this catalog.
+`/case-studies`, `/case-studies/[slug]`, `/contact`) is now built
+entirely on this catalog.
 `PageHeader`, `FeaturesTabs`, `MeetTheTeam`, and `LogoCloud` have been
 deleted — the sections describing them above are kept only as history,
 don't resurrect them. `FAQ` and `ServiceWhy` are still legacy — used on
@@ -443,6 +448,15 @@ section component.
   filters aren't wired to real filtering logic — reproducing them here
   would just be decorative. Add real filtering (and the taxonomy fields
   it needs) as its own task if this data becomes CMS-backed.
+- **`/case-studies/[slug]` extends `case-studies.ts`** (per the
+  deviation above) with per-study `client`, `challenges[]`,
+  `approach[]`, and `results[]` fields, modeled on
+  `the7.io/fse-marketing-agency/case/case06/` but keeping the existing
+  fictional companies (Northwind Analytics, Stacklane, etc.) rather than
+  the Figma-specific ones (Lumora, etc.). Client "logos" are the
+  existing `logo-*.svg` marquee assets (cycled), reused since no real
+  per-company logos exist — never point a `src` at an asset that isn't
+  committed to `public/`.
 - **`IconFeatureGrid`'s services callers assume a 4-icon set.** The real Payload
   `services` collection currently has 5 entries that don't match the
   Figma taxonomy (Marketing strategy / Paid advertising / Content

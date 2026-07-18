@@ -5,6 +5,7 @@ type CaseStudy = {
   title: string;
   company: string;
   description: string;
+  slug?: string;
 };
 
 export function CaseStudiesGrid({
@@ -30,7 +31,7 @@ export function CaseStudiesGrid({
         {showHeader && (
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
             <div className="flex flex-col gap-6">
-              <Eyebrow>{eyebrow}</Eyebrow>
+              {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
               <h2 className="text-4xl font-semibold text-[#292b2c] md:text-5xl">
                 {title}
               </h2>
@@ -46,7 +47,7 @@ export function CaseStudiesGrid({
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
           {studies.slice(0, limit).map((study) => (
             <a
-              href="#"
+              href={study.slug ? `/case-studies/${study.slug}` : "#"}
               key={study.title}
               className="group relative flex min-h-75 flex-col justify-between overflow-hidden bg-[#f2f3f3] p-8"
             >
