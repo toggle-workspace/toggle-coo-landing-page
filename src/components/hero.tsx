@@ -28,7 +28,7 @@ export function Hero({
     <section className="w-full bg-white">
       <div
         className={cn(
-          "mx-auto flex max-w-[1300px] flex-col gap-6 px-6 pb-16 pt-16 lg:px-8 lg:pt-24",
+          "mx-auto flex max-w-325 flex-col gap-6 px-6 pb-16 pt-16 lg:px-8 lg:pt-24",
           centered && "items-center text-center",
         )}
       >
@@ -60,15 +60,11 @@ export function Hero({
               <a
                 key={action.label}
                 href={action.href}
-                className={cn(
-                  buttonVariants({
-                    variant: action.variant === "outline" ? "outline" : "default",
-                  }),
-                  "h-fit rounded-full px-8 py-5 text-base font-semibold",
-                  action.variant === "outline"
-                    ? "border-[#292b2c] text-[#292b2c] hover:bg-[#292b2c] hover:text-white"
-                    : "bg-[#eb332d] hover:bg-[#eb332d]/90",
-                )}
+                className={buttonVariants({
+                  variant:
+                    action.variant === "outline" ? "brand-outline" : "brand",
+                  size: "pill",
+                })}
               >
                 {action.label}
               </a>

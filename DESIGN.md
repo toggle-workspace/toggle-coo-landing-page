@@ -145,6 +145,12 @@ Defined with CVA in `src/components/ui/button.tsx`.
 | `icon-xs` | `h-6 w-6` | — | — |
 | `icon-sm` | `h-7 w-7` | — | — |
 | `icon-lg` | `h-9 w-9` | — | — |
+| `pill` | `h-fit` | `px-8 py-5` | `text-base font-semibold` |
+
+`pill` is the rounded-full CTA/Hero action button size (Marketing Section
+Family). Pair with variant `brand` (`bg-[#eb332d]` red fill) or
+`brand-outline` (`border-[#292b2c]` ink outline, inverts on hover) — both
+sourced from the brand hex tokens above, not the oklch theme.
 
 ## Form Elements
 
@@ -336,7 +342,7 @@ the site's existing font rather than swap it globally (see Known
 deviations).
 
 Layout: sections are full-width (`w-full`), inner content capped at
-`max-w-[1300px]` (not the `max-w-7xl`/1280px used elsewhere in this
+`max-w-325` (1300px, not the `max-w-7xl`/1280px used elsewhere in this
 doc — this family is slightly wider), horizontal padding `px-6 lg:px-8`.
 Pages stack sections with `space-y-24 sm:space-y-32` in the page's
 wrapper div (see `src/app/(site)/page.tsx`).
@@ -365,6 +371,23 @@ the file.
 | `Testimonials` | quote card carousel (shadcn `Carousel`) | `eyebrow`, `title`, `testimonials[]` |
 | `BlogPreview` | 3-col blog post cards over full-bleed photos | `eyebrow`, `title`, `linkLabel`, `linkHref`, `posts[]` |
 | `CTA` | closing call-to-action band | `title`, `description`, `buttonLabel`, `buttonHref`, `footnote?` |
+
+### Shared shadcn primitives (`src/components/ui/`)
+
+Added to formalize markup that was duplicated across the catalog above —
+these are new shadcn-shaped primitives whose styling was pulled from the
+existing marketing components (never the other way around):
+
+| Primitive | Variants | Used by |
+|---|---|---|
+| `Card` / `CardContent` | `default` (`bg-card border rounded-lg`, matches `Contact`'s panel), `muted` (flat `bg-[#f2f3f3]`, no border/radius) | `CaseStudiesGrid`, `Testimonials`, `StatGrid`, `IconLabelGrid`, `ClientInfoCard` (all `muted`); `Contact` (`default`) |
+| `Badge` | `tag` (`text-[#ff584d]`, no background) | `BlogPreview` category tag |
+| `TextLink` | single style: `border-b-2 border-[#eb332d] pb-1.5 font-semibold text-[#292b2c]` | `CaseStudiesGrid`, `IconFeatureGrid`, `Story` footer/inline links |
+
+Note: `muted` `Card` intentionally has **no border-radius** — the marketing
+tiles it replaces (case study cards, testimonial quotes, stat tiles, value
+tiles, client logo box) are square-cornered. Only `default` gets
+`rounded-lg`, matching `Contact`'s pre-existing panel.
 
 Every page (`/`, `/about`, `/services`, `/services/[slug]`,
 `/case-studies`, `/case-studies/[slug]`, `/contact`) is now built

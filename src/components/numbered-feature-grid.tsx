@@ -34,7 +34,7 @@ export function NumberedFeatureGrid({
 }) {
   return (
     <section className="w-full bg-white">
-      <div className="mx-auto max-w-[1300px] px-6 lg:px-8">
+      <div className="mx-auto max-w-325 px-6 lg:px-8">
         <div className="mb-14">
           <Eyebrow>{eyebrow}</Eyebrow>
         </div>

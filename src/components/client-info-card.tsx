@@ -1,3 +1,5 @@
+import { Card } from "@/components/ui/card";
+
 export function ClientInfoCard({
   name,
   logo,
@@ -15,9 +17,9 @@ export function ClientInfoCard({
 }) {
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex h-32 items-center justify-center bg-[#f2f3f3] p-6">
+      <Card variant="muted" className="h-32 items-center justify-center p-6">
         <img alt={name} className="max-h-12 w-auto" src={logo} />
-      </div>
+      </Card>
       <p className="text-sm text-[#565b5d]">{description}</p>
       <dl className="flex flex-col gap-2 text-sm">
         <div className="flex gap-1">

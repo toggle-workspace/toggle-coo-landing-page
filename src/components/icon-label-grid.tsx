@@ -1,3 +1,4 @@
+import { Card } from "@/components/ui/card";
 import { Eyebrow } from "@/components/eyebrow";
 
 type IconLabelGridItem = { label: string; icon: string };
@@ -26,7 +27,7 @@ export function IconLabelGrid({
 }) {
   return (
     <section className="w-full bg-white">
-      <div className="mx-auto max-w-[1300px] px-6 lg:px-8">
+      <div className="mx-auto max-w-325 px-6 lg:px-8">
         <div className="mb-14 flex flex-col gap-6">
           <Eyebrow>{eyebrow}</Eyebrow>
           <h2 className="text-4xl font-semibold text-[#292b2c] md:text-5xl">
@@ -38,13 +39,14 @@ export function IconLabelGrid({
         </div>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {items.map((item) => (
-            <div
+            <Card
               key={item.label}
-              className="flex flex-col justify-between gap-6 bg-[#f2f3f3] p-6"
+              variant="muted"
+              className="justify-between gap-6 p-6"
             >
               <img alt="" className="size-11" src={item.icon} />
               <p className="font-semibold text-[#292b2c]">{item.label}</p>
-            </div>
+            </Card>
           ))}
         </div>
       </div>

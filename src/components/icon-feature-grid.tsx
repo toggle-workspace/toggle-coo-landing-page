@@ -1,3 +1,4 @@
+import { TextLink } from "@/components/ui/text-link";
 import { Eyebrow } from "@/components/eyebrow";
 
 type IconFeatureGridItem = {
@@ -19,7 +20,7 @@ export function IconFeatureGrid({
 }) {
   return (
     <section className="w-full bg-white">
-      <div className="mx-auto max-w-[1300px] px-6 lg:px-8">
+      <div className="mx-auto max-w-325 px-6 lg:px-8">
         <div className="mb-14">
           <Eyebrow>{eyebrow}</Eyebrow>
         </div>
@@ -40,12 +41,9 @@ export function IconFeatureGrid({
                 </h3>
                 <p className="text-[#565b5d]">{item.description}</p>
                 {item.href && (
-                  <a
-                    href={item.href}
-                    className="w-fit border-b-2 border-[#eb332d] pb-1 text-sm font-semibold text-[#292b2c]"
-                  >
+                  <TextLink href={item.href} className="pb-1 text-sm">
                     {item.linkLabel ?? "Learn more"}
-                  </a>
+                  </TextLink>
                 )}
               </div>
             </div>

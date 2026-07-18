@@ -14,7 +14,7 @@ export function ClientLogos({
 }) {
   return (
     <section className="w-full bg-[#f7f8f8] py-20">
-      <div className="mx-auto flex max-w-[1300px] flex-col items-center gap-12 px-6 lg:px-8">
+      <div className="mx-auto flex max-w-325 flex-col items-center gap-12 px-6 lg:px-8">
         <h2 className="text-center text-2xl font-semibold text-[#292b2c]">
           {title}
         </h2>

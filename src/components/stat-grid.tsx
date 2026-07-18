@@ -1,3 +1,5 @@
+import { Card } from "@/components/ui/card";
+
 type StatGridItem = { value: string; label: string };
 
 export function StatGrid({
@@ -30,12 +32,12 @@ export function StatGrid({
           }
         >
           {items.map((item) => (
-            <div key={item.label} className="flex flex-col gap-2 bg-[#f2f3f3] p-6">
+            <Card key={item.label} variant="muted" className="gap-2 p-6">
               <span className="text-3xl font-semibold text-[#eb332d] md:text-4xl">
                 {item.value}
               </span>
               <p className="text-sm text-[#565b5d]">{item.label}</p>
-            </div>
+            </Card>
           ))}
         </div>
       </div>
