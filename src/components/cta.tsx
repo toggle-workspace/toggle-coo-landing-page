@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 
 export function CTA({
@@ -25,10 +24,7 @@ export function CTA({
         </p>
         <a
           href={buttonHref}
-          className={cn(
-            buttonVariants(),
-            "h-fit rounded-full bg-[#eb332d] px-8 py-5 text-base font-semibold hover:bg-[#eb332d]/90",
-          )}
+          className={buttonVariants({ variant: "brand", size: "pill" })}
         >
           {buttonLabel}
         </a>

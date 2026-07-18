@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -44,12 +45,6 @@ const TESTIMONIAL = {
   logo: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-1.svg",
 };
 
-const LOGOS = Array.from({ length: 10 }, (_, i) => ({
-  src: `https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-${i + 1}.svg`,
-  alt: `logo ${i + 1}`,
-  hidden: i >= 6,
-}));
-
 export function Contact() {
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -72,7 +67,10 @@ export function Contact() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col items-center">
           {/* Form + Testimonial */}
-          <div className="grid max-w-7xl grid-cols-1 rounded-lg border lg:grid-cols-2">
+          <Card
+            variant="default"
+            className="grid max-w-7xl grid-cols-1 lg:grid-cols-2"
+          >
             {/* Form */}
             <div className="border-b p-8 lg:border-r lg:border-b-0">
               <Form {...form}>
@@ -237,7 +235,7 @@ export function Contact() {
                 </div>
               </div>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
     </section>

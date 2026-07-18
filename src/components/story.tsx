@@ -1,3 +1,4 @@
+import { TextLink } from "@/components/ui/text-link";
 import { VideoPanel } from "@/components/video-panel";
 
 type Stat = { value: string; label: string };
@@ -21,7 +22,7 @@ export function Story({
 }) {
   return (
     <section className="w-full bg-white">
-      <div className="mx-auto flex max-w-[1300px] flex-col items-center gap-10 px-6 lg:flex-row lg:items-stretch lg:px-8">
+      <div className="mx-auto flex max-w-325 flex-col items-center gap-10 px-6 lg:flex-row lg:items-stretch lg:px-8">
         <div className="flex flex-1 flex-col justify-center gap-6">
           <h2 className="text-2xl leading-snug font-medium text-[#292b2c] lg:text-3xl">
             {title}
@@ -42,12 +43,9 @@ export function Story({
             </div>
           )}
           {link && (
-            <a
-              href={link.href}
-              className="w-fit border-b-2 border-[#eb332d] pb-1.5 text-base font-semibold text-[#292b2c]"
-            >
+            <TextLink href={link.href} className="text-base">
               {link.label}
-            </a>
+            </TextLink>
           )}
         </div>
         <VideoPanel

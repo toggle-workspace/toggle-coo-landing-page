@@ -36,7 +36,6 @@ export default async function Home() {
   return (
     <>
       <Hero
-        align="center"
         eyebrow="Strategy. Creativity. Results."
         title="Performance Marketing Made Clear & Effective"
         description="From brand positioning to digital campaigns, we deliver practical marketing solutions designed to increase visibility, engagement, and long-term growth."

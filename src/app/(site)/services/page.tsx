@@ -1,5 +1,5 @@
 import { IconFeatureGrid } from "@/components/icon-feature-grid";
-import { Hero } from "@/components/hero";
+import { PageHeader } from "@/components/page-header";
 import { getPayload } from "payload";
 import config from "../../../../payload.config";
 import { CTA } from "@/components/cta";
@@ -30,7 +30,7 @@ export default async function ServicesPage() {
   const payloadServices = await getServices();
   return (
     <div>
-      <Hero
+      <PageHeader
         eyebrow="Services"
         title="Marketing services built to grow your brand"
         description="Explore the strategy, creative, and campaign services we use to help brands increase visibility, engagement, and long-term growth."

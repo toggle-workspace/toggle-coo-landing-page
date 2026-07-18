@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { Eyebrow } from "@/components/eyebrow";
 import { BLOG_POSTS } from "@/data/blog-posts";
 
@@ -18,7 +19,7 @@ export function BlogPreview({
 }) {
   return (
     <section className="w-full bg-white">
-      <div className="mx-auto max-w-[1300px] px-6 lg:px-8">
+      <div className="mx-auto max-w-325 px-6 lg:px-8">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <div className="flex flex-col gap-6">
             <Eyebrow>{eyebrow}</Eyebrow>
@@ -45,10 +46,10 @@ export function BlogPreview({
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 src={post.image}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/15" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-black/15" />
               <div className="relative flex flex-col gap-4 text-white">
                 <p className="text-sm">
-                  <span className="text-[#ff584d]">{post.tags.join(", ")}</span>
+                  <Badge variant="tag">{post.tags.join(", ")}</Badge>
                   {" | "}
                   {post.date}
                 </p>
