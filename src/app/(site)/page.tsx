@@ -9,12 +9,7 @@ import { CTA } from "@/components/cta";
 import { getPayload } from "payload";
 import config from "../../../payload.config";
 
-const SERVICE_ICONS = [
-  "/marketing/icon-strategy.svg",
-  "/marketing/icon-ads.svg",
-  "/marketing/icon-content.svg",
-  "/marketing/icon-seo.svg",
-];
+const FALLBACK_ICON = "/marketing/icon-strategy.svg";
 
 async function getServices() {
   const payload = await getPayload({ config });
@@ -22,12 +17,16 @@ async function getServices() {
     collection: "services",
     sort: "order",
     limit: 10,
+    depth: 1,
   });
   return docs.map((doc) => ({
     title: doc.name,
     slug: doc.slug,
     shortDescription: doc.short_description ?? "",
     description: doc.long_description,
+    icon:
+      (typeof doc.icon === "object" ? doc.icon?.url : undefined) ??
+      FALLBACK_ICON,
   }));
 }
 
@@ -51,8 +50,8 @@ export default async function Home() {
           videoImage="/marketing/hero-video-bg.jpg"
         />
         <IconFeatureGrid
-          items={payloadServices.map((service, i) => ({
-            icon: SERVICE_ICONS[i % SERVICE_ICONS.length],
+          items={payloadServices.map((service) => ({
+            icon: service.icon,
             title: service.title,
             description: service.shortDescription,
             href: `/services/${service.slug}`,

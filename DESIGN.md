@@ -420,6 +420,12 @@ page's server component and passed down as a `payload` prop — see
 `getServices()` in `src/app/(site)/page.tsx`. Don't fetch inside a
 section component.
 
+The `services` collection's `icon` field and `deliverables[].icon`
+field are Payload uploads (Media relationships), not static paths —
+fetch with `depth: 1` (or `depth: 2` when reading `deliverables`) so
+the upload resolves to a populated Media doc with a `.url`, otherwise
+`icon` is just a bare doc ID.
+
 ### Assets
 
 - `public/marketing/` — homepage assets (icons, photos, logos).
@@ -484,9 +490,10 @@ section component.
   existing `logo-*.svg` marquee assets (cycled), reused since no real
   per-company logos exist — never point a `src` at an asset that isn't
   committed to `public/`.
-- **`IconFeatureGrid`'s services callers assume a 4-icon set.** The real Payload
-  `services` collection currently has 5 entries that don't match the
-  Figma taxonomy (Marketing strategy / Paid advertising / Content
-  marketing / SEO & GEO) at all — icons wrap via `i % icons.length` and
-  will visibly repeat. This needs either updated CMS content or an
-  updated icon set; flag it rather than silently patching around it.
+- **`IconFeatureGrid`'s services callers now read a per-service `icon`
+  upload field** on the `services` collection (falling back to
+  `/marketing/icon-strategy.svg` when unset) instead of cycling a
+  hardcoded 4-icon array — each service needs its own icon uploaded in
+  `/admin`. The `/services/[slug]` "What we deliver" grid likewise
+  reads a per-service `deliverables[]` array field (icon/title/
+  description) instead of a shared hardcoded 4-item list.

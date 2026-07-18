@@ -36,8 +36,21 @@ export default buildConfig({
         { name: 'name', type: 'text', required: true },
         { name: 'short_description', label: 'Short description' , type: 'textarea' },
         { name: 'long_description', label: 'Long description', type: 'richText' },
+        { name: 'icon', label: 'Icon', type: 'upload', relationTo: 'media' },
         { name: 'order', type: 'number' },
         { name: 'slug', type: 'text' },
+        {
+          name: 'deliverables',
+          label: 'What we deliver',
+          type: 'array',
+          minRows: 0,
+          maxRows: 6,
+          fields: [
+            { name: 'icon', type: 'upload', relationTo: 'media' },
+            { name: 'title', type: 'text', required: true },
+            { name: 'description', type: 'textarea' },
+          ],
+        },
       ],
     },
     {

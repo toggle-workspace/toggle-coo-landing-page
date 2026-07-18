@@ -3,17 +3,13 @@ import { getPayload } from "payload";
 import { PageHeader } from "@/components/page-header";
 import { ServiceWhy } from "@/components/service-why";
 import { IconFeatureGrid } from "@/components/icon-feature-grid";
-import {
-  ActivityIcon,
-  DollarSignIcon,
-  ListChecksIcon,
-  MousePointerClickIcon,
-} from "lucide-react";
 import { CaseStudiesGrid } from "@/components/case-studies-grid";
 import { NumberedFeatureGrid } from "@/components/numbered-feature-grid";
 import { FAQ } from "@/components/faq";
 import { CTA } from "@/components/cta";
 import config from "../../../../../payload.config";
+
+const FALLBACK_ICON = "/marketing/icon-strategy.svg";
 
 async function getService(slug: string) {
   const payload = await getPayload({ config });
@@ -21,6 +17,7 @@ async function getService(slug: string) {
     collection: "services",
     where: { slug: { equals: slug } },
     limit: 1,
+    depth: 2,
   });
   return docs[0] ?? null;
 }
@@ -49,32 +46,18 @@ export default async function ServicePage({
         <IconFeatureGrid
           eyebrow="What we deliver"
           title="From interest to action, we turn your efforts into measurable growth"
-          items={[
-            {
-              icon: <ListChecksIcon className="size-14 shrink-0 text-muted-foreground" />,
-              title: "Conversions",
-              description:
-                "We turn initial interest into meaningful action by guiding users from first click to final decision. Every element is designed to reduce friction and increase the likelihood of conversion.",
-            },
-            {
-              icon: <MousePointerClickIcon className="size-14 shrink-0 text-muted-foreground" />,
-              title: "Engagement",
-              description:
-                "We create content that captures attention and encourages interaction, helping your brand stay memorable while building genuine connections with your audience.",
-            },
-            {
-              icon: <DollarSignIcon className="size-14 shrink-0 text-muted-foreground" />,
-              title: "Return on investment",
-              description:
-                "We focus on maximizing the value of your marketing spend by optimizing performance across channels, ensuring every dollar contributes to measurable growth.",
-            },
-            {
-              icon: <ActivityIcon className="size-14 shrink-0 text-muted-foreground" />,
-              title: "Real-time optimization",
-              description:
-                "We provide clear, easy-to-understand reporting and continuously adjust strategies based on performance, so your campaigns improve and evolve as data comes in.",
-            },
-          ]}
+          items={(service.deliverables ?? []).map((deliverable: {
+            icon?: { url?: string } | string | null;
+            title: string;
+            description?: string | null;
+          }) => ({
+            icon:
+              (typeof deliverable.icon === "object"
+                ? deliverable.icon?.url
+                : undefined) ?? FALLBACK_ICON,
+            title: deliverable.title,
+            description: deliverable.description ?? "",
+          }))}
         />
         <CaseStudiesGrid
           eyebrow="Featured case studies"
