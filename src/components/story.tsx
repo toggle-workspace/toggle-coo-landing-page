@@ -1,45 +1,37 @@
 export function Story() {
   return (
-    <section className="w-full">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-15 lg:grid-cols-7 lg:gap-1">
-          <div className="h-120 border lg:col-span-4">
-            <img
-              src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/guri4/img2.png"
-              alt=""
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div className="space-y-15 lg:col-span-3 lg:ml-auto lg:max-w-4xl lg:pl-15">
-            <h1 className="text-2xl font-medium tracking-tight">
-              We are a team of creators, thinkers, and builders who believe in
-              crafting experiences that truly connect. Our story is built on
-              passion, innovation, and the drive to bring meaningful ideas to
-              life.
-            </h1>
-            <p className="text-base text-foreground/40 lg:text-lg">
-              We ask: What&apos;s the goal? Who&apos;s it for? How do we make it
-              effortless? we begin with why, who, and how to make it better.
-            </p>
-            <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
-              <p className="flex-1 text-sm text-foreground/40">
-                We aim to bring diverse minds together, turning ideas into
-                experiences that matter.
-              </p>
-              <div className="flex w-fit items-center gap-2">
-                <img
-                  src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/guri3/avatar1.png"
-                  alt="avatar"
-                  className="size-10"
-                />
-                <div>
-                  <h3 className="font-medium tracking-tight">John Doe</h3>
-                  <p className="text-sm text-foreground/40">
-                    Creative Director
-                  </p>
-                </div>
-              </div>
+    <section className="w-full bg-white">
+      <div className="mx-auto flex max-w-[1300px] flex-col items-center justify-between gap-10 px-6 lg:flex-row lg:px-8">
+        <div className="flex flex-1 flex-col gap-6">
+          <h2 className="text-2xl leading-snug font-medium text-[#292b2c] lg:text-3xl">
+            We&rsquo;re a team of strategists, creatives, and marketers
+            working together to produce standout content and ensure it
+            reaches the right audience.
+          </h2>
+          <a
+            href="/about"
+            className="w-fit border-b-2 border-[#eb332d] pb-1.5 text-base font-semibold text-[#292b2c]"
+          >
+            More about us
+          </a>
+        </div>
+        <div className="relative flex min-h-100 flex-1 items-center overflow-hidden rounded-2xl">
+          <img
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+            src="/marketing/hero-video-bg.jpg"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/15" />
+          <div className="relative flex flex-col items-start gap-4 p-8 text-white">
+            <div className="flex size-16 items-center justify-center rounded-full bg-[#eb332d] p-3">
+              <img alt="" className="size-full" src="/marketing/icon-play.svg" />
             </div>
+            <h3 className="text-3xl font-semibold">
+              Driven by Strategy.
+              <br />
+              Focused on Results.
+            </h3>
+            <p>Watch a short video about our agency</p>
           </div>
         </div>
       </div>

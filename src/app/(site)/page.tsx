@@ -1,13 +1,13 @@
 import { Hero } from "@/components/hero";
-import { Projects } from "@/components/projects";
-import { Contact } from "@/components/contact";
+import { Story } from "@/components/story";
+import { WhatWeDo } from "@/components/what-we-do";
 import { ClientLogos } from "@/components/client-logos";
-import { FeaturesTabs } from "@/components/features-tabs";
+import { CaseStudiesGrid } from "@/components/case-studies-grid";
+import { WhyUs } from "@/components/why-us";
+import { BlogPreview } from "@/components/blog-preview";
+import { CTA } from "@/components/cta";
 import { getPayload } from "payload";
 import config from "../../../payload.config";
-import { Services } from "@/components/services";
-import { Story } from "@/components/story";
-import { CTA } from "@/components/cta";
 
 async function getServices() {
   const payload = await getPayload({ config });
@@ -29,13 +29,26 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <div className="py-16 space-y-16 sm:py-32 sm:space-y-32">
+      <div className="space-y-24 py-16 sm:space-y-32 sm:py-24">
         <Story />
-        <Services payload={payloadServices} />
+        <WhatWeDo payload={payloadServices} />
         <ClientLogos />
-        <Projects />
+        <CaseStudiesGrid />
+        <WhyUs />
+        <BlogPreview />
+        <CTA
+          title="Ready to grow your brand?"
+          description="Take the first step toward marketing success."
+          buttonLabel="Schedule a call with our experts"
+          buttonHref="/contact"
+          footnote={
+            <>
+              We&rsquo;ll respond within <b className="text-[#292b2c]">24 hours</b>. No
+              pressure, just expert advice.
+            </>
+          }
+        />
       </div>
-      <CTA />
     </>
   );
 }
