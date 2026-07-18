@@ -23,7 +23,7 @@ export function ClientLogos({
             <img
               key={alt}
               alt={alt}
-              className="h-8 w-auto object-contain opacity-70"
+              className="w-auto object-contain opacity-70"
               src={src}
             />
           ))}

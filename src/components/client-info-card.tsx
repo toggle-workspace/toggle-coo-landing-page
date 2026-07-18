@@ -18,7 +18,7 @@ export function ClientInfoCard({
   return (
     <div className="flex flex-col gap-6">
       <Card variant="muted" className="h-32 items-center justify-center p-6">
-        <img alt={name} className="max-h-12 w-auto" src={logo} />
+        <img alt={name} className="w-auto" src={logo} />
       </Card>
       <p className="text-sm text-[#565b5d]">{description}</p>
       <dl className="flex flex-col gap-2 text-sm">

@@ -26,14 +26,12 @@ export default async function CaseStudyPage({
       />
       <div className="space-y-16 pb-16 sm:space-y-32 sm:pb-32">
         <section className="w-full">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-3 lg:px-8">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-3">
             <div className="lg:col-span-2">
               <MarkerList
                 title="Challenges"
                 items={study.challenges.map((challenge) => ({
-                  marker: (
-                    <span className="size-2 shrink-0 bg-[#eb332d]" />
-                  ),
+                  marker: <span className="size-2 shrink-0 bg-[#eb332d]" />,
                   title: challenge.title,
                   description: challenge.description,
                 }))}
@@ -79,8 +77,9 @@ export default async function CaseStudyPage({
           buttonHref="/contact"
           footnote={
             <>
-              We&rsquo;ll respond within <b className="text-[#292b2c]">24 hours</b>. No
-              pressure, just expert advice.
+              We&rsquo;ll respond within{" "}
+              <b className="text-[#292b2c]">24 hours</b>. No pressure, just
+              expert advice.
             </>
           }
         />
