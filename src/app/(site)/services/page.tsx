@@ -26,7 +26,7 @@ export default async function ServicesPage() {
         title="Services"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
-      <div className="space-y-16 py-16 sm:space-y-32 sm:py-32">
+      <div className="space-y-16 pt-16 sm:space-y-32 sm:pt-32">
         <Services payload={payloadServices} />
         <CTA />
       </div>

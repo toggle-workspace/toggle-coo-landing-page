@@ -3,40 +3,31 @@ import { buttonVariants } from "@/components/ui/button";
 
 export function CTA() {
   return (
-    <section className="w-full pb-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex flex-col justify-between gap-20 overflow-hidden rounded-2xl border bg-[radial-gradient(ellipse_30%_60%_at_100%_80%,var(--color-gray-200),transparent)] pt-20 sm:pl-16 lg:flex-row lg:bg-[radial-gradient(ellipse_50%_80%_at_40%_120%,var(--color-gray-200),transparent)] lg:pl-20">
-          <div className="mx-auto max-w-md px-4 text-center md:px-0 lg:mx-0 lg:pb-20 lg:text-left">
-            <p className="mb-6 font-medium">Ready to get started?</p>
-            <h2 className="mb-6 text-4xl font-bold md:text-5xl">
-              Call to Action
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Get access to our collection of pre-built blocks and components
-              today.
-            </p>
-            <div className="mt-6 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
-              <a
-                href="#contact"
-                className={cn(buttonVariants({ variant: "default" }))}
-              >
-                Get Access
-              </a>
-              <a
-                href="#contact"
-                className={cn(buttonVariants({ variant: "outline" }))}
-              >
-                Schedule a Demo
-              </a>
-            </div>
-          </div>
-          <div className="relative w-full pl-4 sm:pl-0">
-            <div className="absolute -bottom-8 -left-8 -z-10 h-4/5 w-4/5 rounded-tl-2xl rounded-br-2xl bg-stone-900/20 blur-2xl" />
-            <img
-              alt="Call to Action"
-              className="relative z-10 h-full max-h-[400px] w-full rounded-tl-2xl rounded-br-2xl object-cover"
-              src="/image-set/placeholder/images/1-16x9.jpg"
-            />
+    <section className="w-full">
+      <div className="relative flex items-center justify-center overflow-hidden py-20 md:py-28">
+        <img
+          alt="Abstract product imagery placeholder"
+          className="absolute inset-0 h-full w-full object-cover"
+          src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/annie-spratt-MChSQHxGZrQ-unsplash.jpg"
+        />
+        <div
+          className="absolute inset-0 bg-linear-to-b from-foreground/55 to-foreground/20"
+          aria-hidden="true"
+        />
+        <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col gap-8 p-4 text-center">
+          <h2 className="mx-auto max-w-3xl text-2xl font-semibold tracking-tight text-balance text-primary-foreground md:text-5xl">
+            Call to Action
+          </h2>
+          <p className="mx-auto max-w-5xl text-base font-medium text-primary-foreground md:text-lg">
+            Try our service free for 7 days. No credit card required.
+          </p>
+          <div className="flex flex-col justify-center gap-2 sm:flex-row sm:gap-3">
+            <a
+              href="/contact"
+              className={cn(buttonVariants({ variant: "secondary", size: "lg" }))}
+            >
+              Start free trial
+            </a>
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ export default function CaseStudiesPage() {
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Case studies" }]}
       />
 
-      <div className="space-y-16 py-16 sm:space-y-32 sm:py-32">
+      <div className="space-y-16 pt-16 sm:space-y-32 sm:pt-32">
         <section className="w-full">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="grid gap-6 sm:grid-cols-2">
