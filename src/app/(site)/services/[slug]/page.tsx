@@ -1,8 +1,13 @@
 import { notFound } from "next/navigation";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { getPayload } from "payload";
-import { Contact } from "@/components/contact";
 import { PageHeader } from "@/components/pageheader";
+import { ServiceWhy } from "@/components/service-why";
+import { ServiceDeliver } from "@/components/service-deliver";
+import { Projects } from "@/components/projects";
+import { ServiceApproach } from "@/components/service-approach";
+import { FAQ } from "@/components/faq";
+import { CTA } from "@/components/cta";
 import config from "../../../../../payload.config";
 
 async function getService(slug: string) {
@@ -35,24 +40,28 @@ export default async function ServicePage({
         ]}
       />
       <div className="space-y-16 py-16 sm:space-y-32 sm:py-32">
-        <section className="w-full">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="flex max-w-3xl flex-col gap-6">
-              {service.short_description ? (
-                <p className="text-lg text-muted-foreground">
-                  {service.short_description}
-                </p>
-              ) : null}
-              {service.long_description ? (
-                <RichText
-                  data={service.long_description}
-                  className="text-base text-muted-foreground"
-                />
-              ) : null}
+        <ServiceWhy
+          title={`Why ${service.name.toLowerCase()} is important for your brand`}
+          description={
+            service.short_description ??
+            "To stand out in today's digital landscape, brands need work that is both strategic and performance-driven."
+          }
+        />
+        {service.long_description ? (
+          <section className="w-full">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+              <RichText
+                data={service.long_description}
+                className="max-w-3xl text-base text-muted-foreground"
+              />
             </div>
-          </div>
-        </section>
-        <Contact />
+          </section>
+        ) : null}
+        <ServiceDeliver />
+        <Projects />
+        <ServiceApproach />
+        <FAQ />
+        <CTA />
       </div>
     </div>
   );
