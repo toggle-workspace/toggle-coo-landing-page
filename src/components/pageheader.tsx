@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import {
   Breadcrumb,
@@ -28,25 +29,27 @@ export function PageHeader({
             {breadcrumbs.map((crumb, index) => {
               const isLast = index === breadcrumbs.length - 1;
               return (
-                <BreadcrumbItem key={crumb.label} className="gap-2">
-                  {isLast || !crumb.href ? (
-                    <BreadcrumbPage className="font-semibold">
-                      {crumb.label}
-                    </BreadcrumbPage>
-                  ) : (
-                    <>
+                <React.Fragment key={crumb.label}>
+                  <BreadcrumbItem className="gap-2">
+                    {isLast || !crumb.href ? (
+                      <BreadcrumbPage className="font-semibold">
+                        {crumb.label}
+                      </BreadcrumbPage>
+                    ) : (
                       <BreadcrumbLink
                         render={<Link href={crumb.href} />}
                         className="opacity-70 hover:opacity-100 hover:no-underline"
                       >
                         {crumb.label}
                       </BreadcrumbLink>
-                      <BreadcrumbSeparator className="opacity-50 [&>svg]:hidden">
-                        /
-                      </BreadcrumbSeparator>
-                    </>
+                    )}
+                  </BreadcrumbItem>
+                  {!isLast && crumb.href && (
+                    <BreadcrumbSeparator className="opacity-50 [&>svg]:hidden">
+                      /
+                    </BreadcrumbSeparator>
                   )}
-                </BreadcrumbItem>
+                </React.Fragment>
               );
             })}
           </BreadcrumbList>
