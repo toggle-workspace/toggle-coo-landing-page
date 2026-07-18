@@ -1,8 +1,8 @@
 import { InfiniteSlider } from "@/components/motion-primitives/infinite-slider";
 
-const LOGOS = Array.from({ length: 8 }, (_, i) => ({
-  src: `/image-set/placeholder/logos/fictional-company-logo-${i + 1}.svg`,
-  alt: `Company logo ${i + 1}`,
+const LOGOS = [1, 2, 3, 4, 5].map((i) => ({
+  src: `/marketing/logo-${i}.svg`,
+  alt: `Client logo ${i}`,
 }));
 
 export function ClientLogos() {
