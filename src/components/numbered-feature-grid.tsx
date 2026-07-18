@@ -1,8 +1,8 @@
 import { Eyebrow } from "@/components/eyebrow";
 
-type Reason = { number: string; title: string; description: string };
+type NumberedFeatureGridItem = { number: string; title: string; description: string };
 
-const DEFAULT_REASONS: Reason[] = [
+const DEFAULT_REASONS: NumberedFeatureGridItem[] = [
   {
     number: "01.",
     title: "Focused on what truly matters",
@@ -23,14 +23,14 @@ const DEFAULT_REASONS: Reason[] = [
   },
 ];
 
-export function WhyUs({
+export function NumberedFeatureGrid({
   eyebrow = "Why work with us",
   title = "What sets us apart",
-  reasons = DEFAULT_REASONS,
+  items = DEFAULT_REASONS,
 }: {
   eyebrow?: string;
   title?: React.ReactNode;
-  reasons?: Reason[];
+  items?: NumberedFeatureGridItem[];
 }) {
   return (
     <section className="w-full bg-white">
@@ -42,15 +42,15 @@ export function WhyUs({
           {title}
         </h2>
         <div className="grid grid-cols-1 gap-16 md:grid-cols-3">
-          {reasons.map((reason) => (
-            <div key={reason.number} className="flex flex-col gap-5">
+          {items.map((item) => (
+            <div key={item.number} className="flex flex-col gap-5">
               <span className="text-6xl font-semibold text-[#d7dada]">
-                {reason.number}
+                {item.number}
               </span>
               <h3 className="text-2xl font-semibold text-[#292b2c]">
-                {reason.title}
+                {item.title}
               </h3>
-              <p className="text-[#565b5d]">{reason.description}</p>
+              <p className="text-[#565b5d]">{item.description}</p>
             </div>
           ))}
         </div>

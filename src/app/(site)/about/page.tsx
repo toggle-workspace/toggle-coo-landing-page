@@ -1,7 +1,7 @@
 import { Hero } from "@/components/hero";
 import { Story } from "@/components/story";
-import { ValuesGrid } from "@/components/values-grid";
-import { WhyUs } from "@/components/why-us";
+import { IconLabelGrid } from "@/components/icon-label-grid";
+import { NumberedFeatureGrid } from "@/components/numbered-feature-grid";
 import { TeamGrid } from "@/components/team-grid";
 import { Testimonials } from "@/components/testimonials";
 import { CTA } from "@/components/cta";
@@ -24,8 +24,8 @@ export default function AboutPage() {
           ]}
           videoImage="/about/video-bg.jpg"
         />
-        <ValuesGrid />
-        <WhyUs />
+        <IconLabelGrid />
+        <NumberedFeatureGrid />
         <TeamGrid />
         <Testimonials />
         <CTA

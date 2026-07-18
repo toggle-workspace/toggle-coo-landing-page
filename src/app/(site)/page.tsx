@@ -1,13 +1,20 @@
 import { Hero } from "@/components/hero";
 import { Story } from "@/components/story";
-import { WhatWeDo } from "@/components/what-we-do";
+import { IconFeatureGrid } from "@/components/icon-feature-grid";
 import { ClientLogos } from "@/components/client-logos";
 import { CaseStudiesGrid } from "@/components/case-studies-grid";
-import { WhyUs } from "@/components/why-us";
+import { NumberedFeatureGrid } from "@/components/numbered-feature-grid";
 import { BlogPreview } from "@/components/blog-preview";
 import { CTA } from "@/components/cta";
 import { getPayload } from "payload";
 import config from "../../../payload.config";
+
+const SERVICE_ICONS = [
+  "/marketing/icon-strategy.svg",
+  "/marketing/icon-ads.svg",
+  "/marketing/icon-content.svg",
+  "/marketing/icon-seo.svg",
+];
 
 async function getServices() {
   const payload = await getPayload({ config });
@@ -44,10 +51,17 @@ export default async function Home() {
           link={{ label: "More about us", href: "/about" }}
           videoImage="/marketing/hero-video-bg.jpg"
         />
-        <WhatWeDo payload={payloadServices} />
+        <IconFeatureGrid
+          items={payloadServices.map((service, i) => ({
+            icon: SERVICE_ICONS[i % SERVICE_ICONS.length],
+            title: service.title,
+            description: service.shortDescription,
+            href: `/services/${service.slug}`,
+          }))}
+        />
         <ClientLogos />
         <CaseStudiesGrid />
-        <WhyUs />
+        <NumberedFeatureGrid />
         <BlogPreview />
         <CTA
           title="Ready to grow your brand?"

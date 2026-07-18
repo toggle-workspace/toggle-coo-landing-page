@@ -1,8 +1,15 @@
-import { WhatWeDo } from "@/components/what-we-do";
+import { IconFeatureGrid } from "@/components/icon-feature-grid";
 import { Hero } from "@/components/hero";
 import { getPayload } from "payload";
 import config from "../../../../payload.config";
 import { CTA } from "@/components/cta";
+
+const SERVICE_ICONS = [
+  "/marketing/icon-strategy.svg",
+  "/marketing/icon-ads.svg",
+  "/marketing/icon-content.svg",
+  "/marketing/icon-seo.svg",
+];
 
 async function getServices() {
   const payload = await getPayload({ config });
@@ -29,7 +36,14 @@ export default async function ServicesPage() {
         description="Explore the strategy, creative, and campaign services we use to help brands increase visibility, engagement, and long-term growth."
       />
       <div className="space-y-16 pb-16 sm:space-y-32 sm:pb-32">
-        <WhatWeDo payload={payloadServices} />
+        <IconFeatureGrid
+          items={payloadServices.map((service, i) => ({
+            icon: SERVICE_ICONS[i % SERVICE_ICONS.length],
+            title: service.title,
+            description: service.shortDescription,
+            href: `/services/${service.slug}`,
+          }))}
+        />
         <CTA
           title="Ready to grow your brand?"
           description="Take the first step toward marketing success."

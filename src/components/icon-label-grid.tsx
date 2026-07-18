@@ -1,8 +1,8 @@
 import { Eyebrow } from "@/components/eyebrow";
 
-type Value = { label: string; icon: string };
+type IconLabelGridItem = { label: string; icon: string };
 
-const DEFAULT_VALUES: Value[] = [
+const DEFAULT_VALUES: IconLabelGridItem[] = [
   { label: "Client is our top priority", icon: "/about/value-priority.svg" },
   { label: "Strategy backed by creativity", icon: "/about/value-strategy.svg" },
   { label: "Clarity over complexity", icon: "/about/value-clarity.svg" },
@@ -13,16 +13,16 @@ const DEFAULT_VALUES: Value[] = [
   { label: "Results over vanity", icon: "/about/value-results.svg" },
 ];
 
-export function ValuesGrid({
+export function IconLabelGrid({
   eyebrow = "Values",
   title = "Our standards and principles",
   description = "These standards define how we operate every day and the qualities we expect from our people and partners.",
-  values = DEFAULT_VALUES,
+  items = DEFAULT_VALUES,
 }: {
   eyebrow?: string;
   title?: React.ReactNode;
   description?: React.ReactNode;
-  values?: Value[];
+  items?: IconLabelGridItem[];
 }) {
   return (
     <section className="w-full bg-white">
@@ -37,13 +37,13 @@ export function ValuesGrid({
           )}
         </div>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {values.map((value) => (
+          {items.map((item) => (
             <div
-              key={value.label}
+              key={item.label}
               className="flex flex-col justify-between gap-6 bg-[#f2f3f3] p-6"
             >
-              <img alt="" className="size-11" src={value.icon} />
-              <p className="font-semibold text-[#292b2c]">{value.label}</p>
+              <img alt="" className="size-11" src={item.icon} />
+              <p className="font-semibold text-[#292b2c]">{item.label}</p>
             </div>
           ))}
         </div>

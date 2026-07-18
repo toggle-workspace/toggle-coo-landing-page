@@ -1,11 +1,12 @@
 # Design System
 
 > Read this file before designing or building any new page or section.
-> If you're working on the Figma `toggle-static` marketing pages
-> (`/`, `/about`, and anything built the same way), skip straight to
-> "Marketing Section Family" below — it's the current, actively
-> maintained reference. The sections above it describe the original
-> shadcn-based theme and legacy components.
+> **Every new page in this site should be built from the "Marketing
+> Section Family" component catalog below** — skip straight to that
+> section. It's the current, actively maintained reference, covering
+> `/`, `/about`, `/services`, and `/services/[slug]`. The sections above
+> it describe the original shadcn-based theme and legacy components,
+> kept only for the pages (`/contact`, `/case-studies`) not yet migrated.
 
 ## Fonts
 
@@ -323,7 +324,7 @@ directly when extending this component family.
 | Ink | `#292b2c` | headings, primary text |
 | Muted text | `#565b5d` | body copy |
 | Faint text | `#889091` | captions, meta (dates, company names) |
-| Faint number | `#d7dada` | large decorative numerals (e.g. `01.` in WhyUs) |
+| Faint number | `#d7dada` | large decorative numerals (e.g. `01.` in NumberedFeatureGrid) |
 | Brand red | `#eb332d` | CTAs, accents, underlines, bottom bars |
 | Light card bg | `#f2f3f3` | card/tile backgrounds |
 | Light section bg | `#f7f8f8` | full-bleed section backgrounds (e.g. ClientLogos) |
@@ -351,23 +352,30 @@ the file.
 | `Hero` | page hero. `align="center"` = homepage-style landing hero with CTA buttons; `align="left"` (default) = inner-page header | `eyebrow`, `title`, `description`, `actions[]`, `align` |
 | `Story` | two-column text + `VideoPanel`. Optional `stats[]` and `link` cover both the homepage and about-page variants | `title`, `description?`, `link?`, `stats?`, `videoImage`, `videoTitle?`, `videoDescription?` |
 | `VideoPanel` | the "watch a video" image card with red play button, used inside `Story` | `image`, `title?`, `description?` |
-| `WhatWeDo` | 2-col icon+text services grid, sourced from Payload `services` | `eyebrow`, `title`, `icons[]`, `payload[]` |
+| `IconFeatureGrid` | 2-col icon+text feature grid, generic (not services-specific) | `eyebrow`, `title`, `items[]` (`icon: string \| ReactNode`, `title`, `description`, `href?`, `linkLabel?`) |
 | `ClientLogos` | logo marquee (`InfiniteSlider`) on a light gray band | `title`, `logos[]` |
 | `CaseStudiesGrid` | 3-col case study cards with red bottom accent | `eyebrow`, `title`, `linkLabel`, `linkHref`, `studies[]`, `limit` |
-| `WhyUs` | 3-col numbered ("01.", "02.", "03.") feature list | `eyebrow`, `title`, `reasons[]` |
-| `ValuesGrid` | 2x4 icon+label value tiles | `eyebrow`, `title`, `description`, `values[]` |
+| `NumberedFeatureGrid` | 3-col numbered ("01.", "02.", "03.") feature list, generic (not "why us"-specific) | `eyebrow`, `title`, `items[]` |
+| `IconLabelGrid` | 2x4 icon+label tile grid, generic (not values-specific) | `eyebrow`, `title`, `description`, `items[]` |
 | `TeamGrid` | 4-col team member photo grid with red accent bar | `eyebrow`, `title`, `description`, `members[]` |
 | `Testimonials` | quote card carousel (shadcn `Carousel`) | `eyebrow`, `title`, `testimonials[]` |
 | `BlogPreview` | 3-col blog post cards over full-bleed photos | `eyebrow`, `title`, `linkLabel`, `linkHref`, `posts[]` |
 | `CTA` | closing call-to-action band | `title`, `description`, `buttonLabel`, `buttonHref`, `footnote?` |
 
-The other legacy components in the catalog above (`PageHeader`, `FAQ`,
-`FeaturesTabs`, `service-*`, the legacy `Hero`/`ClientLogos` markup,
-`MeetTheTeam`, `LogoCloud`) are still used by `/services`, `/contact`,
-`/case-studies`. Don't extend those for new brand-design work — prefer
-the components above. Migrating one of those pages onto `Hero`/`WhyUs`/
-etc. is a fine idea, but do it as its own deliberate task, not a
-drive-by change while building something else.
+`/`, `/about`, `/services`, and `/services/[slug]` are now built
+entirely on this catalog. The other legacy components described in the
+sections above (`PageHeader`, `FeaturesTabs`, the legacy
+`Hero`/`ClientLogos` markup, `MeetTheTeam`, `LogoCloud`) are still used
+by `/contact` and `/case-studies`. `FAQ` and `ServiceWhy` are also still
+legacy — used on `/services/[slug]` alongside the migrated components,
+not yet folded into the catalog. Don't extend any legacy component for
+new brand-design work — prefer the components above, and for a
+genuinely novel section, build a new one that follows their shape
+(see "Building a new page" below) rather than reaching for a legacy
+one. Migrating `/contact` or `/case-studies` onto this family, or
+folding `FAQ`/`ServiceWhy` into it, is a fine idea, but do it as its
+own deliberate task, not a drive-by change while building something
+else.
 
 ### Data files
 
@@ -431,7 +439,7 @@ section component.
   (Northwind Analytics, Stacklane, etc.), not the Figma-specific ones
   (Lumora, Summit Systems, etc.) — avoided introducing a second parallel
   fake dataset.
-- **`WhatWeDo`'s icon set assumes 4 services.** The real Payload
+- **`IconFeatureGrid`'s services callers assume a 4-icon set.** The real Payload
   `services` collection currently has 5 entries that don't match the
   Figma taxonomy (Marketing strategy / Paid advertising / Content
   marketing / SEO & GEO) at all — icons wrap via `i % icons.length` and
