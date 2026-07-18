@@ -1,4 +1,5 @@
 import { ActivityIcon, DollarSignIcon, ListChecksIcon, MousePointerClickIcon } from "lucide-react";
+import { ServiceCard } from "@/components/service-card";
 
 const DELIVERABLES = [
   {
@@ -40,17 +41,17 @@ export function ServiceDeliver() {
             growth
           </h2>
         </div>
-        <div className="grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {DELIVERABLES.map((item) => (
-            <div key={item.title} className="flex flex-col gap-3">
-              <item.icon className="size-6 text-muted-foreground" />
-              <h3 className="text-base font-semibold">{item.title}</h3>
-              <p className="text-sm text-muted-foreground">
-                {item.description}
-              </p>
-            </div>
+            <li key={item.title} className="h-full">
+              <ServiceCard
+                icon={<item.icon className="size-6 text-muted-foreground" />}
+                title={item.title}
+                description={item.description}
+              />
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

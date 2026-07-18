@@ -7,6 +7,7 @@ import { getPayload } from "payload";
 import config from "../../../payload.config";
 import { Services } from "@/components/services";
 import { Story } from "@/components/story";
+import { CTA } from "@/components/cta";
 
 async function getServices() {
   const payload = await getPayload({ config });
@@ -17,6 +18,7 @@ async function getServices() {
   });
   return docs.map((doc) => ({
     title: doc.name,
+    slug: doc.slug,
     shortDescription: doc.short_description ?? "",
     description: doc.long_description,
   }));
@@ -32,8 +34,8 @@ export default async function Home() {
         <Services payload={payloadServices} />
         <ClientLogos />
         <Projects />
-        <Contact />
       </div>
+      <CTA />
     </>
   );
 }

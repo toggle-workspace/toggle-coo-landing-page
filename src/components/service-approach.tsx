@@ -1,18 +1,20 @@
+import { Card, CardContent } from "@/components/ui/card";
+
 const STEPS = [
   {
-    number: "01.",
+    number: "01",
     title: "See the strategy before you commit",
     description:
       "We provide clear projections, customer value models, and custom go-to-market plans in your proposal, so you can make a confident decision based on data, not assumptions.",
   },
   {
-    number: "02.",
+    number: "02",
     title: "Build stronger connections with your customers",
     description:
       "By understanding what your ideal customers want, need, and respond to, we create paid media, content, and branding strategies that engage them and drive conversions.",
   },
   {
-    number: "03.",
+    number: "03",
     title: "Focus on the metrics that drive growth",
     description:
       "We track and optimize the metrics that drive real growth: revenue, pipeline, and retention, while improving the end-to-end customer experience.",
@@ -21,9 +23,9 @@ const STEPS = [
 
 export function ServiceApproach() {
   return (
-    <section className="w-full">
+    <section className="w-full py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mb-16 flex flex-col gap-4">
+        <div className="flex flex-col gap-4">
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Why choose us
           </p>
@@ -31,17 +33,19 @@ export function ServiceApproach() {
             Partner with us for a unique and differentiated approach
           </h2>
         </div>
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
+        <div className="mt-12 grid items-stretch gap-6 md:grid-cols-3">
           {STEPS.map((step) => (
-            <div key={step.number} className="flex flex-col gap-3">
-              <span className="text-4xl font-semibold tracking-tight text-muted-foreground/30">
-                {step.number}
-              </span>
-              <h3 className="text-lg font-semibold">{step.title}</h3>
-              <p className="text-sm text-muted-foreground">
-                {step.description}
-              </p>
-            </div>
+            <Card key={step.number} className="h-full ring-0">
+              <CardContent className="flex h-full flex-col">
+                <h1 className="mb-16 bg-linear-to-r from-foreground/40 to-transparent bg-clip-text text-9xl text-transparent">
+                  {step.number}
+                </h1>
+                <p className="mb-2 text-base font-semibold">{step.title}</p>
+                <p className="text-base text-muted-foreground">
+                  {step.description}
+                </p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
