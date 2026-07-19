@@ -1,4 +1,5 @@
 import { buttonVariants } from "@/components/ui/button";
+import { GradientBackground } from "@/components/gradient-background";
 
 type HeroAction = {
   label: string;
@@ -18,8 +19,9 @@ export function Hero({
   actions?: HeroAction[];
 }) {
   return (
-    <section className="w-full bg-white">
-      <div className="mx-auto flex max-w-325 flex-col items-center gap-6 px-6 pb-16 pt-16 text-center lg:px-8 lg:pt-24">
+    <section className="relative isolate w-full overflow-hidden bg-white lg:flex lg:min-h-[calc(100dvh-4rem)] lg:items-center">
+      <GradientBackground />
+      <div className="mx-auto flex max-w-325 flex-col items-center gap-6 px-6 pb-20 pt-20 text-center sm:pb-28 sm:pt-20 lg:px-8 lg:pb-32 lg:pt-24">
         {eyebrow && <p className="text-[#292b2c]">{eyebrow}</p>}
         <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-[#292b2c] md:text-6xl lg:text-7xl">
           {title}

@@ -24,7 +24,7 @@ export default async function CaseStudyPage({
         eyebrow={`${study.category}  |  ${study.services}`}
         title={study.title}
       />
-      <div className="space-y-16 pb-16 sm:space-y-32 sm:pb-32">
+      <div className="space-y-16 pt-16 pb-16 sm:space-y-32 sm:pt-24 sm:pb-32">
         <section className="w-full">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-3">
             <div className="lg:col-span-2">
