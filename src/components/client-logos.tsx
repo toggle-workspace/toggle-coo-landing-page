@@ -18,12 +18,12 @@ export function ClientLogos({
         <h2 className="text-center text-2xl font-semibold text-[#292b2c]">
           {title}
         </h2>
-        <InfiniteSlider speed={30} gap={80} className="w-full">
+        <InfiniteSlider speed={40} gap={80} className="w-full">
           {logos.map(({ src, alt }) => (
             <img
               key={alt}
               alt={alt}
-              className="w-auto object-contain opacity-70"
+              className="h-8 w-auto object-contain opacity-70"
               src={src}
             />
           ))}
