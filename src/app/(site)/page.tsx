@@ -32,8 +32,26 @@ async function getServices() {
   }));
 }
 
+async function getClientLogos() {
+  const payload = await getPayload({ config });
+  const { docs } = await payload.find({
+    collection: "client",
+    sort: "order",
+    limit: 20,
+    depth: 1,
+  });
+  const logos = docs
+    .filter((doc) => typeof doc.logo === "object" && doc.logo?.url)
+    .map((doc) => ({
+      src: (doc.logo as { url: string }).url,
+      alt: doc.company_name,
+    }));
+  return logos.length > 0 ? logos : undefined;
+}
+
 export default async function Home() {
   const payloadServices = await getServices();
+  const clientLogos = await getClientLogos();
   return (
     <>
       <Hero
@@ -59,7 +77,7 @@ export default async function Home() {
             href: `/services/${service.slug}`,
           }))}
         />
-        <ClientLogos />
+        <ClientLogos logos={clientLogos} />
         <CaseStudiesGrid />
         <NumberedFeatureGrid />
         <BlogPreview />
