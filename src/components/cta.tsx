@@ -1,4 +1,5 @@
 import { buttonVariants } from "@/components/ui/button";
+import { GradientBackground } from "@/components/gradient-background";
 
 export function CTA({
   title = "Call to Action",
@@ -14,7 +15,8 @@ export function CTA({
   footnote?: React.ReactNode;
 }) {
   return (
-    <section className="w-full bg-white">
+    <section className="relative isolate w-full overflow-hidden bg-white">
+      <GradientBackground />
       <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-4 py-20 text-center md:py-28">
         <h2 className="text-3xl font-semibold tracking-tight text-[#292b2c] text-balance md:text-6xl">
           {title}
