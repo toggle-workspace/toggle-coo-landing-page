@@ -53,4 +53,9 @@ Check:
 
 - `push: process.env.NODE_ENV !== 'production'` in `payload.config.ts` means
   schema changes auto-push in dev but need real migrations in production —
-  run `payload migrate` if you change collections/fields before deploying.
+  run `npx payload migrate:create <name>` then `npx payload migrate` against
+  `DATABASE_URI` if you change collections/fields before deploying, or the
+  build will fail with `relation "..." does not exist`.
+- On Node 22+/23+, `payload`'s default tsx loader can crash with
+  `ERR_REQUIRE_ASYNC_MODULE` when loading `payload.config.ts`. Pass
+  `--use-swc` to `payload migrate*` commands to work around it.
