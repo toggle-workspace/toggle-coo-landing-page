@@ -5,8 +5,28 @@ import { NumberedFeatureGrid } from "@/components/numbered-feature-grid";
 import { TeamGrid } from "@/components/team-grid";
 import { Testimonials } from "@/components/testimonials";
 import { CTA } from "@/components/cta";
+import { getPayload } from "payload";
+import config from "../../../../payload.config";
 
-export default function AboutPage() {
+const FALLBACK_IMAGE = "/about/team-alexander-cole.jpg";
+
+async function getTeam() {
+  const payload = await getPayload({ config });
+  const { docs } = await payload.find({
+    collection: "team",
+    depth: 1,
+  });
+  return docs.map((doc) => ({
+    name: doc.name,
+    role: doc.role ?? "",
+    image:
+      (typeof doc.image === "object" ? doc.image?.url : undefined) ??
+      FALLBACK_IMAGE,
+  }));
+}
+
+export default async function AboutPage() {
+  const team = await getTeam();
   return (
     <div>
       <PageHeader
@@ -26,7 +46,7 @@ export default function AboutPage() {
         />
         <IconLabelGrid />
         <NumberedFeatureGrid />
-        <TeamGrid />
+        <TeamGrid members={team} />
         <Testimonials />
         <CTA
           title="Ready to grow your brand?"

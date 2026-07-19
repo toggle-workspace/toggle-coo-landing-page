@@ -9,7 +9,10 @@ const DEFAULT_VALUES: IconLabelGridItem[] = [
   { label: "Clarity over complexity", icon: "/about/value-clarity.svg" },
   { label: "People first", icon: "/about/value-people.svg" },
   { label: "Embrace reality", icon: "/about/value-reality.svg" },
-  { label: "Transparency is our default", icon: "/about/value-transparency.svg" },
+  {
+    label: "Transparency is our default",
+    icon: "/about/value-transparency.svg",
+  },
   { label: "Diversity drives innovation", icon: "/about/value-diversity.svg" },
   { label: "Results over vanity", icon: "/about/value-results.svg" },
 ];
@@ -44,7 +47,7 @@ export function IconLabelGrid({
               variant="muted"
               className="justify-between gap-6 p-6"
             >
-              <img alt="" className="size-11" src={item.icon} />
+              <img alt="" className="size-11 fill-border" src={item.icon} />
               <p className="font-semibold text-[#292b2c]">{item.label}</p>
             </Card>
           ))}

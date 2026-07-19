@@ -94,6 +94,18 @@ export default buildConfig({
       ],
     },
     {
+      slug: 'team',
+      admin: {
+        useAsTitle: 'name',
+      },
+      fields: [
+        { name: 'name', type: 'text', required: true },
+        { name: 'role', type: 'text' },
+        { name: 'company', type: 'text' },
+        { name: 'image', type: 'upload', relationTo: 'media' },
+      ],
+    },
+    {
       slug: 'case-studies',
       admin: {
         useAsTitle: 'name',
