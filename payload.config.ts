@@ -88,9 +88,17 @@ export default buildConfig({
       fields: [
         { name: 'company_name', label: "Company name" , type: 'text', required: true },
         { name: 'logo', label: 'Company Logo', type: 'upload', relationTo: 'media' },
-        { name: 'short_description', label: 'Short description' , type: 'textarea' },
+        { name: 'industry', type: 'relationship', relationTo: 'industries' },
         { name: 'order', type: 'number' },
-        { name: 'slug', type: 'text' },
+      ],
+    },
+    {
+      slug: 'industries',
+      admin: {
+        useAsTitle: 'name',
+      },
+      fields: [
+        { name: 'name', type: 'text', required: true },
       ],
     },
     {
