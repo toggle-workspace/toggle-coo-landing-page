@@ -99,6 +99,11 @@ For every future schema change:
 5. [ ] If successful, merge/push code — deploy pipeline runs migration against real prod automatically (Phase 5)
 6. [ ] Verify in Vercel deploy logs that migration ran without errors
 
+`.github/workflows/migration-check.yml` enforces step 2 mechanically: any PR
+that touches `payload.config.ts` without also adding a file under
+`src/migrations/` fails CI. It only checks that a migration file exists —
+step 3's manual review is still on you.
+
 ---
 
 ## Phase 7: Optional — Periodic Dev Data Refresh
