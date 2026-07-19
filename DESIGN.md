@@ -411,15 +411,16 @@ per-service value, so it was deleted rather than migrated.
 ### Data files
 
 `src/data/*.ts` — plain arrays, no CMS (`blog-posts.ts`,
-`case-studies.ts`, `testimonials.ts`). Use this pattern for page copy
-that isn't in Payload. Add a new file here rather than hardcoding
-arrays inside a component when the same shape could plausibly be
-reused by more than one page.
+`testimonials.ts`). Use this pattern for page copy that isn't in Payload.
+Add a new file here rather than hardcoding arrays inside a component when
+the same shape could plausibly be reused by more than one page.
+`case-studies.ts` used to live here but was removed once `case-studies`
+became fully CMS-backed — see `CASE_STUDIES_MIGRATION.md`.
 
-Payload-backed content (currently only `services`) is fetched in the
-page's server component and passed down as a `payload` prop — see
-`getServices()` in `src/app/(site)/page.tsx`. Don't fetch inside a
-section component.
+Payload-backed content (`services`, `client`, `case-studies`) is fetched in
+the page's server component and passed down as a prop — see `getServices()`
+in `src/app/(site)/page.tsx` and `src/lib/case-studies.ts`. Don't fetch
+inside a section component.
 
 The `services` collection's `icon` field and `deliverables.items[].icon`
 field are Payload uploads (Media relationships), not static paths —
@@ -474,25 +475,23 @@ the section's heading, `items[]` feeds its grid/list.
 - **No scroll-triggered fade-in animations.** The reference theme
   fades sections in via `opacity-0` + JS on scroll; our sections render
   immediately. Simpler, and doesn't hide content from users without JS.
-- **Case studies use the pre-existing generic `case-studies.ts` data**
-  (Northwind Analytics, Stacklane, etc.), not the Figma-specific ones
-  (Lumora, Summit Systems, etc.) — avoided introducing a second parallel
-  fake dataset.
+- **Case studies are fully CMS-backed** via the `case-studies` collection
+  (see `CASE_STUDIES_MIGRATION.md`) — the collection starts empty, so real
+  content (company names, logos, etc.) is entered through `/admin` rather
+  than shipped as fictional seed data like the old `case-studies.ts` had
+  (Northwind Analytics, Stacklane, etc.).
 - **`/case-studies` drops the Industry/Service sidebar filters** from
   the Figma design (`the7.io/fse-marketing-agency/success-stories/`).
-  `case-studies.ts` has no industry/service taxonomy, and the reference
+  The `case-studies` collection has no industry taxonomy (only a freeform
+  `category` string and a `services` relationship), and the reference
   filters aren't wired to real filtering logic — reproducing them here
   would just be decorative. Add real filtering (and the taxonomy fields
-  it needs) as its own task if this data becomes CMS-backed.
-- **`/case-studies/[slug]` extends `case-studies.ts`** (per the
-  deviation above) with per-study `client`, `challenges[]`,
-  `approach[]`, and `results[]` fields, modeled on
-  `the7.io/fse-marketing-agency/case/case06/` but keeping the existing
-  fictional companies (Northwind Analytics, Stacklane, etc.) rather than
-  the Figma-specific ones (Lumora, etc.). Client "logos" are the
-  existing `logo-*.svg` marquee assets (cycled), reused since no real
-  per-company logos exist — never point a `src` at an asset that isn't
-  committed to `public/`.
+  it needs) as its own task.
+- **`/case-studies/[slug]`** renders `client`, `challenges`, `approach`
+  (richText), and `results[]` fields from the collection, modeled on
+  `the7.io/fse-marketing-agency/case/case06/` rather than the
+  Figma-specific reference (Lumora, etc.). It has no "related case
+  studies" grid at the bottom — that section was deliberately removed.
 - **`IconFeatureGrid`'s services callers now read a per-service `icon`
   upload field** on the `services` collection (falling back to
   `/marketing/icon-strategy.svg` when unset) instead of cycling a

@@ -1,11 +1,25 @@
 import { notFound } from "next/navigation";
+import { getPayload } from "payload";
 import { PageHeader } from "@/components/page-header";
-import { MarkerList } from "@/components/marker-list";
+import { RichText } from "@/components/rich-text";
 import { StatGrid } from "@/components/stat-grid";
 import { ClientInfoCard } from "@/components/client-info-card";
-import { CaseStudiesGrid } from "@/components/case-studies-grid";
 import { CTA } from "@/components/cta";
-import { CASE_STUDIES } from "@/data/case-studies";
+import config from "../../../../../payload.config";
+
+// ponytail: no static caching, so admin edits show up immediately; add ISR/revalidateTag if traffic ever demands it
+export const revalidate = 0;
+
+async function getCaseStudy(slug: string) {
+  const payload = await getPayload({ config });
+  const { docs } = await payload.find({
+    collection: "case-studies",
+    where: { slug: { equals: slug } },
+    limit: 1,
+    depth: 2,
+  });
+  return docs[0] ?? null;
+}
 
 export default async function CaseStudyPage({
   params,
@@ -13,61 +27,71 @@ export default async function CaseStudyPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const study = CASE_STUDIES.find((s) => s.slug === slug);
+  const study = await getCaseStudy(slug);
   if (!study) notFound();
 
-  const otherStudies = CASE_STUDIES.filter((s) => s.slug !== slug);
+  const client = typeof study.client === "object" ? study.client : null;
+  const industry =
+    client && typeof client.industry === "object" ? client.industry : null;
+  const services = (study.services ?? []).filter(
+    (service) => typeof service === "object",
+  );
 
   return (
     <div>
       <PageHeader
-        eyebrow={`${study.category}  |  ${study.services}`}
-        title={study.title}
+        eyebrow={[
+          study.category,
+          services.map((service) => service.service_name).join(", "),
+        ]
+          .filter(Boolean)
+          .join("  |  ")}
+        title={study.name}
       />
       <div className="space-y-16 pt-16 pb-16 sm:space-y-32 sm:pt-24 sm:pb-32">
         <section className="w-full">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-3">
-            <div className="lg:col-span-2">
-              <MarkerList
-                title="Challenges"
-                items={study.challenges.map((challenge) => ({
-                  marker: <span className="size-2 shrink-0 bg-[#eb332d]" />,
-                  title: challenge.title,
-                  description: challenge.description,
-                }))}
-              />
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-3 lg:px-8">
+            <div className="lg:col-span-2 flex flex-col gap-4">
+              <h2 className="text-3xl font-semibold tracking-tight text-[#292b2c] md:text-4xl">
+                Challenges
+              </h2>
+              <RichText data={study.challenges} />
             </div>
-            <div>
-              <ClientInfoCard
-                name={study.company}
-                logo={study.logo}
-                description={study.client.description}
-                industry={study.client.industry}
-                location={study.client.location}
-                website={study.client.website}
-              />
-            </div>
+            {client && (
+              <div>
+                <ClientInfoCard
+                  name={client.company_name}
+                  logo={
+                    typeof client.logo === "object"
+                      ? (client.logo?.url ?? "")
+                      : ""
+                  }
+                  description={client.description ?? ""}
+                  industry={industry?.name ?? ""}
+                  location={client.location ?? ""}
+                  website={client.website ?? ""}
+                />
+              </div>
+            )}
           </div>
         </section>
 
-        <MarkerList
-          title="Our Approach"
-          description="We implemented a focused, data-driven strategy to improve performance across targeting, campaign structure, and the overall conversion experience."
-          items={study.approach.map((step, i) => ({
-            marker: (
-              <span className="w-6 shrink-0 text-2xl font-bold text-[#eb332d]">
-                {i + 1}.
-              </span>
-            ),
-            title: step.title,
-            description: step.description,
-          }))}
-        />
+        <section className="w-full bg-white">
+          <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 lg:px-8">
+            <h2 className="text-3xl font-semibold tracking-tight text-[#292b2c] md:text-4xl">
+              Our Approach
+            </h2>
+            <RichText data={study.approach} />
+          </div>
+        </section>
 
         <StatGrid
           title="The Results"
-          description={study.description}
-          items={study.results}
+          description={study.short_description ?? ""}
+          items={(study.results ?? []).map((result) => ({
+            value: result.value,
+            label: result.label,
+          }))}
         />
 
         <CTA
@@ -82,13 +106,6 @@ export default async function CaseStudyPage({
               expert advice.
             </>
           }
-        />
-
-        <CaseStudiesGrid
-          eyebrow=""
-          title="Latest case studies"
-          studies={otherStudies}
-          limit={4}
         />
       </div>
     </div>

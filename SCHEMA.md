@@ -53,8 +53,11 @@ the other collections. Files are stored in Vercel Blob via
 | Field | Type | Notes |
 |---|---|---|
 | `company_name` | `text` (required) | |
-| `logo` | `upload` → `media` | Company logo |
-| `industry` | `relationship` → `industries` | |
+| `logo` | `upload` → `media` | Company logo, rendered on `/case-studies/[slug]`'s `ClientInfoCard`. Requires `depth: 1`+ to resolve `.url` |
+| `industry` | `relationship` → `industries` | Requires `depth: 1`+ to resolve `.name` |
+| `description` | `textarea` | Client blurb on `/case-studies/[slug]`'s `ClientInfoCard` |
+| `location` | `text` | |
+| `website` | `text` | Rendered as a bare link (`https://` prefixed) on `ClientInfoCard` |
 | `order` | `number` | Sort key |
 
 ## `industries`
@@ -82,21 +85,28 @@ the other collections. Files are stored in Vercel Blob via
 
 | Field | Type | Notes |
 |---|---|---|
-| `name` | `text` (required) | |
-| `short_description` | `textarea` | |
-| `long_description` | `richText` | Lexical editor |
+| `name` | `text` (required) | Page title on `/case-studies/[slug]` |
+| `category` | `text` | Freeform tag string (e.g. "SaaS, Revenue Ops"), shown in the page header eyebrow alongside `services` |
+| `image` | `upload` → `media` | Hero/thumbnail image. Requires `depth: 1`+ to resolve `.url` |
+| `short_description` | `textarea` | Used as `StatGrid`'s "The Results" description |
+| `challenges` | `richText` | Rendered via the `RichText` component in the "Challenges" section |
+| `approach` | `richText` | Rendered via the `RichText` component in the "Our Approach" section |
+| `results` | `array` (0–6 rows) | Stat pairs feeding `StatGrid`'s "The Results" |
+| `results[].value` | `text` (required) | e.g. `"+54%"` |
+| `results[].label` | `text` (required) | e.g. `"increase in organic traffic"` |
 | `order` | `number` | Sort key |
-| `slug` | `text` | |
-| `client` | `relationship` → `client` | Optional, single |
+| `slug` | `text` | Route param for `/case-studies/[slug]` |
+| `client` | `relationship` → `client` | Optional, single. Requires `depth: 2`+ to resolve `client.logo`/`client.industry` |
 | `services` | `relationship` → `services` (hasMany) | |
 
-Note: case studies displayed on `/case-studies` (list + detail) currently
-come from the static `src/data/case-studies.ts` file, not this collection —
-see `DESIGN.md`'s "Data files" section for the CMS-vs-static-data split. The
-`services` relationship *is* used, though: `/services/[slug]` queries this
-collection directly (`where: services contains <id>`) to show only case
-studies tagged to that service in its case-studies grid, falling back to
-the generic/static set if none are tagged.
+Note: `/`, `/case-studies` (list + detail), and `/services/[slug]` all read
+directly from this collection now (see `src/lib/case-studies.ts` and
+`CASE_STUDIES_MIGRATION.md`) — the static `src/data/case-studies.ts` file has
+been removed. The `services` relationship is used by
+`/services/[slug]`, which queries this collection directly
+(`where: services contains <id>`) to show only case studies tagged to that
+service in its case-studies grid, falling back to the generic/static set if
+none are tagged.
 
 ## Relationships at a glance
 

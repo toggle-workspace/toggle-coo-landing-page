@@ -1,14 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { TextLink } from "@/components/ui/text-link";
 import { Eyebrow } from "@/components/eyebrow";
-import { CASE_STUDIES } from "@/data/case-studies";
-
-type CaseStudy = {
-  title: string;
-  company: string;
-  description: string;
-  slug?: string;
-};
+import type { CaseStudySummary } from "@/lib/case-studies";
 
 export function CaseStudiesGrid({
   eyebrow = "Wins worth sharing",
@@ -16,7 +9,7 @@ export function CaseStudiesGrid({
   linkLabel = "Discover all case studies",
   linkHref = "/case-studies",
   showHeader = true,
-  studies = CASE_STUDIES,
+  studies,
   limit = 6,
 }: {
   eyebrow?: string;
@@ -24,9 +17,11 @@ export function CaseStudiesGrid({
   linkLabel?: string;
   linkHref?: string;
   showHeader?: boolean;
-  studies?: CaseStudy[];
+  studies: CaseStudySummary[];
   limit?: number;
 }) {
+  if (studies.length === 0) return null;
+
   return (
     <section className="w-full bg-white">
       <div className="mx-auto max-w-325 px-6 lg:px-8">
