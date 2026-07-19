@@ -7,6 +7,7 @@ import { CaseStudiesGrid } from "@/components/case-studies-grid";
 import { NumberedFeatureGrid } from "@/components/numbered-feature-grid";
 import { FAQ } from "@/components/faq";
 import { CTA } from "@/components/cta";
+import { getAllCaseStudies, getRelatedCaseStudies } from "@/lib/case-studies";
 import config from "../../../../../payload.config";
 
 const FALLBACK_ICON = "/marketing/icon-strategy.svg";
@@ -25,24 +26,6 @@ async function getService(slug: string) {
   return docs[0] ?? null;
 }
 
-async function getRelatedCaseStudies(serviceId: string) {
-  const payload = await getPayload({ config });
-  const { docs } = await payload.find({
-    collection: "case-studies",
-    where: { services: { contains: serviceId } },
-    limit: 3,
-    depth: 2,
-  });
-  return docs.map((doc) => ({
-    title: doc.name,
-    company:
-      (typeof doc.client === "object" ? doc.client?.company_name : undefined) ??
-      "",
-    description: doc.short_description ?? "",
-    slug: doc.slug ?? undefined,
-  }));
-}
-
 export default async function ServicePage({
   params,
 }: {
@@ -52,7 +35,9 @@ export default async function ServicePage({
   const service = await getService(slug);
   if (!service) notFound();
 
-  const relatedCaseStudies = await getRelatedCaseStudies(String(service.id));
+  const taggedCaseStudies = await getRelatedCaseStudies(String(service.id));
+  const relatedCaseStudies =
+    taggedCaseStudies.length > 0 ? taggedCaseStudies : await getAllCaseStudies(3);
 
   const deliverables: {
     icon?: { url?: string } | string | null;
@@ -101,7 +86,7 @@ export default async function ServicePage({
         <CaseStudiesGrid
           eyebrow="Featured case studies"
           title="Our marketing strategy in practice"
-          studies={relatedCaseStudies.length > 0 ? relatedCaseStudies : undefined}
+          studies={relatedCaseStudies}
           limit={3}
         />
         {(service.process?.items?.length ?? 0) > 0 && (

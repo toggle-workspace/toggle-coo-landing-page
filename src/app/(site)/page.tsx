@@ -8,6 +8,7 @@ import { BlogPreview } from "@/components/blog-preview";
 import { CTA } from "@/components/cta";
 import { getPayload } from "payload";
 import config from "../../../payload.config";
+import { getAllCaseStudies } from "@/lib/case-studies";
 
 const FALLBACK_ICON = "/marketing/icon-strategy.svg";
 
@@ -52,6 +53,7 @@ async function getClientLogos() {
 export default async function Home() {
   const payloadServices = await getServices();
   const clientLogos = await getClientLogos();
+  const caseStudies = await getAllCaseStudies(6);
   return (
     <>
       <Hero
@@ -78,7 +80,7 @@ export default async function Home() {
           }))}
         />
         <ClientLogos logos={clientLogos} />
-        <CaseStudiesGrid />
+        <CaseStudiesGrid studies={caseStudies} />
         <NumberedFeatureGrid />
         <BlogPreview />
         <CTA
