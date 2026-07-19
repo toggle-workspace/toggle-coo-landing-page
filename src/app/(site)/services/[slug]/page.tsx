@@ -39,11 +39,7 @@ export default async function ServicePage({
   const relatedCaseStudies =
     taggedCaseStudies.length > 0 ? taggedCaseStudies : await getAllCaseStudies(3);
 
-  const deliverables: {
-    icon?: { url?: string } | string | null;
-    title: string;
-    description?: string | null;
-  }[] = service.deliverables?.items ?? [];
+  const deliverables = service.deliverables?.items ?? [];
   const deliverablesHaveDescriptions = deliverables.some(
     (deliverable) => deliverable.description,
   );
