@@ -58,6 +58,17 @@ the other collections. Files are stored in Vercel Blob via
 | `order` | `number` | Sort key |
 | `slug` | `text` | |
 
+## `team`
+
+`admin.useAsTitle`: `name`
+
+| Field | Type | Notes |
+|---|---|---|
+| `name` | `text` (required) | |
+| `role` | `text` | |
+| `company` | `text` | |
+| `image` | `upload` → `media` | |
+
 ## `case-studies`
 
 `admin.useAsTitle`: `name`
@@ -88,6 +99,7 @@ users        (standalone)
 media <───── services.icon
       <───── services.deliverables.items[].icon
       <───── client.logo
+      <───── team.image
 
 client <──── case-studies.client
 services <── case-studies.services (hasMany)
