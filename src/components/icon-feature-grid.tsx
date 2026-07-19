@@ -31,7 +31,11 @@ export function IconFeatureGrid({
           {items.map((item) => (
             <div key={item.title} className="flex gap-7">
               {typeof item.icon === "string" ? (
-                <img alt="" className="size-14 shrink-0" src={item.icon} />
+                <img
+                  alt=""
+                  className="size-14 shrink-0 fill-border"
+                  src={item.icon}
+                />
               ) : (
                 item.icon
               )}
