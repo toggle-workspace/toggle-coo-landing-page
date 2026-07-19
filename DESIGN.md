@@ -397,15 +397,16 @@ entirely on this catalog.
 sections describing them above are kept only as history, don't
 resurrect them. (Note: `PageHeader` is back as a real component in the
 catalog above — a new, unrelated component built for this family, not
-a resurrection of the deleted legacy one.) `FAQ` and `ServiceWhy` are
-still legacy — used on
-`/services/[slug]` alongside the migrated components, not yet folded
-into the catalog. Don't reach for a legacy component for new
+a resurrection of the deleted legacy one.) `FAQ` is still legacy — used
+on `/services/[slug]` alongside the migrated components, not yet
+folded into the catalog. Don't reach for a legacy component for new
 brand-design work — prefer the components above, and for a genuinely
 novel section, build a new one that follows their shape (see "Building
-a new page" below). Folding `FAQ`/`ServiceWhy` into the catalog is a
-fine idea, but do it as its own deliberate task, not a drive-by change
-while building something else.
+a new page" below). Folding `FAQ` into the catalog is a fine idea, but
+do it as its own deliberate task, not a drive-by change while building
+something else. `ServiceWhy` (a stock photo + generic CTA overlay) has
+been removed entirely from `/services/[slug]` — the section added no
+per-service value, so it was deleted rather than migrated.
 
 ### Data files
 
@@ -419,6 +420,14 @@ Payload-backed content (currently only `services`) is fetched in the
 page's server component and passed down as a `payload` prop — see
 `getServices()` in `src/app/(site)/page.tsx`. Don't fetch inside a
 section component.
+
+The `services` collection's `icon` field and `deliverables.items[].icon`
+field are Payload uploads (Media relationships), not static paths —
+fetch with `depth: 1` (or `depth: 2` when reading `deliverables`) so
+the upload resolves to a populated Media doc with a `.url`, otherwise
+`icon` is just a bare doc ID. Both `deliverables` and `process` are
+grouped fields (`{ section_title, items[] }`) — `section_title` feeds
+the section's heading, `items[]` feeds its grid/list.
 
 ### Assets
 
@@ -484,9 +493,13 @@ section component.
   existing `logo-*.svg` marquee assets (cycled), reused since no real
   per-company logos exist — never point a `src` at an asset that isn't
   committed to `public/`.
-- **`IconFeatureGrid`'s services callers assume a 4-icon set.** The real Payload
-  `services` collection currently has 5 entries that don't match the
-  Figma taxonomy (Marketing strategy / Paid advertising / Content
-  marketing / SEO & GEO) at all — icons wrap via `i % icons.length` and
-  will visibly repeat. This needs either updated CMS content or an
-  updated icon set; flag it rather than silently patching around it.
+- **`IconFeatureGrid`'s services callers now read a per-service `icon`
+  upload field** on the `services` collection (falling back to
+  `/marketing/icon-strategy.svg` when unset) instead of cycling a
+  hardcoded 4-icon array — each service needs its own icon uploaded in
+  `/admin`. The `/services/[slug]` "What we deliver" grid likewise
+  reads a per-service `deliverables` field (`section_title` + `items[]`
+  of icon/title/description) instead of a shared hardcoded 4-item list,
+  and its "Why choose us" grid reads a per-service `process` field
+  (`section_title` + ordered `items[]`) instead of a hardcoded 3-item
+  list.

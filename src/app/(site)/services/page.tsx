@@ -4,12 +4,7 @@ import { getPayload } from "payload";
 import config from "../../../../payload.config";
 import { CTA } from "@/components/cta";
 
-const SERVICE_ICONS = [
-  "/marketing/icon-strategy.svg",
-  "/marketing/icon-ads.svg",
-  "/marketing/icon-content.svg",
-  "/marketing/icon-seo.svg",
-];
+const FALLBACK_ICON = "/marketing/icon-strategy.svg";
 
 async function getServices() {
   const payload = await getPayload({ config });
@@ -17,12 +12,15 @@ async function getServices() {
     collection: "services",
     sort: "order",
     limit: 10,
+    depth: 1,
   });
   return docs.map((doc) => ({
-    title: doc.name,
+    title: doc.service_name,
     slug: doc.slug,
-    shortDescription: doc.short_description ?? "",
-    description: doc.long_description,
+    shortDescription: doc.description ?? "",
+    icon:
+      (typeof doc.icon === "object" ? doc.icon?.url : undefined) ??
+      FALLBACK_ICON,
   }));
 }
 
@@ -37,8 +35,8 @@ export default async function ServicesPage() {
       />
       <div className="space-y-16 pb-16 sm:space-y-32 sm:pb-32">
         <IconFeatureGrid
-          items={payloadServices.map((service, i) => ({
-            icon: SERVICE_ICONS[i % SERVICE_ICONS.length],
+          items={payloadServices.map((service) => ({
+            icon: service.icon,
             title: service.title,
             description: service.shortDescription,
             href: `/services/${service.slug}`,
