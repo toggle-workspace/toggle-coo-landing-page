@@ -15,10 +15,9 @@ async function getServices() {
     depth: 1,
   });
   return docs.map((doc) => ({
-    title: doc.name,
+    title: doc.service_name,
     slug: doc.slug,
-    shortDescription: doc.short_description ?? "",
-    description: doc.long_description,
+    shortDescription: doc.description ?? "",
     icon:
       (typeof doc.icon === "object" ? doc.icon?.url : undefined) ??
       FALLBACK_ICON,

@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { getPayload } from "payload";
 import { PageHeader } from "@/components/page-header";
-import { ServiceWhy } from "@/components/service-why";
 import { IconFeatureGrid } from "@/components/icon-feature-grid";
 import { CaseStudiesGrid } from "@/components/case-studies-grid";
 import { NumberedFeatureGrid } from "@/components/numbered-feature-grid";
@@ -22,6 +21,24 @@ async function getService(slug: string) {
   return docs[0] ?? null;
 }
 
+async function getRelatedCaseStudies(serviceId: string) {
+  const payload = await getPayload({ config });
+  const { docs } = await payload.find({
+    collection: "case-studies",
+    where: { services: { contains: serviceId } },
+    limit: 3,
+    depth: 2,
+  });
+  return docs.map((doc) => ({
+    title: doc.name,
+    company:
+      (typeof doc.client === "object" ? doc.client?.company_name : undefined) ??
+      "",
+    description: doc.short_description ?? "",
+    slug: doc.slug ?? undefined,
+  }));
+}
+
 export default async function ServicePage({
   params,
 }: {
@@ -31,63 +48,53 @@ export default async function ServicePage({
   const service = await getService(slug);
   if (!service) notFound();
 
+  const relatedCaseStudies = await getRelatedCaseStudies(String(service.id));
+
   return (
     <div>
       <PageHeader
-        eyebrow={service.name}
-        title="Ideas that capture attention and drive action"
-        description={service.short_description}
+        eyebrow={service.service_name}
+        title={service.title ?? service.description ?? ""}
+        description={service.description}
       />
       <div className="space-y-16 pb-16 sm:space-y-32 sm:pb-32">
-        <ServiceWhy
-          title="Why effective marketing strategy is important for your brand"
-          description="To stand out in today’s digital landscape, brands need creative that is both strategic and performance-driven. Our marketing agency creates compelling assets that capture attention, align with your goals, and drive results at every stage of the marketing funnel."
-        />
         <IconFeatureGrid
           eyebrow="What we deliver"
-          title="From interest to action, we turn your efforts into measurable growth"
-          items={(service.deliverables ?? []).map((deliverable: {
-            icon?: { url?: string } | string | null;
-            title: string;
-            description?: string | null;
-          }) => ({
-            icon:
-              (typeof deliverable.icon === "object"
-                ? deliverable.icon?.url
-                : undefined) ?? FALLBACK_ICON,
-            title: deliverable.title,
-            description: deliverable.description ?? "",
-          }))}
+          title={service.deliverables?.section_title ?? undefined}
+          items={(service.deliverables?.items ?? []).map(
+            (deliverable: {
+              icon?: { url?: string } | string | null;
+              title: string;
+              description?: string | null;
+            }) => ({
+              icon:
+                (typeof deliverable.icon === "object"
+                  ? deliverable.icon?.url
+                  : undefined) ?? FALLBACK_ICON,
+              title: deliverable.title,
+              description: deliverable.description ?? "",
+            }),
+          )}
         />
         <CaseStudiesGrid
           eyebrow="Featured case studies"
           title="Our marketing strategy in practice"
+          studies={relatedCaseStudies.length > 0 ? relatedCaseStudies : undefined}
           limit={3}
         />
-        <NumberedFeatureGrid
-          eyebrow="Why choose us"
-          title="Partner with us for a unique and differentiated approach"
-          items={[
-            {
-              number: "01.",
-              title: "See the strategy before you commit",
-              description:
-                "We provide clear projections, customer value models, and custom go-to-market plans in your proposal, so you can make a confident decision based on data, not assumptions.",
-            },
-            {
-              number: "02.",
-              title: "Build stronger connections with your customers",
-              description:
-                "By understanding what your ideal customers want, need, and respond to, we create paid media, content, and branding strategies that engage them and drive conversions.",
-            },
-            {
-              number: "03.",
-              title: "Focus on the metrics that drive growth",
-              description:
-                "We track and optimize the metrics that drive real growth: revenue, pipeline, and retention, while improving the end-to-end customer experience.",
-            },
-          ]}
-        />
+        {(service.process?.items?.length ?? 0) > 0 && (
+          <NumberedFeatureGrid
+            eyebrow="Why choose us"
+            title={service.process?.section_title ?? undefined}
+            items={[...(service.process?.items ?? [])]
+              .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+              .map((item) => ({
+                number: String(item.order ?? 0).padStart(2, "0") + ".",
+                title: item.title,
+                description: item.description ?? "",
+              }))}
+          />
+        )}
         <FAQ />
         <CTA
           title="Ready to grow your brand?"

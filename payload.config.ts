@@ -30,25 +30,51 @@ export default buildConfig({
     {
       slug: 'services',
       admin: {
-        useAsTitle: 'name',
+        useAsTitle: 'service_name',
       },
       fields: [
-        { name: 'name', type: 'text', required: true },
-        { name: 'short_description', label: 'Short description' , type: 'textarea' },
-        { name: 'long_description', label: 'Long description', type: 'richText' },
+        { name: 'service_name', type: 'text', required: true },
+        { name: 'description', label: 'Description' , type: 'textarea' },
+        { name: 'title', label: 'Hero title', type: 'text' },
         { name: 'icon', label: 'Icon', type: 'upload', relationTo: 'media' },
         { name: 'order', type: 'number' },
-        { name: 'slug', type: 'text' },
+        { name: 'slug', type: 'text', unique: true },
         {
           name: 'deliverables',
           label: 'What we deliver',
-          type: 'array',
-          minRows: 0,
-          maxRows: 6,
+          type: 'group',
           fields: [
-            { name: 'icon', type: 'upload', relationTo: 'media' },
-            { name: 'title', type: 'text', required: true },
-            { name: 'description', type: 'textarea' },
+            { name: 'section_title', label: 'Section title', type: 'text' },
+            {
+              name: 'items',
+              type: 'array',
+              minRows: 0,
+              maxRows: 6,
+              fields: [
+                { name: 'icon', type: 'upload', relationTo: 'media' },
+                { name: 'title', type: 'text', required: true },
+                { name: 'description', type: 'textarea' },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'process',
+          label: 'Why choose us',
+          type: 'group',
+          fields: [
+            { name: 'section_title', label: 'Section title', type: 'text' },
+            {
+              name: 'items',
+              type: 'array',
+              minRows: 0,
+              maxRows: 4,
+              fields: [
+                { name: 'order', type: 'number' },
+                { name: 'title', type: 'text', required: true },
+                { name: 'description', type: 'textarea' },
+              ],
+            },
           ],
         },
       ],

@@ -22,20 +22,28 @@ the other collections (local storage, no cloud adapter configured).
 
 ## `services`
 
-`admin.useAsTitle`: `name`
+`admin.useAsTitle`: `service_name`
 
 | Field | Type | Notes |
 |---|---|---|
-| `name` | `text` (required) | |
-| `short_description` | `textarea` | Used as card/summary copy on `/services` and `/services/[slug]` |
-| `long_description` | `richText` | Lexical editor |
+| `service_name` | `text` (required) | |
+| `description` | `textarea` | Used as card/summary copy on `/services` and `/services/[slug]`, and as the hero fallback if `title` is unset |
+| `title` | `text` | Hero H1 on `/services/[slug]`. Falls back to `description` if unset |
 | `icon` | `upload` → `media` | Rendered on `/` and `/services` listing grids (`IconFeatureGrid`). Falls back to `/marketing/icon-strategy.svg` if unset. Requires `depth: 1`+ on fetch to resolve `.url` |
 | `order` | `number` | Sort key for listings |
-| `slug` | `text` | Route param for `/services/[slug]` |
-| `deliverables` | `array` (0–6 rows) | Per-service "What we deliver" grid on `/services/[slug]`. Requires `depth: 2`+ on fetch to resolve nested `icon.url` |
-| `deliverables[].icon` | `upload` → `media` | Falls back to `/marketing/icon-strategy.svg` if unset |
-| `deliverables[].title` | `text` (required) | |
-| `deliverables[].description` | `textarea` | |
+| `slug` | `text` (unique) | Route param for `/services/[slug]` |
+| `deliverables` | `group` | Per-service "What we deliver" grid on `/services/[slug]` (`IconFeatureGrid`). Requires `depth: 2`+ on fetch to resolve nested `items[].icon.url` |
+| `deliverables.section_title` | `text` | Feeds `IconFeatureGrid`'s `title` prop. `eyebrow` ("What we deliver") stays hardcoded in the template |
+| `deliverables.items` | `array` (0–6 rows) | |
+| `deliverables.items[].icon` | `upload` → `media` | Falls back to `/marketing/icon-strategy.svg` if unset |
+| `deliverables.items[].title` | `text` (required) | |
+| `deliverables.items[].description` | `textarea` | |
+| `process` | `group` | Per-service "Why choose us" grid on `/services/[slug]` (`NumberedFeatureGrid`). Section is omitted entirely if `items` is empty |
+| `process.section_title` | `text` | Feeds `NumberedFeatureGrid`'s `title` prop. `eyebrow` ("Why choose us") stays hardcoded in the template |
+| `process.items` | `array` (0–4 rows) | Sorted by `order` before rendering (editor-set, not auto-numbered from array position) |
+| `process.items[].order` | `number` | Rendered as `"01."`-style numbering |
+| `process.items[].title` | `text` (required) | |
+| `process.items[].description` | `textarea` | |
 
 ## `client`
 
@@ -63,9 +71,13 @@ the other collections (local storage, no cloud adapter configured).
 | `client` | `relationship` → `client` | Optional, single |
 | `services` | `relationship` → `services` (hasMany) | |
 
-Note: case studies displayed on `/case-studies` currently come from the
-static `src/data/case-studies.ts` file, not this collection — see
-`DESIGN.md`'s "Data files" section for the CMS-vs-static-data split.
+Note: case studies displayed on `/case-studies` (list + detail) currently
+come from the static `src/data/case-studies.ts` file, not this collection —
+see `DESIGN.md`'s "Data files" section for the CMS-vs-static-data split. The
+`services` relationship *is* used, though: `/services/[slug]` queries this
+collection directly (`where: services contains <id>`) to show only case
+studies tagged to that service in its case-studies grid, falling back to
+the generic/static set if none are tagged.
 
 ## Relationships at a glance
 
@@ -73,7 +85,7 @@ static `src/data/case-studies.ts` file, not this collection — see
 users        (standalone)
 
 media <───── services.icon
-      <───── services.deliverables[].icon
+      <───── services.deliverables.items[].icon
       <───── client.logo
 
 client <──── case-studies.client
