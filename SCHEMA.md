@@ -34,7 +34,7 @@ the other collections (local storage, no cloud adapter configured).
 | `slug` | `text` (unique) | Route param for `/services/[slug]` |
 | `deliverables` | `group` | Per-service "What we deliver" grid on `/services/[slug]` (`IconFeatureGrid`). Requires `depth: 2`+ on fetch to resolve nested `items[].icon.url` |
 | `deliverables.section_title` | `text` | Feeds `IconFeatureGrid`'s `title` prop. `eyebrow` ("What we deliver") stays hardcoded in the template |
-| `deliverables.items` | `array` (0–6 rows) | |
+| `deliverables.items` | `array` (0–8 rows) | |
 | `deliverables.items[].icon` | `upload` → `media` | Falls back to `/marketing/icon-strategy.svg` if unset |
 | `deliverables.items[].title` | `text` (required) | |
 | `deliverables.items[].description` | `textarea` | |

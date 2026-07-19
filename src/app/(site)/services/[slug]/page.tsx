@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getPayload } from "payload";
 import { PageHeader } from "@/components/page-header";
 import { IconFeatureGrid } from "@/components/icon-feature-grid";
+import { IconLabelGrid } from "@/components/icon-label-grid";
 import { CaseStudiesGrid } from "@/components/case-studies-grid";
 import { NumberedFeatureGrid } from "@/components/numbered-feature-grid";
 import { FAQ } from "@/components/faq";
@@ -50,6 +51,15 @@ export default async function ServicePage({
 
   const relatedCaseStudies = await getRelatedCaseStudies(String(service.id));
 
+  const deliverables: {
+    icon?: { url?: string } | string | null;
+    title: string;
+    description?: string | null;
+  }[] = service.deliverables?.items ?? [];
+  const deliverablesHaveDescriptions = deliverables.some(
+    (deliverable) => deliverable.description,
+  );
+
   return (
     <div>
       <PageHeader
@@ -58,24 +68,33 @@ export default async function ServicePage({
         description={service.description}
       />
       <div className="space-y-16 pb-16 sm:space-y-32 sm:pb-32">
-        <IconFeatureGrid
-          eyebrow="What we deliver"
-          title={service.deliverables?.section_title ?? undefined}
-          items={(service.deliverables?.items ?? []).map(
-            (deliverable: {
-              icon?: { url?: string } | string | null;
-              title: string;
-              description?: string | null;
-            }) => ({
+        {deliverablesHaveDescriptions ? (
+          <IconFeatureGrid
+            eyebrow="What we deliver"
+            title={service.deliverables?.section_title ?? undefined}
+            items={deliverables.map((deliverable) => ({
               icon:
                 (typeof deliverable.icon === "object"
                   ? deliverable.icon?.url
                   : undefined) ?? FALLBACK_ICON,
               title: deliverable.title,
               description: deliverable.description ?? "",
-            }),
-          )}
-        />
+            }))}
+          />
+        ) : (
+          <IconLabelGrid
+            eyebrow="What we deliver"
+            title={service.deliverables?.section_title ?? undefined}
+            description=""
+            items={deliverables.map((deliverable) => ({
+              label: deliverable.title,
+              icon:
+                (typeof deliverable.icon === "object"
+                  ? deliverable.icon?.url
+                  : undefined) ?? FALLBACK_ICON,
+            }))}
+          />
+        )}
         <CaseStudiesGrid
           eyebrow="Featured case studies"
           title="Our marketing strategy in practice"

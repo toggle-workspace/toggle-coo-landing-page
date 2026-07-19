@@ -49,7 +49,7 @@ export default buildConfig({
               name: 'items',
               type: 'array',
               minRows: 0,
-              maxRows: 6,
+              maxRows: 8,
               fields: [
                 { name: 'icon', type: 'upload', relationTo: 'media' },
                 { name: 'title', type: 'text', required: true },
