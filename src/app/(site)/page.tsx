@@ -4,7 +4,6 @@ import { IconFeatureGrid } from "@/components/icon-feature-grid";
 import { ClientLogos } from "@/components/client-logos";
 import { CaseStudiesGrid } from "@/components/case-studies-grid";
 import { NumberedFeatureGrid } from "@/components/numbered-feature-grid";
-import { BlogPreview } from "@/components/blog-preview";
 import { CTA } from "@/components/cta";
 import { getPayload } from "payload";
 import config from "../../../payload.config";
@@ -61,7 +60,11 @@ export default async function Home() {
         title="Performance Marketing Made Clear & Effective"
         description="From brand positioning to digital campaigns, we deliver practical marketing solutions designed to increase visibility, engagement, and long-term growth."
         actions={[
-          { label: "Client Examples", href: "/case-studies", variant: "outline" },
+          {
+            label: "Client Examples",
+            href: "/case-studies",
+            variant: "outline",
+          },
           { label: "Book Into Call", href: "/contact" },
         ]}
       />
@@ -82,7 +85,6 @@ export default async function Home() {
         <ClientLogos logos={clientLogos} />
         <CaseStudiesGrid studies={caseStudies} />
         <NumberedFeatureGrid />
-        <BlogPreview />
         <CTA
           title="Ready to grow your brand?"
           description="Take the first step toward marketing success."
@@ -90,8 +92,9 @@ export default async function Home() {
           buttonHref="/contact"
           footnote={
             <>
-              We&rsquo;ll respond within <b className="text-[#292b2c]">24 hours</b>. No
-              pressure, just expert advice.
+              We&rsquo;ll respond within{" "}
+              <b className="text-[#292b2c]">24 hours</b>. No pressure, just
+              expert advice.
             </>
           }
         />
