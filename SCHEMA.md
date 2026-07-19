@@ -14,7 +14,8 @@ Auth-only collection (`auth: true`), no custom fields. Used for `/admin` login.
 ## `media`
 
 Upload collection (`upload: true`), backs every image/file relationship in
-the other collections (local storage, no cloud adapter configured).
+the other collections. Files are stored in Vercel Blob via
+`@payloadcms/storage-vercel-blob` (requires `BLOB_READ_WRITE_TOKEN`).
 
 | Field | Type | Notes |
 |---|---|---|
