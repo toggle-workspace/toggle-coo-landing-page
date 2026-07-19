@@ -1,4 +1,5 @@
 import { Eyebrow } from "@/components/eyebrow";
+import { GradientBackground } from "@/components/gradient-background";
 
 export function PageHeader({
   eyebrow,
@@ -10,8 +11,9 @@ export function PageHeader({
   description?: React.ReactNode;
 }) {
   return (
-    <section className="w-full bg-white">
-      <div className="mx-auto flex max-w-325 flex-col gap-6 px-6 pb-16 pt-16 lg:px-8 lg:pt-24">
+    <section className="relative isolate w-full overflow-hidden bg-white">
+      <GradientBackground lines="bottom-right" />
+      <div className="mx-auto flex max-w-325 flex-col gap-6 px-6 pb-20 pt-20 sm:pb-28 lg:px-8 lg:pb-32 lg:pt-24">
         {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
         <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-[#292b2c] md:text-6xl">
           {title}

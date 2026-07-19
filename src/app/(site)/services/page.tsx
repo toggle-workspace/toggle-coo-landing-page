@@ -36,7 +36,7 @@ export default async function ServicesPage() {
         title="Marketing services built to grow your brand"
         description="Explore the strategy, creative, and campaign services we use to help brands increase visibility, engagement, and long-term growth."
       />
-      <div className="space-y-16 pb-16 sm:space-y-32 sm:pb-32">
+      <div className="space-y-16 pt-16 pb-16 sm:space-y-32 sm:pt-24 sm:pb-32">
         <IconFeatureGrid
           items={payloadServices.map((service) => ({
             icon: service.icon,

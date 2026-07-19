@@ -34,7 +34,7 @@ export default async function AboutPage() {
         title="Building digital experiences that inspire and perform"
         description="Explore our values, philosophy, and approach that guide every project and help our clients build stronger, lasting brands."
       />
-      <div className="space-y-24 pb-16 sm:space-y-32 sm:pb-24">
+      <div className="space-y-24 pt-16 pb-16 sm:space-y-32 sm:pt-24 sm:pb-24">
         <Story
           title="We believe marketing should deliver more than promises"
           description="Over the years, our team of strategists, creatives, and marketers has worked with brands of all sizes to build meaningful connections with their audiences, grow their businesses, and deliver measurable results. Every project reflects our commitment to strategy, creativity, and long-term success."

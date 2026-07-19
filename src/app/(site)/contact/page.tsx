@@ -9,7 +9,7 @@ export default function ContactPage() {
         title="Let's talk about your next campaign"
         description="Tell us about your brand and goals, and our team will follow up to map out how we can help you grow."
       />
-      <div className="pb-16 sm:pb-32">
+      <div className="pt-16 pb-16 sm:pt-24 sm:pb-32">
         <Contact />
       </div>
     </div>
