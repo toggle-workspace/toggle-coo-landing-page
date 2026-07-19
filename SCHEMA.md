@@ -54,9 +54,16 @@ the other collections. Files are stored in Vercel Blob via
 |---|---|---|
 | `company_name` | `text` (required) | |
 | `logo` | `upload` → `media` | Company logo |
-| `short_description` | `textarea` | |
+| `industry` | `relationship` → `industries` | |
 | `order` | `number` | Sort key |
-| `slug` | `text` | |
+
+## `industries`
+
+`admin.useAsTitle`: `name`
+
+| Field | Type | Notes |
+|---|---|---|
+| `name` | `text` (required) | |
 
 ## `team`
 
@@ -102,5 +109,6 @@ media <───── services.icon
       <───── team.image
 
 client <──── case-studies.client
+industries <── client.industry
 services <── case-studies.services (hasMany)
 ```
