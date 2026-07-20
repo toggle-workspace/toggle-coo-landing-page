@@ -32,12 +32,20 @@ export function Header() {
   return (
     <header className="sticky top-0 z-60 w-full border-b border-border bg-background">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
-        <Link href="/" className="shrink-0">
+        <Link href="/" className="flex shrink-0 items-center gap-3">
           <Image
             src="/brand/logo-light.svg"
             alt="Toggle"
-            width={100}
-            height={27}
+            width={66}
+            height={18}
+            priority
+          />
+          <span className="h-4 w-px bg-border" />
+          <Image
+            src="/brand/coo-logo.svg"
+            alt="Toggle COO"
+            width={59}
+            height={18}
             priority
           />
         </Link>

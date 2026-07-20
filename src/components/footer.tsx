@@ -39,12 +39,20 @@ export function Footer() {
         <div className="flex flex-col gap-12 py-16 md:flex-row md:justify-between">
           {/* Brand */}
           <div className="flex flex-col gap-4">
-            <Link href="/">
+            <Link href="/" className="flex items-center gap-3">
               <Image
                 src="/brand/logo-light.svg"
-                alt="Wegems Studio"
-                width={100}
-                height={27}
+                alt="Toggle"
+                width={66}
+                height={18}
+                priority
+              />
+              <span className="h-4 w-px bg-border" />
+              <Image
+                src="/brand/coo-logo.svg"
+                alt="Toggle COO"
+                width={59}
+                height={18}
                 priority
               />
             </Link>
