@@ -45,7 +45,7 @@ export default async function CaseStudyPage({
           .join("  |  ")}
         title={study.name}
       />
-      <div className="space-y-16 pt-16 pb-16 sm:space-y-32 sm:pt-24 sm:pb-32">
+      <div className="space-y-16 pt-16 sm:space-y-32 sm:pt-24">
         <section className="w-full">
           <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 lg:flex-row lg:gap-16 lg:px-8">
             <div className="flex w-full flex-col gap-16 lg:w-2/3">
