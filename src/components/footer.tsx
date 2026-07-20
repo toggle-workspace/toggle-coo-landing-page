@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getPayload } from "payload";
+import config from "../../payload.config";
 
 const NAV_LINKS = [
   { label: "Services", href: "/services" },
@@ -7,13 +9,6 @@ const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "Book a strategy call.", href: "#booking" },
-];
-
-const SERVICE_LINKS = [
-  { label: "Homepage sprint", href: "/services" },
-  { label: "Full website redesign", href: "/services" },
-  { label: "Webflow development", href: "/services" },
-  { label: "UX/UI Design", href: "/services" },
 ];
 
 const SOCIALS = [
@@ -29,8 +24,23 @@ const SOCIALS = [
   },
 ];
 
-export function Footer() {
+async function getServices() {
+  const payload = await getPayload({ config });
+  const { docs } = await payload.find({
+    collection: "services",
+    sort: "order",
+    limit: 10,
+    depth: 0,
+  });
+  return docs.map((doc) => ({
+    label: doc.service_name,
+    href: `/services/${doc.slug}`,
+  }));
+}
+
+export async function Footer() {
   const year = new Date().getFullYear();
+  const services = await getServices();
 
   return (
     <footer className="w-full bg-muted/5">
@@ -83,7 +93,7 @@ export function Footer() {
             <div className="flex flex-col gap-3">
               <p className="text-sm font-semibold">Services</p>
               <nav className="flex flex-col gap-2">
-                {SERVICE_LINKS.map((link) => (
+                {services.map((link) => (
                   <Link
                     key={link.label}
                     href={link.href}
