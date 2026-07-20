@@ -16,6 +16,10 @@ Auth-only collection (`auth: true`), no custom fields. Used for `/admin` login.
 Upload collection (`upload: true`), backs every image/file relationship in
 the other collections. Files are stored in Vercel Blob via
 `@payloadcms/storage-vercel-blob` (requires `BLOB_READ_WRITE_TOKEN`).
+`access.read` is public (`() => true`) — required because `/api/media/file/*`
+is fetched directly by `<img>` tags in the browser, bypassing the local API's
+`overrideAccess`. Without it, Payload's default access falls back to
+`req.user` and anonymous image requests 403.
 
 | Field | Type | Notes |
 |---|---|---|
