@@ -32,7 +32,7 @@ export function ClientInfoCard({
         </div>
       </dl>
       <a
-        href={`https://${website}`}
+        href={website}
         target="_blank"
         rel="noopener noreferrer"
         className="w-fit text-sm font-semibold text-[#eb332d] hover:underline"
