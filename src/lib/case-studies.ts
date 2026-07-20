@@ -7,16 +7,22 @@ export type CaseStudySummary = {
   company: string;
   description: string;
   slug?: string;
+  logo?: string;
+  industry?: string;
 };
 
 function toSummary(doc: CaseStudy): CaseStudySummary {
+  const client = typeof doc.client === "object" ? doc.client : undefined;
+  const logo = typeof client?.logo === "object" ? client.logo?.url : undefined;
+  const industry =
+    typeof client?.industry === "object" ? client.industry?.name : undefined;
   return {
     title: doc.name,
-    company:
-      (typeof doc.client === "object" ? doc.client?.company_name : undefined) ??
-      "",
+    company: client?.company_name ?? "",
     description: doc.short_description ?? "",
     slug: doc.slug ?? undefined,
+    logo: logo ?? undefined,
+    industry: industry ?? undefined,
   };
 }
 
@@ -26,7 +32,7 @@ export async function getAllCaseStudies(limit = 0): Promise<CaseStudySummary[]> 
     collection: "case-studies",
     sort: "order",
     limit,
-    depth: 1,
+    depth: 2,
   });
   return docs.map(toSummary);
 }
@@ -40,7 +46,7 @@ export async function getRelatedCaseStudies(
     collection: "case-studies",
     where: { services: { contains: serviceId } },
     limit,
-    depth: 1,
+    depth: 2,
   });
   return docs.map(toSummary);
 }
