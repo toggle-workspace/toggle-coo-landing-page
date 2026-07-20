@@ -15,7 +15,7 @@ export function StatGrid({
 }) {
   return (
     <section className="w-full bg-white">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
         <div className="mb-10 flex flex-col gap-4">
           <h2 className="text-3xl font-semibold tracking-tight text-[#292b2c] md:text-4xl">
             {title}

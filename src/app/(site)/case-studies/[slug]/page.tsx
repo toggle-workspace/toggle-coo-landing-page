@@ -40,25 +40,40 @@ export default async function CaseStudyPage({
   return (
     <div>
       <PageHeader
-        eyebrow={[
-          study.category,
-          services.map((service) => service.service_name).join(", "),
-        ]
+        eyebrow={[study.category, services[0]?.service_name]
           .filter(Boolean)
           .join("  |  ")}
         title={study.name}
       />
-      <div className="space-y-16 pt-16 pb-16 sm:space-y-32 sm:pt-24 sm:pb-32">
+      <div className="space-y-16 pt-16 sm:space-y-32 sm:pt-24">
         <section className="w-full">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-3 lg:px-8">
-            <div className="lg:col-span-2 flex flex-col gap-4">
-              <h2 className="text-3xl font-semibold tracking-tight text-[#292b2c] md:text-4xl">
-                Challenges
-              </h2>
-              <RichText data={study.challenges} />
+          <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 lg:flex-row lg:gap-16 lg:px-8">
+            <div className="flex w-full flex-col gap-16 lg:w-2/3">
+              <div className="flex flex-col gap-4">
+                <h2 className="text-3xl font-semibold tracking-tight text-[#292b2c] md:text-4xl">
+                  Challenges
+                </h2>
+                <RichText data={study.challenges} />
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <h2 className="text-3xl font-semibold tracking-tight text-[#292b2c] md:text-4xl">
+                  Our Approach
+                </h2>
+                <RichText data={study.approach} />
+              </div>
+
+              <StatGrid
+                title="The Results"
+                description={study.short_description ?? ""}
+                items={(study.results ?? []).map((result) => ({
+                  value: result.value,
+                  label: result.label,
+                }))}
+              />
             </div>
             {client && (
-              <div>
+              <div className="w-full lg:w-1/3 lg:sticky lg:top-24 lg:self-start">
                 <ClientInfoCard
                   name={client.company_name}
                   logo={
@@ -70,29 +85,12 @@ export default async function CaseStudyPage({
                   industry={industry?.name ?? ""}
                   location={client.location ?? ""}
                   website={client.website ?? ""}
+                  services={services.map((service) => service.service_name)}
                 />
               </div>
             )}
           </div>
         </section>
-
-        <section className="w-full bg-white">
-          <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 lg:px-8">
-            <h2 className="text-3xl font-semibold tracking-tight text-[#292b2c] md:text-4xl">
-              Our Approach
-            </h2>
-            <RichText data={study.approach} />
-          </div>
-        </section>
-
-        <StatGrid
-          title="The Results"
-          description={study.short_description ?? ""}
-          items={(study.results ?? []).map((result) => ({
-            value: result.value,
-            label: result.label,
-          }))}
-        />
 
         <CTA
           title="Ready to grow your brand?"
