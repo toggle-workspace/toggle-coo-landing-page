@@ -90,8 +90,6 @@ is fetched directly by `<img>` tags in the browser, bypassing the local API's
 | Field | Type | Notes |
 |---|---|---|
 | `name` | `text` (required) | Page title on `/case-studies/[slug]` |
-| `category` | `text` | Freeform tag string (e.g. "SaaS, Revenue Ops"), shown in the page header eyebrow alongside `services` |
-| `image` | `upload` → `media` | Hero/thumbnail image. Requires `depth: 1`+ to resolve `.url` |
 | `short_description` | `textarea` | Used as `StatGrid`'s "The Results" description |
 | `challenges` | `richText` | Rendered via the `RichText` component in the "Challenges" section |
 | `approach` | `richText` | Rendered via the `RichText` component in the "Our Approach" section |

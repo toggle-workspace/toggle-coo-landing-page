@@ -37,7 +37,9 @@ export default async function ServicePage({
 
   const taggedCaseStudies = await getRelatedCaseStudies(String(service.id));
   const relatedCaseStudies =
-    taggedCaseStudies.length > 0 ? taggedCaseStudies : await getAllCaseStudies(3);
+    taggedCaseStudies.length > 0
+      ? taggedCaseStudies
+      : await getAllCaseStudies(3);
 
   const deliverables = service.deliverables?.items ?? [];
   const deliverablesHaveDescriptions = deliverables.some(
@@ -51,7 +53,7 @@ export default async function ServicePage({
         title={service.title ?? service.description ?? ""}
         description={service.description}
       />
-      <div className="space-y-16 pt-16 pb-16 sm:space-y-32 sm:pt-24 sm:pb-32">
+      <div className="space-y-16 pt-16 sm:space-y-32 sm:pt-24">
         {deliverablesHaveDescriptions ? (
           <IconFeatureGrid
             eyebrow="What we deliver"

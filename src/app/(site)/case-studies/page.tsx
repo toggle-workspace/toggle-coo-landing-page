@@ -15,7 +15,7 @@ export default async function CaseStudiesPage() {
         title="Wins worth sharing"
         description="Explore real examples of how our strategy, creativity, and marketing expertise drive growth and deliver meaningful outcomes for our clients."
       />
-      <div className="space-y-16 pt-16 pb-16 sm:space-y-32 sm:pt-24 sm:pb-32">
+      <div className="space-y-16 pt-16 sm:space-y-32 sm:pt-24">
         <CaseStudiesGrid
           showHeader={false}
           studies={caseStudies}
@@ -28,8 +28,9 @@ export default async function CaseStudiesPage() {
           buttonHref="/contact"
           footnote={
             <>
-              We&rsquo;ll respond within <b className="text-[#292b2c]">24 hours</b>. No
-              pressure, just expert advice.
+              We&rsquo;ll respond within{" "}
+              <b className="text-[#292b2c]">24 hours</b>. No pressure, just
+              expert advice.
             </>
           }
         />

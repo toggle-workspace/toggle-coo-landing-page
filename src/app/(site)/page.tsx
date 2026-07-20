@@ -68,7 +68,7 @@ export default async function Home() {
           { label: "Book Into Call", href: "/contact" },
         ]}
       />
-      <div className="space-y-24 py-16 sm:space-y-32 sm:py-24">
+      <div className="space-y-24 pt-16 sm:space-y-32 sm:pt-24">
         <Story
           title="We’re a team of strategists, creatives, and marketers working together to produce standout content and ensure it reaches the right audience."
           link={{ label: "More about us", href: "/about" }}

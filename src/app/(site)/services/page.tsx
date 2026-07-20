@@ -36,7 +36,7 @@ export default async function ServicesPage() {
         title="Marketing services built to grow your brand"
         description="Explore the strategy, creative, and campaign services we use to help brands increase visibility, engagement, and long-term growth."
       />
-      <div className="space-y-16 pt-16 pb-16 sm:space-y-32 sm:pt-24 sm:pb-32">
+      <div className="space-y-16 pt-16 sm:space-y-32 sm:pt-24">
         <IconFeatureGrid
           items={payloadServices.map((service) => ({
             icon: service.icon,
@@ -52,8 +52,9 @@ export default async function ServicesPage() {
           buttonHref="/contact"
           footnote={
             <>
-              We&rsquo;ll respond within <b className="text-[#292b2c]">24 hours</b>. No
-              pressure, just expert advice.
+              We&rsquo;ll respond within{" "}
+              <b className="text-[#292b2c]">24 hours</b>. No pressure, just
+              expert advice.
             </>
           }
         />
