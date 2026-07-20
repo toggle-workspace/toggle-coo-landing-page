@@ -7,6 +7,7 @@ export function ClientInfoCard({
   industry,
   location,
   website,
+  services,
 }: {
   name: string;
   logo: string;
@@ -14,6 +15,7 @@ export function ClientInfoCard({
   industry: string;
   location: string;
   website: string;
+  services: string[];
 }) {
   return (
     <div className="flex flex-col gap-6">
@@ -30,6 +32,12 @@ export function ClientInfoCard({
           <dt className="font-semibold text-[#292b2c]">Location:</dt>
           <dd className="text-[#565b5d]">{location}</dd>
         </div>
+        {services.length > 0 && (
+          <div className="flex gap-1">
+            <dt className="font-semibold text-[#292b2c]">Services:</dt>
+            <dd className="text-[#565b5d]">{services.join(", ")}</dd>
+          </div>
+        )}
       </dl>
       <a
         href={website}

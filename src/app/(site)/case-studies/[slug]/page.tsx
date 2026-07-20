@@ -40,10 +40,7 @@ export default async function CaseStudyPage({
   return (
     <div>
       <PageHeader
-        eyebrow={[
-          study.category,
-          services.map((service) => service.service_name).join(", "),
-        ]
+        eyebrow={[study.category, services[0]?.service_name]
           .filter(Boolean)
           .join("  |  ")}
         title={study.name}
@@ -88,6 +85,7 @@ export default async function CaseStudyPage({
                   industry={industry?.name ?? ""}
                   location={client.location ?? ""}
                   website={client.website ?? ""}
+                  services={services.map((service) => service.service_name)}
                 />
               </div>
             )}
