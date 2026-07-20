@@ -254,8 +254,6 @@ export interface Team {
 export interface CaseStudy {
   id: number;
   name: string;
-  category?: string | null;
-  image?: (number | null) | Media;
   short_description?: string | null;
   challenges?: {
     root: {
@@ -517,8 +515,6 @@ export interface TeamSelect<T extends boolean = true> {
  */
 export interface CaseStudiesSelect<T extends boolean = true> {
   name?: T;
-  category?: T;
-  image?: T;
   short_description?: T;
   challenges?: T;
   approach?: T;

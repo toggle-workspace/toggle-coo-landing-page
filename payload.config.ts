@@ -126,8 +126,6 @@ export default buildConfig({
       },
       fields: [
         { name: 'name', type: 'text', required: true },
-        { name: 'category', label: 'Category', type: 'text' },
-        { name: 'image', label: 'Hero image', type: 'upload', relationTo: 'media' },
         { name: 'short_description', label: 'Short description', type: 'textarea' },
         { name: 'challenges', label: 'Challenges', type: 'richText' },
         { name: 'approach', label: 'Our approach', type: 'richText' },
