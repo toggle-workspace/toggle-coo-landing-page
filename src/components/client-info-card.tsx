@@ -18,7 +18,7 @@ export function ClientInfoCard({
   return (
     <div className="flex flex-col gap-6">
       <Card variant="muted" className="h-32 items-center justify-center p-6">
-        <img alt={name} className="w-auto" src={logo} />
+        <img alt={name} className="h-full w-auto object-contain" src={logo} />
       </Card>
       <p className="text-sm text-[#565b5d]">{description}</p>
       <dl className="flex flex-col gap-2 text-sm">
@@ -33,6 +33,8 @@ export function ClientInfoCard({
       </dl>
       <a
         href={`https://${website}`}
+        target="_blank"
+        rel="noopener noreferrer"
         className="w-fit text-sm font-semibold text-[#eb332d] hover:underline"
       >
         {website}
