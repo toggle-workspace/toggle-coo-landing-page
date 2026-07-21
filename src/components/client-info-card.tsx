@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Card } from "@/components/ui/card";
 
 export function ClientInfoCard({
@@ -19,8 +20,11 @@ export function ClientInfoCard({
 }) {
   return (
     <div className="flex flex-col gap-6">
-      <Card variant="muted" className="h-32 items-center justify-center p-6">
-        <img alt={name} className="h-full w-auto object-contain" src={logo} />
+      <Card
+        variant="muted"
+        className="relative h-32 items-center justify-center p-6"
+      >
+        <Image alt={name} fill className="object-contain p-6" src={logo} />
       </Card>
       <p className="text-sm text-[#565b5d]">{description}</p>
       <dl className="flex flex-col gap-2 text-sm">

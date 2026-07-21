@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Eyebrow } from "@/components/eyebrow";
 
 type Member = { name: string; role: string; image: string };
@@ -42,9 +43,10 @@ export function TeamGrid({
           {members.map((member) => (
             <div key={member.name} className="flex flex-col gap-5">
               <div className="relative aspect-square overflow-hidden">
-                <img
+                <Image
                   alt={member.name}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  fill
+                  className="object-cover"
                   src={member.image}
                 />
                 <div className="absolute inset-x-0 bottom-0 h-3 bg-[#eb332d]" />
