@@ -7,9 +7,6 @@ import { ClientInfoCard } from "@/components/client-info-card";
 import { CTA } from "@/components/cta";
 import config from "../../../../../payload.config";
 
-// ponytail: no static caching, so admin edits show up immediately; add ISR/revalidateTag if traffic ever demands it
-export const revalidate = 0;
-
 async function getCaseStudy(slug: string) {
   const payload = await getPayload({ config });
   const { docs } = await payload.find({

@@ -11,9 +11,6 @@ import { getAllCaseStudies } from "@/lib/case-studies";
 
 const FALLBACK_ICON = "/marketing/icon-strategy.svg";
 
-// ponytail: no static caching, so admin edits show up immediately; add ISR/revalidateTag if traffic ever demands it
-export const revalidate = 0;
-
 async function getServices() {
   const payload = await getPayload({ config });
   const { docs } = await payload.find({

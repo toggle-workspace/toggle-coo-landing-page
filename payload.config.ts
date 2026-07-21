@@ -4,6 +4,7 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
+import { revalidateSitePaths } from './src/lib/revalidate'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -35,6 +36,10 @@ export default buildConfig({
       slug: 'services',
       admin: {
         useAsTitle: 'service_name',
+      },
+      hooks: {
+        afterChange: [() => revalidateSitePaths(['/', '/services', '/services/[slug]'])],
+        afterDelete: [() => revalidateSitePaths(['/', '/services', '/services/[slug]'])],
       },
       fields: [
         { name: 'service_name', type: 'text', required: true },
@@ -88,6 +93,10 @@ export default buildConfig({
       admin: {
         useAsTitle: 'company_name',
       },
+      hooks: {
+        afterChange: [() => revalidateSitePaths(['/', '/case-studies/[slug]'])],
+        afterDelete: [() => revalidateSitePaths(['/', '/case-studies/[slug]'])],
+      },
       fields: [
         { name: 'company_name', label: "Company name" , type: 'text', required: true },
         { name: 'logo', label: 'Company Logo', type: 'upload', relationTo: 'media' },
@@ -103,6 +112,7 @@ export default buildConfig({
       admin: {
         useAsTitle: 'name',
       },
+      // ponytail: no revalidate hook, industry names rarely change; add one if edits need to show up instantly
       fields: [
         { name: 'name', type: 'text', required: true },
       ],
@@ -123,6 +133,14 @@ export default buildConfig({
       slug: 'case-studies',
       admin: {
         useAsTitle: 'name',
+      },
+      hooks: {
+        afterChange: [
+          () => revalidateSitePaths(['/', '/case-studies', '/case-studies/[slug]', '/services/[slug]']),
+        ],
+        afterDelete: [
+          () => revalidateSitePaths(['/', '/case-studies', '/case-studies/[slug]', '/services/[slug]']),
+        ],
       },
       fields: [
         { name: 'name', type: 'text', required: true },
