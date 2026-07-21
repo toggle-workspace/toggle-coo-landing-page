@@ -3,9 +3,6 @@ import { CaseStudiesGrid } from "@/components/case-studies-grid";
 import { CTA } from "@/components/cta";
 import { getAllCaseStudies } from "@/lib/case-studies";
 
-// ponytail: no static caching, so admin edits show up immediately; add ISR/revalidateTag if traffic ever demands it
-export const revalidate = 0;
-
 export default async function CaseStudiesPage() {
   const caseStudies = await getAllCaseStudies();
   return (
