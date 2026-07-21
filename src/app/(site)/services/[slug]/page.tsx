@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getPayload } from "payload";
 import { PageHeader } from "@/components/page-header";
@@ -23,6 +24,25 @@ async function getService(slug: string) {
   return docs[0] ?? null;
 }
 
+// Split out so it can stream in its own Suspense boundary instead of
+// blocking PageHeader (and the LCP image) behind this second sequential fetch.
+async function RelatedCaseStudies({ serviceId }: { serviceId: string }) {
+  const taggedCaseStudies = await getRelatedCaseStudies(serviceId);
+  const relatedCaseStudies =
+    taggedCaseStudies.length > 0
+      ? taggedCaseStudies
+      : await getAllCaseStudies(3);
+
+  return (
+    <CaseStudiesGrid
+      eyebrow="Featured case studies"
+      title="Our marketing strategy in practice"
+      studies={relatedCaseStudies}
+      limit={3}
+    />
+  );
+}
+
 export default async function ServicePage({
   params,
 }: {
@@ -31,12 +51,6 @@ export default async function ServicePage({
   const { slug } = await params;
   const service = await getService(slug);
   if (!service) notFound();
-
-  const taggedCaseStudies = await getRelatedCaseStudies(String(service.id));
-  const relatedCaseStudies =
-    taggedCaseStudies.length > 0
-      ? taggedCaseStudies
-      : await getAllCaseStudies(3);
 
   const deliverables = service.deliverables?.items ?? [];
   const deliverablesHaveDescriptions = deliverables.some(
@@ -78,12 +92,9 @@ export default async function ServicePage({
             }))}
           />
         )}
-        <CaseStudiesGrid
-          eyebrow="Featured case studies"
-          title="Our marketing strategy in practice"
-          studies={relatedCaseStudies}
-          limit={3}
-        />
+        <Suspense fallback={null}>
+          <RelatedCaseStudies serviceId={String(service.id)} />
+        </Suspense>
         {(service.process?.items?.length ?? 0) > 0 && (
           <NumberedFeatureGrid
             eyebrow="Why choose us"

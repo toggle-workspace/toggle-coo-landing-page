@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -219,8 +220,10 @@ export function Contact() {
                   &ldquo;{TESTIMONIAL.quote}&rdquo;
                 </blockquote>
                 <div className="flex items-center gap-3">
-                  <img
+                  <Image
                     alt={TESTIMONIAL.name}
+                    width={36}
+                    height={36}
                     className="size-9 rounded-full object-cover"
                     src={TESTIMONIAL.avatar}
                   />

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 
 export function CaseStudyCard({
@@ -15,11 +16,12 @@ export function CaseStudyCard({
     <a href={href} className="group block">
       <Card variant="default" className="border-transparent rounded-none">
         <CardContent className="p-0">
-          <div className="flex h-45 items-center justify-center bg-[#f2f3f3] p-8">
+          <div className="relative flex h-45 items-center justify-center bg-[#f2f3f3] p-8">
             {logo && (
-              <img
+              <Image
                 alt={`${title} logo`}
-                className="max-h-full max-w-full object-contain"
+                fill
+                className="object-contain p-4"
                 src={logo}
               />
             )}

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function VideoPanel({
   image,
   title = (
@@ -15,7 +17,7 @@ export function VideoPanel({
 }) {
   return (
     <div className="relative flex min-h-100 flex-1 items-center overflow-hidden rounded-2xl">
-      <img alt="" className="absolute inset-0 h-full w-full object-cover" src={image} />
+      <Image alt="" fill className="object-cover" src={image} />
       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-black/15" />
       <div className="relative flex flex-col items-start gap-4 p-8 text-white">
         <div className="flex size-16 items-center justify-center rounded-full bg-[#eb332d] p-3">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Eyebrow } from "@/components/eyebrow";
 import { BLOG_POSTS } from "@/data/blog-posts";
@@ -41,9 +42,10 @@ export function BlogPreview({
               key={post.title}
               className="group relative flex min-h-80 flex-col justify-end overflow-hidden rounded-lg p-8"
             >
-              <img
+              <Image
                 alt=""
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
                 src={post.image}
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-black/15" />
