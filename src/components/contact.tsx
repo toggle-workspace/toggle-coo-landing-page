@@ -34,26 +34,16 @@ const INTERESTS = [
   "Other",
 ];
 
-const SOCIALS = [
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/company/wegems/",
-    icon: "/brand/icon-linkedin.png",
-  },
-  {
-    label: "Instagram",
-    href: "https://instagram.com/",
-    icon: "/brand/icon-instagram.png",
-  },
-];
-
 const contactFormSchema = z.object({
   fullName: z.string().min(1, "Full name is required"),
   email: z.email("Enter a valid email address"),
   phone: z.string().optional(),
   interest: z.string().optional(),
   message: z.string().optional(),
-  agreement: z.literal(true, "Please accept the privacy policy and terms of service"),
+  agreement: z.literal(
+    true,
+    "Please accept the privacy policy and terms of service",
+  ),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
@@ -72,13 +62,13 @@ function ContactDetail({ label, value }: { label: string; value: string }) {
 export function Contact({
   phone = "+1 949-012-3456",
   email = "hello@mywebsite.com",
-  supportEmail = "support@mywebsite.com",
-  address = "3 Rockaway St., New Rochelle, NY 10801",
+  location = "3 Rockaway St., New Rochelle, NY 10801",
+  socialLinks = [],
 }: {
   phone?: string;
   email?: string;
-  supportEmail?: string;
-  address?: string;
+  location?: string;
+  socialLinks?: { icon?: string; label: string; link: string }[];
 } = {}) {
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -115,47 +105,48 @@ export function Contact({
   return (
     <section className="w-full">
       <div className="mx-auto max-w-325 px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-5 lg:gap-16">
           {/* Contact details */}
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-10 lg:col-span-2">
             <ContactDetail label="Call us" value={phone} />
-            <ContactDetail label="New business" value={email} />
-            <ContactDetail label="Support" value={supportEmail} />
-            <ContactDetail label="Location" value={address} />
+            <ContactDetail label="Email us" value={email} />
+            <ContactDetail label="Location" value={location} />
 
-            <div className="flex items-center gap-3">
-              {SOCIALS.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                >
-                  <Image
-                    src={s.icon}
-                    alt=""
-                    aria-hidden
-                    width={40}
-                    height={40}
-                    className="size-10"
-                  />
-                </a>
-              ))}
-            </div>
+            {socialLinks.length > 0 && (
+              <div className="flex items-center gap-3">
+                {socialLinks.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                  >
+                    {s.icon && (
+                      <Image
+                        src={s.icon}
+                        alt=""
+                        aria-hidden
+                        width={40}
+                        height={40}
+                        className="size-10"
+                      />
+                    )}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Form */}
-          <Card variant="muted" className="p-8 lg:p-12">
+          <Card variant="muted" className="p-8 lg:col-span-3 lg:p-12">
             <h2 className="text-3xl font-bold text-[#292b2c] md:text-4xl">
               Book free intro call
             </h2>
             <p className="mt-4 text-[#565b5d]">
-              Reach out to discover how your brand can grow and perform
-              better. Our specialist will get back to you within{" "}
-              <strong className="font-semibold text-[#292b2c]">
-                24 hours
-              </strong>{" "}
+              Reach out to discover how your brand can grow and perform better.
+              Our specialist will get back to you within{" "}
+              <strong className="font-semibold text-[#292b2c]">24 hours</strong>{" "}
               — no pressure, just expert advice.
             </p>
 
