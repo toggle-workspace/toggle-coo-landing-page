@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { getPayload } from "payload";
 import config from "../../payload.config";
-import { NAV_LINKS as HEADER_NAV_LINKS } from "@/components/header";
+import { NAV_LINKS as BASE_NAV_LINKS } from "@/lib/nav-links";
 
 const NAV_LINKS = [
-  ...HEADER_NAV_LINKS,
+  ...BASE_NAV_LINKS,
   { label: "Contact", href: "/contact" },
   { label: "Book a strategy call.", href: "#booking" },
 ];

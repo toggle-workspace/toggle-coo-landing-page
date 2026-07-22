@@ -11,12 +11,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-
-export const NAV_LINKS = [
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Case studies", href: "/case-studies" },
-];
+import { NAV_LINKS } from "@/lib/nav-links";
 
 export function Header() {
   const [open, setOpen] = useState(false);
