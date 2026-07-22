@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getPayload } from "payload";
 import config from "../../payload.config";
+import { getCompanyInfo } from "@/lib/company-info";
 import { NAV_LINKS as BASE_NAV_LINKS } from "@/lib/nav-links";
 
 const NAV_LINKS = [
@@ -22,21 +23,6 @@ async function getServices() {
     label: doc.service_name,
     href: `/services/${doc.slug}`,
   }));
-}
-
-async function getCompanyInfo() {
-  const payload = await getPayload({ config });
-  const info = await payload.findGlobal({ slug: "company-info", depth: 1 });
-  return {
-    description:
-      info.description ??
-      "Your product is the gem. We build the website that proves it.",
-    socialLinks: (info.social_links ?? []).map((s) => ({
-      label: s.label,
-      href: s.link,
-      icon: typeof s.icon === "object" ? (s.icon?.url ?? undefined) : undefined,
-    })),
-  };
 }
 
 export async function Footer() {
