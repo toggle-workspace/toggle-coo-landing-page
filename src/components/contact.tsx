@@ -33,7 +33,7 @@ export function Contact({
       <div className="mx-auto max-w-325 px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-5 lg:gap-16">
           {/* Contact details */}
-          <div className="flex flex-col gap-10 lg:col-span-2">
+          <div className="flex flex-col gap-10 lg:col-span-2 lg:sticky lg:top-24 lg:self-start">
             <ContactDetail label="Call us" value={phone} />
             <ContactDetail label="Email us" value={email} />
             <ContactDetail label="Location" value={location} />
