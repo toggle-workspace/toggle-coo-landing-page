@@ -2,11 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { getPayload } from "payload";
 import config from "../../payload.config";
+import { NAV_LINKS as HEADER_NAV_LINKS } from "@/components/header";
 
 const NAV_LINKS = [
-  { label: "Services", href: "/services" },
-  { label: "Case studies", href: "/case-studies" },
-  { label: "About", href: "/about" },
+  ...HEADER_NAV_LINKS,
   { label: "Contact", href: "/contact" },
   { label: "Book a strategy call.", href: "#booking" },
 ];
@@ -16,7 +15,7 @@ async function getServices() {
   const { docs } = await payload.find({
     collection: "services",
     sort: "order",
-    limit: 10,
+    limit: 6,
     depth: 0,
   });
   return docs.map((doc) => ({
@@ -35,7 +34,7 @@ async function getCompanyInfo() {
     socialLinks: (info.social_links ?? []).map((s) => ({
       label: s.label,
       href: s.link,
-      icon: typeof s.icon === "object" ? s.icon?.url ?? undefined : undefined,
+      icon: typeof s.icon === "object" ? (s.icon?.url ?? undefined) : undefined,
     })),
   };
 }
@@ -146,7 +145,13 @@ export async function Footer() {
                 className="rounded-full p-2 transition-colors hover:bg-accent"
               >
                 {s.icon && (
-                  <Image src={s.icon} alt="" aria-hidden width={20} height={20} />
+                  <Image
+                    src={s.icon}
+                    alt=""
+                    aria-hidden
+                    width={20}
+                    height={20}
+                  />
                 )}
               </a>
             ))}
