@@ -31,7 +31,7 @@ export function Hero({
           <p className="max-w-2xl text-lg text-[#565b5d]">{description}</p>
         )}
         {actions.length > 0 && (
-          <div className="mt-2 flex flex-col-reverse sm:flex-row items-center justify-center gap-4">
+          <div className="mt-2 flex w-full flex-col-reverse items-center justify-center gap-4 sm:w-auto sm:flex-row">
             {actions.map((action) => (
               <Button
                 key={action.label}
