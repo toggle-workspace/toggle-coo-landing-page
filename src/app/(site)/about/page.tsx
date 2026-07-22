@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/page-header";
-import { Story } from "@/components/story";
+import { SplitContent } from "@/components/split-content";
 import { IconLabelGrid } from "@/components/icon-label-grid";
 import { NumberedFeatureGrid } from "@/components/numbered-feature-grid";
 import { TeamGrid } from "@/components/team-grid";
@@ -7,8 +7,10 @@ import { Testimonials } from "@/components/testimonials";
 import { CTA } from "@/components/cta";
 import { getPayload } from "payload";
 import config from "../../../../payload.config";
+import { getContentSection } from "@/lib/content-sections";
 
 const FALLBACK_IMAGE = "/about/team-alexander-cole.jpg";
+const FALLBACK_CONTENT_IMAGE = "/about/video-bg.jpg";
 
 async function getTeam() {
   const payload = await getPayload({ config });
@@ -40,9 +42,10 @@ async function getTestimonials() {
 }
 
 export default async function AboutPage() {
-  const [team, testimonials] = await Promise.all([
+  const [team, testimonials, content] = await Promise.all([
     getTeam(),
     getTestimonials(),
+    getContentSection("about", FALLBACK_CONTENT_IMAGE),
   ]);
   return (
     <div>
@@ -52,14 +55,23 @@ export default async function AboutPage() {
         description="Explore our values, philosophy, and approach that guide every project and help our clients build stronger, lasting brands."
       />
       <div className="space-y-24 pt-16 sm:space-y-32 sm:pt-24">
-        <Story
-          title="We believe marketing should deliver more than promises"
-          description="Over the years, our team of strategists, creatives, and marketers has worked with brands of all sizes to build meaningful connections with their audiences, grow their businesses, and deliver measurable results. Every project reflects our commitment to strategy, creativity, and long-term success."
-          stats={[
-            { value: "15+", label: "Years of marketing experience" },
-            { value: "100+", label: "Successful cases" },
-          ]}
-          videoImage="/about/video-bg.jpg"
+        <SplitContent
+          title={
+            content?.title ??
+            "We believe marketing should deliver more than promises"
+          }
+          description={
+            content?.description ??
+            "Over the years, our team of strategists, creatives, and marketers has worked with brands of all sizes to build meaningful connections with their audiences, grow their businesses, and deliver measurable results. Every project reflects our commitment to strategy, creativity, and long-term success."
+          }
+          link={content?.link}
+          stats={
+            content?.stats ?? [
+              { value: "15+", label: "Years of marketing experience" },
+              { value: "100+", label: "Successful cases" },
+            ]
+          }
+          image={content?.image ?? FALLBACK_CONTENT_IMAGE}
         />
         <IconLabelGrid />
         <NumberedFeatureGrid />

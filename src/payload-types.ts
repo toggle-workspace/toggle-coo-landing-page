@@ -73,6 +73,7 @@ export interface Config {
     client: Client;
     industries: Industry;
     team: Team;
+    'content-sections': ContentSection;
     testimonials: Testimonial;
     'case-studies': CaseStudy;
     'payload-kv': PayloadKv;
@@ -88,6 +89,7 @@ export interface Config {
     client: ClientSelect<false> | ClientSelect<true>;
     industries: IndustriesSelect<false> | IndustriesSelect<true>;
     team: TeamSelect<false> | TeamSelect<true>;
+    'content-sections': ContentSectionsSelect<false> | ContentSectionsSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -255,6 +257,29 @@ export interface Team {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "content-sections".
+ */
+export interface ContentSection {
+  id: number;
+  name: string;
+  key: string;
+  title: string;
+  description?: string | null;
+  image: number | Media;
+  link_label?: string | null;
+  link_href?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "testimonials".
  */
 export interface Testimonial {
@@ -366,6 +391,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'team';
         value: number | Team;
+      } | null)
+    | ({
+        relationTo: 'content-sections';
+        value: number | ContentSection;
       } | null)
     | ({
         relationTo: 'testimonials';
@@ -530,6 +559,28 @@ export interface TeamSelect<T extends boolean = true> {
   role?: T;
   company?: T;
   image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "content-sections_select".
+ */
+export interface ContentSectionsSelect<T extends boolean = true> {
+  name?: T;
+  key?: T;
+  title?: T;
+  description?: T;
+  image?: T;
+  link_label?: T;
+  link_href?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
