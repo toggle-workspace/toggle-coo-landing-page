@@ -199,7 +199,7 @@ export function Contact() {
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" size="lg" className="col-span-2">
+                  <Button type="submit" size="l" className="col-span-2">
                     Continue <ArrowRight aria-hidden="true" />
                   </Button>
                 </form>

@@ -38,7 +38,7 @@ export function Hero({
                 className={buttonVariants({
                   variant:
                     action.variant === "outline" ? "brand-outline" : "brand",
-                  size: "pill",
+                  size: "xl",
                 })}
               >
                 {action.label}

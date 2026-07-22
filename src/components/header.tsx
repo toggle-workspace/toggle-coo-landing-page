@@ -10,6 +10,8 @@ import {
   SheetContent,
   SheetClose,
 } from "@/components/ui/sheet";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { label: "About", href: "/about" },
@@ -64,7 +66,10 @@ export function Header() {
 
         <Link
           href="/contact"
-          className="hidden rounded-lg border border-border bg-primary px-4 py-2 text-sm font-medium tracking-wide text-primary-foreground transition-opacity hover:opacity-90 md:block"
+          className={cn(
+            buttonVariants({ size: "l" }),
+            "hidden px-4 tracking-wide hover:opacity-90 md:flex"
+          )}
         >
           Book a call
         </Link>
@@ -106,7 +111,10 @@ export function Header() {
                 render={
                   <Link
                     href="/contact"
-                    className="flex w-full items-center justify-center rounded-lg border border-border bg-primary px-4 py-3 text-sm font-medium tracking-wide text-primary-foreground transition-opacity hover:opacity-90"
+                    className={cn(
+                      buttonVariants({ size: "l" }),
+                      "w-full px-4 py-3 tracking-wide hover:opacity-90"
+                    )}
                   />
                 }
               >
