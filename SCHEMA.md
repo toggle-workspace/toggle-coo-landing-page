@@ -116,6 +116,7 @@ Single site-wide record, no `useAsTitle` (not a collection).
 
 | Field | Type | Notes |
 |---|---|---|
+| `description` | `textarea` | Short company blurb |
 | `email` | `text` | |
 | `phone` | `text` | |
 | `location` | `text` | |

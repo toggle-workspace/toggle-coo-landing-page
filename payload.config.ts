@@ -170,6 +170,7 @@ export default buildConfig({
       slug: 'company-info',
       label: 'Company Information',
       fields: [
+        { name: 'description', label: 'Short description', type: 'textarea' },
         { name: 'email', type: 'text' },
         { name: 'phone', type: 'text' },
         { name: 'location', type: 'text' },

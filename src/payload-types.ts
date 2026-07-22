@@ -582,6 +582,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface CompanyInfo {
   id: number;
+  description?: string | null;
   email?: string | null;
   phone?: string | null;
   location?: string | null;
@@ -601,6 +602,7 @@ export interface CompanyInfo {
  * via the `definition` "company-info_select".
  */
 export interface CompanyInfoSelect<T extends boolean = true> {
+  description?: T;
   email?: T;
   phone?: T;
   location?: T;
