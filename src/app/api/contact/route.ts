@@ -25,6 +25,7 @@ export async function POST(request: Request) {
   });
 
   if (error) {
+    console.error("Resend send failed:", error);
     return Response.json({ error: "Failed to send message" }, { status: 500 });
   }
 
