@@ -86,7 +86,7 @@ export function ContactForm({ interests }: { interests: string[] }) {
               <FormControl>
                 <Input
                   className="bg-white"
-                  placeholder="Bruce Wayne"
+                  placeholder="John Doe"
                   type="text"
                   {...field}
                 />
@@ -104,7 +104,7 @@ export function ContactForm({ interests }: { interests: string[] }) {
               <FormControl>
                 <Input
                   className="bg-white"
-                  placeholder="bruce@wayne.com"
+                  placeholder="john@acme.com"
                   type="email"
                   {...field}
                 />
