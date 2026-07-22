@@ -73,6 +73,7 @@ export interface Config {
     client: Client;
     industries: Industry;
     team: Team;
+    'story-sections': StorySection;
     'case-studies': CaseStudy;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -87,6 +88,7 @@ export interface Config {
     client: ClientSelect<false> | ClientSelect<true>;
     industries: IndustriesSelect<false> | IndustriesSelect<true>;
     team: TeamSelect<false> | TeamSelect<true>;
+    'story-sections': StorySectionsSelect<false> | StorySectionsSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -253,6 +255,29 @@ export interface Team {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "story-sections".
+ */
+export interface StorySection {
+  id: number;
+  name: string;
+  key: string;
+  title: string;
+  description?: string | null;
+  image: number | Media;
+  link_label?: string | null;
+  link_href?: string | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "case-studies".
  */
 export interface CaseStudy {
@@ -350,6 +375,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'team';
         value: number | Team;
+      } | null)
+    | ({
+        relationTo: 'story-sections';
+        value: number | StorySection;
       } | null)
     | ({
         relationTo: 'case-studies';
@@ -510,6 +539,28 @@ export interface TeamSelect<T extends boolean = true> {
   role?: T;
   company?: T;
   image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "story-sections_select".
+ */
+export interface StorySectionsSelect<T extends boolean = true> {
+  name?: T;
+  key?: T;
+  title?: T;
+  description?: T;
+  image?: T;
+  link_label?: T;
+  link_href?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

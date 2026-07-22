@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { TextLink } from "@/components/ui/text-link";
-import { VideoPanel } from "@/components/video-panel";
 
 type Stat = { value: string; label: string };
 
@@ -9,16 +9,12 @@ export function Story({
   link,
   stats,
   videoImage,
-  videoTitle,
-  videoDescription,
 }: {
   title: React.ReactNode;
   description?: React.ReactNode;
   link?: { label: string; href: string };
   stats?: Stat[];
   videoImage: string;
-  videoTitle?: React.ReactNode;
-  videoDescription?: React.ReactNode;
 }) {
   return (
     <section className="w-full bg-white">
@@ -48,11 +44,9 @@ export function Story({
             </TextLink>
           )}
         </div>
-        <VideoPanel
-          image={videoImage}
-          title={videoTitle}
-          description={videoDescription}
-        />
+        <div className="relative min-h-100 flex-1 overflow-hidden rounded-2xl">
+          <Image alt="" fill className="object-cover" src={videoImage} />
+        </div>
       </div>
     </section>
   );

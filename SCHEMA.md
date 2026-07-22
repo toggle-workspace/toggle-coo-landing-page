@@ -83,6 +83,23 @@ is fetched directly by `<img>` tags in the browser, bypassing the local API's
 | `company` | `text` | |
 | `image` | `upload` → `media` | |
 
+## `story-sections`
+
+`admin.useAsTitle`: `name`
+
+| Field | Type | Notes |
+|---|---|---|
+| `name` | `text` (required) | Admin-facing label, e.g. `"Home"` / `"About"` |
+| `key` | `text` (required, unique) | Lookup key used by `getStorySection` (`src/lib/story.ts`) — `"home"` feeds `/`, `"about"` feeds `/about`'s `Story` component |
+| `title` | `textarea` (required) | |
+| `description` | `textarea` | |
+| `image` | `upload` → `media` (required) | Requires `depth: 1`+ to resolve `.url` |
+| `link_label` | `text` | Optional CTA link text, e.g. `"More about us"` |
+| `link_href` | `text` | Optional CTA link target |
+| `stats` | `array` (0–4 rows) | |
+| `stats[].value` | `text` (required) | e.g. `"15+"` |
+| `stats[].label` | `text` (required) | e.g. `"Years of marketing experience"` |
+
 ## `case-studies`
 
 `admin.useAsTitle`: `name`

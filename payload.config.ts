@@ -130,6 +130,35 @@ export default buildConfig({
       ],
     },
     {
+      slug: 'story-sections',
+      admin: {
+        useAsTitle: 'name',
+      },
+      hooks: {
+        afterChange: [() => revalidateSitePaths(['/', '/about'])],
+        afterDelete: [() => revalidateSitePaths(['/', '/about'])],
+      },
+      fields: [
+        { name: 'name', type: 'text', required: true },
+        { name: 'key', type: 'text', required: true, unique: true },
+        { name: 'title', type: 'textarea', required: true },
+        { name: 'description', type: 'textarea' },
+        { name: 'image', type: 'upload', relationTo: 'media', required: true },
+        { name: 'link_label', label: 'Link label', type: 'text' },
+        { name: 'link_href', label: 'Link URL', type: 'text' },
+        {
+          name: 'stats',
+          type: 'array',
+          minRows: 0,
+          maxRows: 4,
+          fields: [
+            { name: 'value', type: 'text', required: true },
+            { name: 'label', type: 'text', required: true },
+          ],
+        },
+      ],
+    },
+    {
       slug: 'case-studies',
       admin: {
         useAsTitle: 'name',
