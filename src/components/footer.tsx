@@ -5,11 +5,7 @@ import config from "../../payload.config";
 import { getCompanyInfo } from "@/lib/company-info";
 import { NAV_LINKS as BASE_NAV_LINKS } from "@/lib/nav-links";
 
-const NAV_LINKS = [
-  ...BASE_NAV_LINKS,
-  { label: "Contact", href: "/contact" },
-  { label: "Book a strategy call.", href: "#booking" },
-];
+const NAV_LINKS = [...BASE_NAV_LINKS, { label: "Contact", href: "/contact" }];
 
 async function getServices() {
   const payload = await getPayload({ config });
