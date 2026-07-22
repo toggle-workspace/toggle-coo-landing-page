@@ -126,7 +126,7 @@ Defined with CVA in `src/components/ui/button.tsx`.
 
 | Name | Style |
 |------|-------|
-| `default` | `bg-primary text-primary-foreground` |
+| `default` | `bg-[#eb332d] text-white` (brand red fill) |
 | `outline` | `border-border bg-background` |
 | `secondary` | `bg-secondary text-secondary-foreground` |
 | `ghost` | `hover:bg-muted` |
@@ -151,10 +151,10 @@ Text sizes follow the `xs`/`s`/`m`/`l`/`xl` scale (matching the source
 design's Button Style naming), not t-shirt `sm`/`lg`. All button sizes are
 `rounded-full` (fully pill-shaped) with `font-semibold` text, matching the
 site's global button style. `xl` is the larger CTA/Hero action size
-(`h-fit px-8 py-5 text-base`, Marketing Section Family). Pair with variant
-`brand` (`bg-[#eb332d]` red fill) or `brand-outline` (`border-[#292b2c]`
-ink outline, inverts on hover) — both sourced from the brand hex tokens
-above, not the oklch theme.
+(`h-fit px-8 py-5 text-base`, Marketing Section Family). `default` is the
+brand red fill (`bg-[#eb332d]`); pair with `brand-outline`
+(`border-[#292b2c]` ink outline, inverts on hover) for the outlined variant
+— both sourced from the brand hex tokens above, not the oklch theme.
 
 ## Form Elements
 

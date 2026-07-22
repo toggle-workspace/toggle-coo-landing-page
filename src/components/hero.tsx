@@ -37,7 +37,7 @@ export function Hero({
                 href={action.href}
                 className={buttonVariants({
                   variant:
-                    action.variant === "outline" ? "brand-outline" : "brand",
+                    action.variant === "outline" ? "brand-outline" : "default",
                   size: "xl",
                 })}
               >
