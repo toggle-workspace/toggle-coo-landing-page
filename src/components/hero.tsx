@@ -39,6 +39,7 @@ export function Hero({
                   action.variant === "outline" ? "brand-outline" : "default"
                 }
                 size="xl"
+                className="w-full sm:w-auto"
                 nativeButton={false}
                 render={<Link href={action.href} />}
               >
