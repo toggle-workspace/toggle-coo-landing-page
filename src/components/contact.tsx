@@ -4,7 +4,14 @@ import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { ContactForm } from "@/components/contact-form";
 
-function ContactDetail({ label, value }: { label: string; value: string }) {
+function ContactDetail({
+  label,
+  value,
+}: {
+  label: string;
+  value?: string;
+}) {
+  if (!value) return null;
   return (
     <div className="flex flex-col gap-1.5">
       <p className="text-xs font-semibold tracking-widest text-[#889091] uppercase">
@@ -16,9 +23,9 @@ function ContactDetail({ label, value }: { label: string; value: string }) {
 }
 
 export function Contact({
-  phone = "+1 949-012-3456",
-  email = "hello@mywebsite.com",
-  location = "3 Rockaway St., New Rochelle, NY 10801",
+  phone,
+  email,
+  location,
   socialLinks = [],
   interests = [],
 }: {
@@ -27,7 +34,7 @@ export function Contact({
   location?: string;
   socialLinks?: { icon?: string; label: string; link: string }[];
   interests?: string[];
-} = {}) {
+}) {
   return (
     <section className="w-full">
       <div className="mx-auto max-w-325 px-6 lg:px-8">
