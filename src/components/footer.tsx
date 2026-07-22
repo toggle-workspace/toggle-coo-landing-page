@@ -2,34 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { getPayload } from "payload";
 import config from "../../payload.config";
+import { getCompanyInfo } from "@/lib/company-info";
+import { NAV_LINKS as BASE_NAV_LINKS } from "@/lib/nav-links";
 
-const NAV_LINKS = [
-  { label: "Services", href: "/services" },
-  { label: "Case studies", href: "/case-studies" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-  { label: "Book a strategy call.", href: "#booking" },
-];
-
-const SOCIALS = [
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/company/wegems/",
-    icon: "/brand/icon-linkedin.png",
-  },
-  {
-    label: "Instagram",
-    href: "https://instagram.com/",
-    icon: "/brand/icon-instagram.png",
-  },
-];
+const NAV_LINKS = [...BASE_NAV_LINKS, { label: "Contact", href: "/contact" }];
 
 async function getServices() {
   const payload = await getPayload({ config });
   const { docs } = await payload.find({
     collection: "services",
     sort: "order",
-    limit: 10,
+    limit: 6,
     depth: 0,
   });
   return docs.map((doc) => ({
@@ -40,7 +23,10 @@ async function getServices() {
 
 export async function Footer() {
   const year = new Date().getFullYear();
-  const services = await getServices();
+  const [services, { description, socialLinks }] = await Promise.all([
+    getServices(),
+    getCompanyInfo(),
+  ]);
 
   return (
     <footer className="w-full bg-muted/5">
@@ -67,9 +53,7 @@ export async function Footer() {
               />
             </Link>
             <p className="max-w-xs text-base leading-relaxed text-muted-foreground">
-              Your product is the gem.
-              <br />
-              We build the website that proves it.
+              {description}
             </p>
           </div>
 
@@ -133,7 +117,7 @@ export async function Footer() {
           </div>
 
           <div className="flex items-center gap-3">
-            {SOCIALS.map((s) => (
+            {socialLinks.map((s) => (
               <a
                 key={s.label}
                 href={s.href}
@@ -142,7 +126,15 @@ export async function Footer() {
                 aria-label={s.label}
                 className="rounded-full p-2 transition-colors hover:bg-accent"
               >
-                <Image src={s.icon} alt="" aria-hidden width={20} height={20} />
+                {s.icon && (
+                  <Image
+                    src={s.icon}
+                    alt=""
+                    aria-hidden
+                    width={20}
+                    height={20}
+                  />
+                )}
               </a>
             ))}
           </div>

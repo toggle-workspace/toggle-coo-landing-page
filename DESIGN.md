@@ -258,7 +258,7 @@ Dot pagination: size-2 rounded-full, bg-primary (active) / bg-primary/20
 
 ---
 
-### Contact
+### Contact (legacy shadcn variant — superseded, see Marketing Section Family below)
 
 ```
 max-w-7xl mx-auto px-6 lg:px-8
@@ -266,6 +266,10 @@ grid grid-cols-1 lg:grid-cols-2
 Form panel: border-b lg:border-r, rounded-lg border, p-8
 Form fields: gap-x-3 gap-y-6
 ```
+
+This described the pre-redesign `contact.tsx`. It's been replaced by the
+`Contact` component documented under "Marketing Section Family" — this
+entry is kept only as history, don't build against it.
 
 ---
 
@@ -376,6 +380,7 @@ the file.
 | `Testimonials` | quote card carousel (shadcn `Carousel`) | `eyebrow`, `title`, `testimonials[]` |
 | `BlogPreview` | 3-col blog post cards over full-bleed photos | `eyebrow`, `title`, `linkLabel`, `linkHref`, `posts[]` |
 | `CTA` | closing call-to-action band | `title`, `description`, `buttonLabel`, `buttonHref`, `footnote?` |
+| `Contact` | 2-col `/contact` layout: left contact-details list (call/business/support/location + social icons), right form on a `muted` `Card` | `phone`, `email`, `supportEmail`, `address` |
 
 ### Shared shadcn primitives (`src/components/ui/`)
 
@@ -388,6 +393,7 @@ existing marketing components (never the other way around):
 | `Card` / `CardContent` | `default` (`bg-card border rounded-lg`, matches `Contact`'s panel), `muted` (flat `bg-[#f2f3f3]`, no border/radius) | `CaseStudiesGrid`, `Testimonials`, `StatGrid`, `IconLabelGrid`, `ClientInfoCard` (all `muted`); `Contact` (`default`) |
 | `Badge` | `tag` (`text-[#ff584d]`, no background) | `BlogPreview` category tag |
 | `TextLink` | single style: `border-b-2 border-[#eb332d] pb-1.5 font-semibold text-[#292b2c]` | `CaseStudiesGrid`, `IconFeatureGrid`, `Story` footer/inline links |
+| `Checkbox` | base-ui `Checkbox` primitive, brand red when checked | `Contact` agreement field |
 
 Note: `muted` `Card` intentionally has **no border-radius** — the marketing
 tiles it replaces (case study cards, testimonial quotes, stat tiles, value
@@ -506,3 +512,9 @@ the section's heading, `items[]` feeds its grid/list.
   and its "Why choose us" grid reads a per-service `process` field
   (`section_title` + ordered `items[]`) instead of a hardcoded 3-item
   list.
+- **`Contact`'s social icons reuse the existing `/brand/icon-linkedin.png`
+  and `icon-instagram.png` tiles** (same pair `Footer` already uses)
+  rather than the X/YouTube/LinkedIn icons shown in the the7.io
+  reference — those aren't Toggle's real channels and no such assets
+  exist in this codebase. Swap the list in `contact.tsx` if the real
+  channels differ.

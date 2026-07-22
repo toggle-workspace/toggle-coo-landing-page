@@ -165,6 +165,28 @@ export default buildConfig({
       ],
     },
   ],
+  globals: [
+    {
+      slug: 'company-info',
+      label: 'Company Information',
+      fields: [
+        { name: 'description', label: 'Short description', type: 'textarea' },
+        { name: 'email', type: 'text' },
+        { name: 'phone', type: 'text' },
+        { name: 'location', type: 'text' },
+        {
+          name: 'social_links',
+          label: 'Social media links',
+          type: 'array',
+          fields: [
+            { name: 'icon', type: 'upload', relationTo: 'media' },
+            { name: 'label', type: 'text', required: true },
+            { name: 'link', type: 'text', required: true },
+          ],
+        },
+      ],
+    },
+  ],
   editor: lexicalEditor(),
   plugins: [
     vercelBlobStorage({

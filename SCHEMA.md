@@ -110,6 +110,21 @@ been removed. The `services` relationship is used by
 service in its case-studies grid, falling back to the generic/static set if
 none are tagged.
 
+## `company-info` (global)
+
+Single site-wide record, no `useAsTitle` (not a collection).
+
+| Field | Type | Notes |
+|---|---|---|
+| `description` | `textarea` | Short company blurb |
+| `email` | `text` | |
+| `phone` | `text` | |
+| `location` | `text` | |
+| `social_links` | `array` | |
+| `social_links[].icon` | `upload` → `media` | Requires `depth: 1`+ on fetch to resolve `.url` |
+| `social_links[].label` | `text` (required) | e.g. `"LinkedIn"` |
+| `social_links[].link` | `text` (required) | |
+
 ## Relationships at a glance
 
 ```
@@ -119,6 +134,7 @@ media <───── services.icon
       <───── services.deliverables.items[].icon
       <───── client.logo
       <───── team.image
+      <───── company-info.social_links[].icon
 
 client <──── case-studies.client
 industries <── client.industry
