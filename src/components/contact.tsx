@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -91,8 +92,24 @@ export function Contact({
     },
   });
 
-  function onSubmit(values: ContactFormValues) {
-    console.log(values);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
+
+  async function onSubmit(values: ContactFormValues) {
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      if (!res.ok) throw new Error();
+      setStatus("sent");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -265,9 +282,24 @@ export function Contact({
                     </FormItem>
                   )}
                 />
-                <Button type="submit" variant="brand" size="pill">
-                  Send message
+                <Button
+                  type="submit"
+                  variant="brand"
+                  size="pill"
+                  disabled={status === "sending"}
+                >
+                  {status === "sending" ? "Sending…" : "Send message"}
                 </Button>
+                {status === "sent" && (
+                  <p className="text-sm text-green-600">
+                    Thanks! We&apos;ll be in touch soon.
+                  </p>
+                )}
+                {status === "error" && (
+                  <p className="text-sm text-red-600">
+                    Something went wrong. Please try again.
+                  </p>
+                )}
               </form>
             </Form>
           </Card>
