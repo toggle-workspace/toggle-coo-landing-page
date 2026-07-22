@@ -10,6 +10,7 @@ import {
   SheetContent,
   SheetClose,
 } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 
 const NAV_LINKS = [
   { label: "About", href: "/about" },
@@ -62,12 +63,14 @@ export function Header() {
           ))}
         </nav>
 
-        <Link
-          href="/contact"
-          className="hidden rounded-lg border border-border bg-primary px-4 py-2 text-sm font-medium tracking-wide text-primary-foreground transition-opacity hover:opacity-90 md:block"
+        <Button
+          size="l"
+          className="hidden px-4 tracking-wide hover:opacity-90 md:flex"
+          nativeButton={false}
+          render={<Link href="/contact" />}
         >
           Book a call
-        </Link>
+        </Button>
 
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
@@ -104,9 +107,11 @@ export function Header() {
             <div className="p-6">
               <SheetClose
                 render={
-                  <Link
-                    href="/contact"
-                    className="flex w-full items-center justify-center rounded-lg border border-border bg-primary px-4 py-3 text-sm font-medium tracking-wide text-primary-foreground transition-opacity hover:opacity-90"
+                  <Button
+                    size="xl"
+                    className="w-full px-4 py-3 tracking-wide hover:opacity-90"
+                    nativeButton={false}
+                    render={<Link href="/contact" />}
                   />
                 }
               >

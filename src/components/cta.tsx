@@ -26,7 +26,7 @@ export function CTA({
         </p>
         <a
           href={buttonHref}
-          className={buttonVariants({ variant: "brand", size: "pill" })}
+          className={buttonVariants({ size: "xl" })}
         >
           {buttonLabel}
         </a>
