@@ -11,19 +11,6 @@ const NAV_LINKS = [
   { label: "Book a strategy call.", href: "#booking" },
 ];
 
-const SOCIALS = [
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/company/wegems/",
-    icon: "/brand/icon-linkedin.png",
-  },
-  {
-    label: "Instagram",
-    href: "https://instagram.com/",
-    icon: "/brand/icon-instagram.png",
-  },
-];
-
 async function getServices() {
   const payload = await getPayload({ config });
   const { docs } = await payload.find({
@@ -38,17 +25,26 @@ async function getServices() {
   }));
 }
 
-async function getCompanyDescription() {
+async function getCompanyInfo() {
   const payload = await getPayload({ config });
-  const info = await payload.findGlobal({ slug: "company-info" });
-  return info.description ?? "Your product is the gem. We build the website that proves it.";
+  const info = await payload.findGlobal({ slug: "company-info", depth: 1 });
+  return {
+    description:
+      info.description ??
+      "Your product is the gem. We build the website that proves it.",
+    socialLinks: (info.social_links ?? []).map((s) => ({
+      label: s.label,
+      href: s.link,
+      icon: typeof s.icon === "object" ? s.icon?.url ?? undefined : undefined,
+    })),
+  };
 }
 
 export async function Footer() {
   const year = new Date().getFullYear();
-  const [services, description] = await Promise.all([
+  const [services, { description, socialLinks }] = await Promise.all([
     getServices(),
-    getCompanyDescription(),
+    getCompanyInfo(),
   ]);
 
   return (
@@ -140,7 +136,7 @@ export async function Footer() {
           </div>
 
           <div className="flex items-center gap-3">
-            {SOCIALS.map((s) => (
+            {socialLinks.map((s) => (
               <a
                 key={s.label}
                 href={s.href}
@@ -149,7 +145,9 @@ export async function Footer() {
                 aria-label={s.label}
                 className="rounded-full p-2 transition-colors hover:bg-accent"
               >
-                <Image src={s.icon} alt="" aria-hidden width={20} height={20} />
+                {s.icon && (
+                  <Image src={s.icon} alt="" aria-hidden width={20} height={20} />
+                )}
               </a>
             ))}
           </div>
