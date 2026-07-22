@@ -11,20 +11,21 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { Eyebrow } from "@/components/eyebrow";
-import { TESTIMONIALS } from "@/data/testimonials";
 
 type Testimonial = { title: string; quote: string; name: string; role: string };
 
 export function Testimonials({
   eyebrow = "Testimonials",
   title = "Real feedback from businesses we've helped grow",
-  testimonials = TESTIMONIALS,
+  testimonials,
 }: {
   eyebrow?: string;
   title?: React.ReactNode;
-  testimonials?: Testimonial[];
+  testimonials: Testimonial[];
 }) {
   const [api, setApi] = React.useState<CarouselApi>();
+
+  if (testimonials.length === 0) return null;
 
   return (
     <section className="w-full bg-white">

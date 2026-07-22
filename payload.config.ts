@@ -130,6 +130,19 @@ export default buildConfig({
       ],
     },
     {
+      slug: 'testimonials',
+      admin: {
+        useAsTitle: 'name',
+      },
+      fields: [
+        { name: 'title', type: 'text', required: true },
+        { name: 'quote', type: 'textarea', required: true },
+        { name: 'name', type: 'text', required: true },
+        { name: 'role', type: 'text' },
+        { name: 'order', type: 'number' },
+      ],
+    },
+    {
       slug: 'case-studies',
       admin: {
         useAsTitle: 'name',
