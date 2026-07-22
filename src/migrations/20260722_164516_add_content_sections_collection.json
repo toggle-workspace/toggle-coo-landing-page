@@ -1073,8 +1073,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.story_sections_stats": {
-      "name": "story_sections_stats",
+    "public.content_sections_stats": {
+      "name": "content_sections_stats",
       "schema": "",
       "columns": {
         "_order": {
@@ -1109,8 +1109,8 @@
         }
       },
       "indexes": {
-        "story_sections_stats_order_idx": {
-          "name": "story_sections_stats_order_idx",
+        "content_sections_stats_order_idx": {
+          "name": "content_sections_stats_order_idx",
           "columns": [
             {
               "expression": "_order",
@@ -1124,8 +1124,8 @@
           "method": "btree",
           "with": {}
         },
-        "story_sections_stats_parent_id_idx": {
-          "name": "story_sections_stats_parent_id_idx",
+        "content_sections_stats_parent_id_idx": {
+          "name": "content_sections_stats_parent_id_idx",
           "columns": [
             {
               "expression": "_parent_id",
@@ -1141,10 +1141,10 @@
         }
       },
       "foreignKeys": {
-        "story_sections_stats_parent_id_fk": {
-          "name": "story_sections_stats_parent_id_fk",
-          "tableFrom": "story_sections_stats",
-          "tableTo": "story_sections",
+        "content_sections_stats_parent_id_fk": {
+          "name": "content_sections_stats_parent_id_fk",
+          "tableFrom": "content_sections_stats",
+          "tableTo": "content_sections",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -1161,8 +1161,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.story_sections": {
-      "name": "story_sections",
+    "public.content_sections": {
+      "name": "content_sections",
       "schema": "",
       "columns": {
         "id": {
@@ -1229,8 +1229,8 @@
         }
       },
       "indexes": {
-        "story_sections_key_idx": {
-          "name": "story_sections_key_idx",
+        "content_sections_key_idx": {
+          "name": "content_sections_key_idx",
           "columns": [
             {
               "expression": "key",
@@ -1244,8 +1244,8 @@
           "method": "btree",
           "with": {}
         },
-        "story_sections_image_idx": {
-          "name": "story_sections_image_idx",
+        "content_sections_image_idx": {
+          "name": "content_sections_image_idx",
           "columns": [
             {
               "expression": "image_id",
@@ -1259,8 +1259,8 @@
           "method": "btree",
           "with": {}
         },
-        "story_sections_updated_at_idx": {
-          "name": "story_sections_updated_at_idx",
+        "content_sections_updated_at_idx": {
+          "name": "content_sections_updated_at_idx",
           "columns": [
             {
               "expression": "updated_at",
@@ -1274,8 +1274,8 @@
           "method": "btree",
           "with": {}
         },
-        "story_sections_created_at_idx": {
-          "name": "story_sections_created_at_idx",
+        "content_sections_created_at_idx": {
+          "name": "content_sections_created_at_idx",
           "columns": [
             {
               "expression": "created_at",
@@ -1291,9 +1291,9 @@
         }
       },
       "foreignKeys": {
-        "story_sections_image_id_media_id_fk": {
-          "name": "story_sections_image_id_media_id_fk",
-          "tableFrom": "story_sections",
+        "content_sections_image_id_media_id_fk": {
+          "name": "content_sections_image_id_media_id_fk",
+          "tableFrom": "content_sections",
           "tableTo": "media",
           "columnsFrom": [
             "image_id"
@@ -1861,8 +1861,8 @@
           "primaryKey": false,
           "notNull": false
         },
-        "story_sections_id": {
-          "name": "story_sections_id",
+        "content_sections_id": {
+          "name": "content_sections_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": false
@@ -2010,11 +2010,11 @@
           "method": "btree",
           "with": {}
         },
-        "payload_locked_documents_rels_story_sections_id_idx": {
-          "name": "payload_locked_documents_rels_story_sections_id_idx",
+        "payload_locked_documents_rels_content_sections_id_idx": {
+          "name": "payload_locked_documents_rels_content_sections_id_idx",
           "columns": [
             {
-              "expression": "story_sections_id",
+              "expression": "content_sections_id",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -2133,12 +2133,12 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "payload_locked_documents_rels_story_sections_fk": {
-          "name": "payload_locked_documents_rels_story_sections_fk",
+        "payload_locked_documents_rels_content_sections_fk": {
+          "name": "payload_locked_documents_rels_content_sections_fk",
           "tableFrom": "payload_locked_documents_rels",
-          "tableTo": "story_sections",
+          "tableTo": "content_sections",
           "columnsFrom": [
-            "story_sections_id"
+            "content_sections_id"
           ],
           "columnsTo": [
             "id"

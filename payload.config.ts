@@ -130,7 +130,7 @@ export default buildConfig({
       ],
     },
     {
-      slug: 'story-sections',
+      slug: 'content-sections',
       admin: {
         useAsTitle: 'name',
       },

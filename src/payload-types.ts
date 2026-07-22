@@ -73,7 +73,7 @@ export interface Config {
     client: Client;
     industries: Industry;
     team: Team;
-    'story-sections': StorySection;
+    'content-sections': ContentSection;
     testimonials: Testimonial;
     'case-studies': CaseStudy;
     'payload-kv': PayloadKv;
@@ -89,7 +89,7 @@ export interface Config {
     client: ClientSelect<false> | ClientSelect<true>;
     industries: IndustriesSelect<false> | IndustriesSelect<true>;
     team: TeamSelect<false> | TeamSelect<true>;
-    'story-sections': StorySectionsSelect<false> | StorySectionsSelect<true>;
+    'content-sections': ContentSectionsSelect<false> | ContentSectionsSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -257,9 +257,9 @@ export interface Team {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "story-sections".
+ * via the `definition` "content-sections".
  */
-export interface StorySection {
+export interface ContentSection {
   id: number;
   name: string;
   key: string;
@@ -393,8 +393,8 @@ export interface PayloadLockedDocument {
         value: number | Team;
       } | null)
     | ({
-        relationTo: 'story-sections';
-        value: number | StorySection;
+        relationTo: 'content-sections';
+        value: number | ContentSection;
       } | null)
     | ({
         relationTo: 'testimonials';
@@ -564,9 +564,9 @@ export interface TeamSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "story-sections_select".
+ * via the `definition` "content-sections_select".
  */
-export interface StorySectionsSelect<T extends boolean = true> {
+export interface ContentSectionsSelect<T extends boolean = true> {
   name?: T;
   key?: T;
   title?: T;

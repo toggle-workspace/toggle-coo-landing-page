@@ -83,14 +83,14 @@ is fetched directly by `<img>` tags in the browser, bypassing the local API's
 | `company` | `text` | |
 | `image` | `upload` → `media` | |
 
-## `story-sections`
+## `content-sections`
 
 `admin.useAsTitle`: `name`
 
 | Field | Type | Notes |
 |---|---|---|
 | `name` | `text` (required) | Admin-facing label, e.g. `"Home"` / `"About"` |
-| `key` | `text` (required, unique) | Lookup key used by `getStorySection` (`src/lib/story.ts`) — `"home"` feeds `/`, `"about"` feeds `/about`'s `Story` component |
+| `key` | `text` (required, unique) | Lookup key used by `getContentSection` (`src/lib/content-sections.ts`) — `"home"` feeds `/`, `"about"` feeds `/about`'s `SplitContent` component |
 | `title` | `textarea` (required) | |
 | `description` | `textarea` | |
 | `image` | `upload` → `media` (required) | Requires `depth: 1`+ to resolve `.url` |

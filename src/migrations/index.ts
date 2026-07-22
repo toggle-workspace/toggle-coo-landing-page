@@ -4,7 +4,7 @@ import * as migration_20260719_152124_add_case_studies_richtext_results_fields f
 import * as migration_20260720_170946_remove_case_studies_category_and_image from './20260720_170946_remove_case_studies_category_and_image';
 import * as migration_20260722_155226_add_company_info_global from './20260722_155226_add_company_info_global';
 import * as migration_20260722_163349_add_testimonials_collection from './20260722_163349_add_testimonials_collection';
-import * as migration_20260722_164516_add_story_sections_collection from './20260722_164516_add_story_sections_collection';
+import * as migration_20260722_164516_add_content_sections_collection from './20260722_164516_add_content_sections_collection';
 
 export const migrations = [
   {
@@ -38,8 +38,8 @@ export const migrations = [
     name: '20260722_163349_add_testimonials_collection'
   },
   {
-    up: migration_20260722_164516_add_story_sections_collection.up,
-    down: migration_20260722_164516_add_story_sections_collection.down,
-    name: '20260722_164516_add_story_sections_collection'
+    up: migration_20260722_164516_add_content_sections_collection.up,
+    down: migration_20260722_164516_add_content_sections_collection.down,
+    name: '20260722_164516_add_content_sections_collection'
   },
 ];

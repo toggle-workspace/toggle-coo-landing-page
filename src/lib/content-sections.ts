@@ -1,7 +1,7 @@
 import { getPayload } from "payload";
 import config from "../../payload.config";
 
-export type StorySection = {
+export type ContentSection = {
   title: string;
   description?: string;
   image: string;
@@ -9,13 +9,13 @@ export type StorySection = {
   stats?: { value: string; label: string }[];
 };
 
-export async function getStorySection(
+export async function getContentSection(
   key: string,
   fallbackImage: string,
-): Promise<StorySection | undefined> {
+): Promise<ContentSection | undefined> {
   const payload = await getPayload({ config });
   const { docs } = await payload.find({
-    collection: "story-sections",
+    collection: "content-sections",
     where: { key: { equals: key } },
     depth: 1,
     limit: 1,

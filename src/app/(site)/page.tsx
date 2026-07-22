@@ -1,5 +1,5 @@
 import { Hero } from "@/components/hero";
-import { Story } from "@/components/story";
+import { SplitContent } from "@/components/split-content";
 import { IconFeatureGrid } from "@/components/icon-feature-grid";
 import { ClientLogos } from "@/components/client-logos";
 import { CaseStudiesGrid } from "@/components/case-studies-grid";
@@ -8,10 +8,10 @@ import { CTA } from "@/components/cta";
 import { getPayload } from "payload";
 import config from "../../../payload.config";
 import { getAllCaseStudies } from "@/lib/case-studies";
-import { getStorySection } from "@/lib/story";
+import { getContentSection } from "@/lib/content-sections";
 
 const FALLBACK_ICON = "/marketing/icon-strategy.svg";
-const FALLBACK_STORY_IMAGE = "/marketing/hero-video-bg.jpg";
+const FALLBACK_CONTENT_IMAGE = "/marketing/hero-video-bg.jpg";
 
 async function getServices() {
   const payload = await getPayload({ config });
@@ -52,7 +52,7 @@ export default async function Home() {
   const payloadServices = await getServices();
   const clientLogos = await getClientLogos();
   const caseStudies = await getAllCaseStudies(6);
-  const story = await getStorySection("home", FALLBACK_STORY_IMAGE);
+  const content = await getContentSection("home", FALLBACK_CONTENT_IMAGE);
   return (
     <>
       <Hero
@@ -69,17 +69,17 @@ export default async function Home() {
         ]}
       />
       <div className="space-y-24 pt-16 sm:space-y-32 sm:pt-24">
-        <Story
+        <SplitContent
           title={
-            story?.title ??
+            content?.title ??
             "We’re a team of strategists, creatives, and marketers working together to produce standout content and ensure it reaches the right audience."
           }
-          description={story?.description}
+          description={content?.description}
           link={
-            story?.link ?? { label: "More about us", href: "/about" }
+            content?.link ?? { label: "More about us", href: "/about" }
           }
-          stats={story?.stats}
-          videoImage={story?.image ?? FALLBACK_STORY_IMAGE}
+          stats={content?.stats}
+          image={content?.image ?? FALLBACK_CONTENT_IMAGE}
         />
         <IconFeatureGrid
           items={payloadServices.map((service) => ({
