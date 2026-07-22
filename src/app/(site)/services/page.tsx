@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { IconFeatureGrid } from "@/components/icon-feature-grid";
 import { PageHeader } from "@/components/page-header";
 import { getPayload } from "payload";
@@ -5,6 +6,12 @@ import config from "../../../../payload.config";
 import { CTA } from "@/components/cta";
 
 const FALLBACK_ICON = "/marketing/icon-strategy.svg";
+
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "Explore the strategy, creative, and campaign services we use to help brands increase visibility, engagement, and long-term growth.",
+};
 
 async function getServices() {
   const payload = await getPayload({ config });

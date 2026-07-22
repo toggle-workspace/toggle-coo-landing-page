@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { SplitContent } from "@/components/split-content";
 import { IconLabelGrid } from "@/components/icon-label-grid";
@@ -11,6 +12,12 @@ import { getContentSection } from "@/lib/content-sections";
 
 const FALLBACK_IMAGE = "/about/team-alexander-cole.jpg";
 const FALLBACK_CONTENT_IMAGE = "/about/video-bg.jpg";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Explore our values, philosophy, and approach that guide every project and help our clients build stronger, lasting brands.",
+};
 
 async function getTeam() {
   const payload = await getPayload({ config });

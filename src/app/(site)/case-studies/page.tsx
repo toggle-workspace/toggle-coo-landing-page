@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { CaseStudiesGrid } from "@/components/case-studies-grid";
 import { CTA } from "@/components/cta";
 import { getAllCaseStudies } from "@/lib/case-studies";
+
+export const metadata: Metadata = {
+  title: "Case Studies",
+  description:
+    "Explore real examples of how our strategy, creativity, and marketing expertise drive growth and deliver meaningful outcomes for our clients.",
+};
 
 export default async function CaseStudiesPage() {
   const caseStudies = await getAllCaseStudies();
