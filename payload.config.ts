@@ -169,6 +169,9 @@ export default buildConfig({
     {
       slug: 'company-info',
       label: 'Company Information',
+      hooks: {
+        afterChange: [() => revalidateSitePaths(['/'], 'layout')],
+      },
       fields: [
         { name: 'description', label: 'Short description', type: 'textarea' },
         { name: 'email', type: 'text' },
