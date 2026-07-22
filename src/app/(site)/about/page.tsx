@@ -25,8 +25,25 @@ async function getTeam() {
   }));
 }
 
+async function getTestimonials() {
+  const payload = await getPayload({ config });
+  const { docs } = await payload.find({
+    collection: "testimonials",
+    sort: "order",
+  });
+  return docs.map((doc) => ({
+    title: doc.title,
+    quote: doc.quote,
+    name: doc.name,
+    role: doc.role ?? "",
+  }));
+}
+
 export default async function AboutPage() {
-  const team = await getTeam();
+  const [team, testimonials] = await Promise.all([
+    getTeam(),
+    getTestimonials(),
+  ]);
   return (
     <div>
       <PageHeader
@@ -47,7 +64,7 @@ export default async function AboutPage() {
         <IconLabelGrid />
         <NumberedFeatureGrid />
         <TeamGrid members={team} />
-        <Testimonials />
+        <Testimonials testimonials={testimonials} />
         <CTA
           title="Ready to grow your brand?"
           description="Take the first step toward marketing success."
