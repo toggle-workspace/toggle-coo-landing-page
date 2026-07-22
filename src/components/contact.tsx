@@ -273,12 +273,7 @@ export function Contact({
                     </FormItem>
                   )}
                 />
-                <Button
-                  type="submit"
-                  variant="brand"
-                  size="pill"
-                  disabled={status === "sending"}
-                >
+                <Button type="submit" size="xl" disabled={status === "sending"}>
                   {status === "sending" ? "Sending…" : "Send message"}
                 </Button>
                 {status === "sent" && (
