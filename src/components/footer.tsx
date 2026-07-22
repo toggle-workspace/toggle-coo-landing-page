@@ -38,9 +38,18 @@ async function getServices() {
   }));
 }
 
+async function getCompanyDescription() {
+  const payload = await getPayload({ config });
+  const info = await payload.findGlobal({ slug: "company-info" });
+  return info.description ?? "Your product is the gem. We build the website that proves it.";
+}
+
 export async function Footer() {
   const year = new Date().getFullYear();
-  const services = await getServices();
+  const [services, description] = await Promise.all([
+    getServices(),
+    getCompanyDescription(),
+  ]);
 
   return (
     <footer className="w-full bg-muted/5">
@@ -67,9 +76,7 @@ export async function Footer() {
               />
             </Link>
             <p className="max-w-xs text-base leading-relaxed text-muted-foreground">
-              Your product is the gem.
-              <br />
-              We build the website that proves it.
+              {description}
             </p>
           </div>
 
