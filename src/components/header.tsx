@@ -108,7 +108,7 @@ export function Header() {
               <SheetClose
                 render={
                   <Button
-                    size="l"
+                    size="xl"
                     className="w-full px-4 py-3 tracking-wide hover:opacity-90"
                     nativeButton={false}
                     render={<Link href="/contact" />}
