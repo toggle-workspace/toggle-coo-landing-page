@@ -100,6 +100,18 @@ is fetched directly by `<img>` tags in the browser, bypassing the local API's
 | `stats[].value` | `text` (required) | e.g. `"15+"` |
 | `stats[].label` | `text` (required) | e.g. `"Years of marketing experience"` |
 
+## `testimonials`
+
+`admin.useAsTitle`: `name`
+
+| Field | Type | Notes |
+|---|---|---|
+| `title` | `text` (required) | Card headline on `/about`'s `Testimonials` carousel |
+| `quote` | `textarea` (required) | |
+| `name` | `text` (required) | |
+| `role` | `text` | |
+| `order` | `number` | Sort key |
+
 ## `case-studies`
 
 `admin.useAsTitle`: `name`

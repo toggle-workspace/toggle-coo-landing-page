@@ -74,6 +74,7 @@ export interface Config {
     industries: Industry;
     team: Team;
     'story-sections': StorySection;
+    testimonials: Testimonial;
     'case-studies': CaseStudy;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -89,6 +90,7 @@ export interface Config {
     industries: IndustriesSelect<false> | IndustriesSelect<true>;
     team: TeamSelect<false> | TeamSelect<true>;
     'story-sections': StorySectionsSelect<false> | StorySectionsSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -278,6 +280,20 @@ export interface StorySection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: number;
+  title: string;
+  quote: string;
+  name: string;
+  role?: string | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "case-studies".
  */
 export interface CaseStudy {
@@ -379,6 +395,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'story-sections';
         value: number | StorySection;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: number | Testimonial;
       } | null)
     | ({
         relationTo: 'case-studies';
@@ -561,6 +581,19 @@ export interface StorySectionsSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  title?: T;
+  quote?: T;
+  name?: T;
+  role?: T;
+  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }
