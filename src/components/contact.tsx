@@ -20,11 +20,13 @@ export function Contact({
   email = "hello@mywebsite.com",
   location = "3 Rockaway St., New Rochelle, NY 10801",
   socialLinks = [],
+  interests = [],
 }: {
   phone?: string;
   email?: string;
   location?: string;
   socialLinks?: { icon?: string; label: string; link: string }[];
+  interests?: string[];
 } = {}) {
   return (
     <section className="w-full">
@@ -74,7 +76,7 @@ export function Contact({
               — no pressure, just expert advice.
             </p>
 
-            <ContactForm />
+            <ContactForm interests={interests} />
           </Card>
         </div>
       </div>

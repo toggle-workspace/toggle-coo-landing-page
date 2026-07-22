@@ -24,14 +24,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-const INTERESTS = [
-  "Marketing Strategy",
-  "Digital Marketing / Ads",
-  "Branding & Design",
-  "Web Design / Development",
-  "Other",
-];
-
 const contactFormSchema = z.object({
   fullName: z.string().min(1, "Full name is required"),
   email: z.email("Enter a valid email address"),
@@ -46,7 +38,7 @@ const contactFormSchema = z.object({
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
-export function ContactForm() {
+export function ContactForm({ interests }: { interests: string[] }) {
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -152,7 +144,7 @@ export function ContactForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {INTERESTS.map((i) => (
+                  {interests.map((i) => (
                     <SelectItem key={i} value={i}>
                       {i}
                     </SelectItem>
