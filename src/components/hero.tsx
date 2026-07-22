@@ -1,4 +1,5 @@
-import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { GradientBackground } from "@/components/gradient-background";
 
 type HeroAction = {
@@ -30,19 +31,20 @@ export function Hero({
           <p className="max-w-2xl text-lg text-[#565b5d]">{description}</p>
         )}
         {actions.length > 0 && (
-          <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-2 flex w-full flex-col-reverse items-center justify-center gap-4 sm:w-auto sm:flex-row">
             {actions.map((action) => (
-              <a
+              <Button
                 key={action.label}
-                href={action.href}
-                className={buttonVariants({
-                  variant:
-                    action.variant === "outline" ? "brand-outline" : "brand",
-                  size: "pill",
-                })}
+                variant={
+                  action.variant === "outline" ? "brand-outline" : "default"
+                }
+                size="xl"
+                className="w-full sm:w-auto"
+                nativeButton={false}
+                render={<Link href={action.href} />}
               >
                 {action.label}
-              </a>
+              </Button>
             ))}
           </div>
         )}

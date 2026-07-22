@@ -126,7 +126,7 @@ Defined with CVA in `src/components/ui/button.tsx`.
 
 | Name | Style |
 |------|-------|
-| `default` | `bg-primary text-primary-foreground` |
+| `default` | `bg-[#eb332d] text-white` (brand red fill) |
 | `outline` | `border-border bg-background` |
 | `secondary` | `bg-secondary text-secondary-foreground` |
 | `ghost` | `hover:bg-muted` |
@@ -137,20 +137,24 @@ Defined with CVA in `src/components/ui/button.tsx`.
 
 | Name | Height | Padding | Font |
 |------|--------|---------|------|
-| `default` | `h-8` | `px-2.5` | — |
 | `xs` | `h-6` | `px-2` | `text-xs` |
-| `sm` | `h-7` | `px-2.5` | `text-[0.8rem]` |
-| `lg` | `h-9` | `px-2.5` | — |
+| `s` | `h-7` | `px-2.5` | `text-[0.8rem]` |
+| `m` (default) | `h-8` | `px-2.5` | — |
+| `l` | `h-9` | `px-2.5` | — |
+| `xl` | `h-fit` | `px-8 py-5` | `text-base font-semibold` |
 | `icon` | `h-8 w-8` | — | — |
 | `icon-xs` | `h-6 w-6` | — | — |
 | `icon-sm` | `h-7 w-7` | — | — |
 | `icon-lg` | `h-9 w-9` | — | — |
-| `pill` | `h-fit` | `px-8 py-5` | `text-base font-semibold` |
 
-`pill` is the rounded-full CTA/Hero action button size (Marketing Section
-Family). Pair with variant `brand` (`bg-[#eb332d]` red fill) or
-`brand-outline` (`border-[#292b2c]` ink outline, inverts on hover) — both
-sourced from the brand hex tokens above, not the oklch theme.
+Text sizes follow the `xs`/`s`/`m`/`l`/`xl` scale (matching the source
+design's Button Style naming), not t-shirt `sm`/`lg`. All button sizes are
+`rounded-full` (fully pill-shaped) with `font-semibold` text, matching the
+site's global button style. `xl` is the larger CTA/Hero action size
+(`h-fit px-8 py-5 text-base`, Marketing Section Family). `default` is the
+brand red fill (`bg-[#eb332d]`); pair with `brand-outline`
+(`border-[#292b2c]` ink outline, inverts on hover) for the outlined variant
+— both sourced from the brand hex tokens above, not the oklch theme.
 
 ## Form Elements
 
