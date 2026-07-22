@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPayload } from "payload";
 import { PageHeader } from "@/components/page-header";
@@ -22,6 +23,20 @@ async function getService(slug: string) {
     depth: 2,
   });
   return docs[0] ?? null;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const service = await getService(slug);
+  if (!service) return {};
+  return {
+    title: service.service_name,
+    description: service.description ?? undefined,
+  };
 }
 
 // Split out so it can stream in its own Suspense boundary instead of

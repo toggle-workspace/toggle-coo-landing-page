@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPayload } from "payload";
 import { PageHeader } from "@/components/page-header";
@@ -16,6 +17,20 @@ async function getCaseStudy(slug: string) {
     depth: 2,
   });
   return docs[0] ?? null;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const study = await getCaseStudy(slug);
+  if (!study) return {};
+  return {
+    title: study.name,
+    description: study.short_description ?? undefined,
+  };
 }
 
 export default async function CaseStudyPage({

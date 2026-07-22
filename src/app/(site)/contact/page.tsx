@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { Contact } from "@/components/contact";
 import { getPayload } from "payload";
 import config from "../../../../payload.config";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Tell us about your brand and goals, and our team will follow up to map out how we can help you grow.",
+};
 
 async function getInterests() {
   const payload = await getPayload({ config });
