@@ -5,6 +5,7 @@ import * as migration_20260720_170946_remove_case_studies_category_and_image fro
 import * as migration_20260722_155226_add_company_info_global from './20260722_155226_add_company_info_global';
 import * as migration_20260722_163349_add_testimonials_collection from './20260722_163349_add_testimonials_collection';
 import * as migration_20260722_164516_add_content_sections_collection from './20260722_164516_add_content_sections_collection';
+import * as migration_20260724_153126_add_faq_collection from './20260724_153126_add_faq_collection';
 
 export const migrations = [
   {
@@ -35,11 +36,16 @@ export const migrations = [
   {
     up: migration_20260722_163349_add_testimonials_collection.up,
     down: migration_20260722_163349_add_testimonials_collection.down,
-    name: '20260722_163349_add_testimonials_collection'
+    name: '20260722_163349_add_testimonials_collection',
   },
   {
     up: migration_20260722_164516_add_content_sections_collection.up,
     down: migration_20260722_164516_add_content_sections_collection.down,
-    name: '20260722_164516_add_content_sections_collection'
+    name: '20260722_164516_add_content_sections_collection',
+  },
+  {
+    up: migration_20260724_153126_add_faq_collection.up,
+    down: migration_20260724_153126_add_faq_collection.down,
+    name: '20260724_153126_add_faq_collection'
   },
 ];

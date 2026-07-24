@@ -172,6 +172,21 @@ export default buildConfig({
       ],
     },
     {
+      slug: 'faq',
+      admin: {
+        useAsTitle: 'question',
+      },
+      hooks: {
+        afterChange: [() => revalidateSitePaths(['/services/[slug]'])],
+        afterDelete: [() => revalidateSitePaths(['/services/[slug]'])],
+      },
+      fields: [
+        { name: 'question', type: 'text', required: true },
+        { name: 'answer', type: 'textarea', required: true },
+        { name: 'order', type: 'number' },
+      ],
+    },
+    {
       slug: 'case-studies',
       admin: {
         useAsTitle: 'name',
