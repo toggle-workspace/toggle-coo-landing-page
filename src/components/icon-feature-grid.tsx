@@ -40,7 +40,7 @@ export function IconFeatureGrid({
               {typeof item.icon === "string" ? (
                 <img
                   alt=""
-                  className="size-14 shrink-0 fill-border transition-transform duration-300 group-hover:scale-110"
+                  className="size-14 shrink-0 fill-border transition-transform duration-300"
                   src={item.icon}
                 />
               ) : (
