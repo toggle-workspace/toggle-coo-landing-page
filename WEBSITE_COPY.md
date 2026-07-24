@@ -18,7 +18,7 @@ Maps 1:1 to component data. Each field label matches the prop name in the compon
 
 > Accordion with 5 items. Each item: `num`, `title`, `description`, `bullets[]`, `cta.label`, `cta.href`.
 
-**Section eyebrow:** What we do
+**Section subtitle:** What we do
 
 **Section h2:** Every growth channel managed by one team
 
@@ -143,7 +143,7 @@ Maps 1:1 to component data. Each field label matches the prop name in the compon
 
 ## COMPONENT: FeaturesTabs
 
-> 3 tabs. Each tab: `value`, `label`, `eyebrow`, `heading`, `body`, `image` (URL), `stats[{value, label}]`.
+> 3 tabs. Each tab: `value`, `label`, `subtitle`, `heading`, `body`, `image` (URL), `stats[{value, label}]`.
 
 ---
 
@@ -153,7 +153,7 @@ Maps 1:1 to component data. Each field label matches the prop name in the compon
 
 **label:** Results
 
-**eyebrow:** Results
+**subtitle:** Results
 
 **heading:** Every campaign tied to revenue.
 
@@ -173,7 +173,7 @@ Maps 1:1 to component data. Each field label matches the prop name in the compon
 
 **label:** Integration
 
-**eyebrow:** Integration
+**subtitle:** Integration
 
 **heading:** One strategy runs every channel.
 
@@ -193,7 +193,7 @@ Maps 1:1 to component data. Each field label matches the prop name in the compon
 
 **label:** Speed
 
-**eyebrow:** Speed
+**subtitle:** Speed
 
 **heading:** Performance improves within 90 days.
 
@@ -217,7 +217,7 @@ Maps 1:1 to component data. Each field label matches the prop name in the compon
 
 > Carousel. Each item: `title`, `location`. Section has its own header.
 
-**Section eyebrow:** Our work
+**Section subtitle:** Our work
 
 **Section h2:** Results across six engagements
 
@@ -277,7 +277,7 @@ Maps 1:1 to component data. Each field label matches the prop name in the compon
 
 > Section header + testimonial sidebar + form. Form fields are fixed — only the header copy and testimonial are content.
 
-**Section eyebrow:** Get in touch
+**Section subtitle:** Get in touch
 
 **Section h2:** Book a call with a growth strategist
 

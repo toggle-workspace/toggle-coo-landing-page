@@ -38,13 +38,13 @@ is fetched directly by `<img>` tags in the browser, bypassing the local API's
 | `order` | `number` | Sort key for listings |
 | `slug` | `text` (unique) | Route param for `/services/[slug]` |
 | `deliverables` | `group` | Per-service "What we deliver" grid on `/services/[slug]` (`IconFeatureGrid`). Requires `depth: 2`+ on fetch to resolve nested `items[].icon.url` |
-| `deliverables.section_title` | `text` | Feeds `IconFeatureGrid`'s `title` prop. `eyebrow` ("What we deliver") stays hardcoded in the template |
+| `deliverables.section_title` | `text` | Feeds `IconFeatureGrid`'s `title` prop. `subtitle` ("What we deliver") stays hardcoded in the template |
 | `deliverables.items` | `array` (0–8 rows) | |
 | `deliverables.items[].icon` | `upload` → `media` | Falls back to `/marketing/icon-strategy.svg` if unset |
 | `deliverables.items[].title` | `text` (required) | |
 | `deliverables.items[].description` | `textarea` | |
 | `process` | `group` | Per-service "Why choose us" grid on `/services/[slug]` (`NumberedFeatureGrid`). Section is omitted entirely if `items` is empty |
-| `process.section_title` | `text` | Feeds `NumberedFeatureGrid`'s `title` prop. `eyebrow` ("Why choose us") stays hardcoded in the template |
+| `process.section_title` | `text` | Feeds `NumberedFeatureGrid`'s `title` prop. `subtitle` ("Why choose us") stays hardcoded in the template |
 | `process.items` | `array` (0–4 rows) | Sorted by `order` before rendering (editor-set, not auto-numbered from array position) |
 | `process.items[].order` | `number` | Rendered as `"01."`-style numbering |
 | `process.items[].title` | `text` (required) | |

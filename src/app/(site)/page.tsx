@@ -56,14 +56,14 @@ export default async function Home() {
   return (
     <>
       <Hero
-        eyebrow="Strategy. Creativity. Results."
+        subtitle="Strategy. Creativity. Results."
         title="Performance Marketing Made Clear & Effective"
         description="From brand positioning to digital campaigns, we deliver practical marketing solutions designed to increase visibility, engagement, and long-term growth."
         actions={[
           {
             label: "Client Examples",
             href: "/case-studies",
-            variant: "outline",
+            variant: "brand-outline",
           },
           { label: "Book Into Call", href: "/contact" },
         ]}

@@ -57,7 +57,7 @@ export default async function AboutPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="About us"
+        subtitle="About us"
         title="Building digital experiences that inspire and perform"
         description="Explore our values, philosophy, and approach that guide every project and help our clients build stronger, lasting brands."
       />

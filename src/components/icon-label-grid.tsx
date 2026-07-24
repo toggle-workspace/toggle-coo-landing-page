@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { Eyebrow } from "@/components/eyebrow";
+import { Subtitle } from "@/components/subtitle";
 
 type IconLabelGridItem = { label: string; icon: string };
 
@@ -18,12 +18,12 @@ const DEFAULT_VALUES: IconLabelGridItem[] = [
 ];
 
 export function IconLabelGrid({
-  eyebrow = "Values",
+  subtitle = "Values",
   title = "Our standards and principles",
   description = "These standards define how we operate every day and the qualities we expect from our people and partners.",
   items = DEFAULT_VALUES,
 }: {
-  eyebrow?: string;
+  subtitle?: string;
   title?: React.ReactNode;
   description?: React.ReactNode;
   items?: IconLabelGridItem[];
@@ -32,7 +32,7 @@ export function IconLabelGrid({
     <section className="w-full bg-white">
       <div className="mx-auto max-w-325 px-6 lg:px-8">
         <div className="mb-14 flex flex-col gap-6">
-          <Eyebrow>{eyebrow}</Eyebrow>
+          <Subtitle>{subtitle}</Subtitle>
           <h2 className="text-4xl font-semibold text-[#292b2c] md:text-5xl">
             {title}
           </h2>

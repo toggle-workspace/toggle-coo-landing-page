@@ -15,7 +15,7 @@ export default async function CaseStudiesPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="Success stories"
+        subtitle="Success stories"
         title="Wins worth sharing"
         description="Explore real examples of how our strategy, creativity, and marketing expertise drive growth and deliver meaningful outcomes for our clients."
       />

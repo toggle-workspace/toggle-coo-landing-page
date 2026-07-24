@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Eyebrow } from "@/components/eyebrow";
+import { Subtitle } from "@/components/subtitle";
 
 type Member = { name: string; role: string; image: string };
 
@@ -15,12 +15,12 @@ const DEFAULT_TEAM: Member[] = [
 ];
 
 export function TeamGrid({
-  eyebrow = "Our team",
+  subtitle = "Our team",
   title = "Meet the heart of our agency",
   description = "We embrace diversity of thought, continuous learning, and open-minded collaboration, building a reliable team that moves forward with a shared goal.",
   members = DEFAULT_TEAM,
 }: {
-  eyebrow?: string;
+  subtitle?: string;
   title?: React.ReactNode;
   description?: React.ReactNode;
   members?: Member[];
@@ -31,7 +31,7 @@ export function TeamGrid({
     <section className="w-full bg-white">
       <div className="mx-auto max-w-325 px-6 lg:px-8">
         <div className="mb-14 flex flex-col gap-6">
-          <Eyebrow>{eyebrow}</Eyebrow>
+          <Subtitle>{subtitle}</Subtitle>
           <h2 className="max-w-2xl text-4xl font-semibold text-[#292b2c] md:text-5xl">
             {title}
           </h2>

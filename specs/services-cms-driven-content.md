@@ -11,12 +11,12 @@ Content editors can fully manage every service's marketing copy (listing card, h
 - As a developer, I want the service detail template to render purely from CMS data so that adding a new service requires no code changes.
 
 **Requirements**
-1. The `services` collection must supply a page hero `title` distinct from `service_name` (the admin-facing/eyebrow name) and `description`.
+1. The `services` collection must supply a page hero `title` distinct from `service_name` (the admin-facing/subtitle name) and `description`.
 2. The `services` collection must supply a `process` section (its own `section_title` + an ordered list of steps, each with an `order`, `title`, and `description`) to drive `NumberedFeatureGrid`.
 3. The `services` collection must supply a `deliverables` section with its own `section_title` (feeding `IconFeatureGrid`'s `title` prop) plus an `items[]` list, each with `icon`, `title`, and `description` — mirroring `process`'s shape.
 4. The services index page (`/services`) must continue to list all services sorted by `order`, using `service_name`, `description`, `icon`, and `slug`.
 5. The service detail page (`/services/[slug]`) must render hero, deliverables, and process entirely from the fetched service document — no hardcoded copy per route, including both section titles.
-6. Each grid section's `eyebrow` label ("What we deliver", "Why choose us", "Featured case studies") stays hardcoded/generic in the template — confirmed these never vary per service, so only each section's `title` becomes CMS-driven, not `eyebrow`.
+6. Each grid section's `subtitle` label ("What we deliver", "Why choose us", "Featured case studies") stays hardcoded/generic in the template — confirmed these never vary per service, so only each section's `title` becomes CMS-driven, not `subtitle`.
 7. If a service is missing optional fields, the detail page must still render without runtime errors, falling back to sensible defaults.
 8. `long_description` is removed from the schema — it was unused on the detail page and nothing replaces it.
 9. `ServiceWhy` is removed from the detail page entirely (stock photo + generic CTA overlay, not per-service content) and its component file deleted.
@@ -25,7 +25,7 @@ Content editors can fully manage every service's marketing copy (listing card, h
 **Edge cases**
 - A service has zero deliverable items → deliverables section renders nothing (already handled by existing `?? []`).
 - A service has zero process steps → the process section is omitted entirely rather than rendering an empty grid.
-- A service is missing `deliverables.section_title` or `process.section_title` → the respective component falls back to its own default `title` prop rather than rendering blank (the `eyebrow` prop is unaffected since it's always hardcoded).
+- A service is missing `deliverables.section_title` or `process.section_title` → the respective component falls back to its own default `title` prop rather than rendering blank (the `subtitle` prop is unaffected since it's always hardcoded).
 - A service is missing `title` → fall back to `description`.
 - An icon upload is deleted from `media` after being referenced → fall back to `FALLBACK_ICON` (existing pattern already does this for `icon`/`deliverables.items[].icon`).
 - Two services share the same `slug` → prevented by `unique: true` at the field level, not app logic.
@@ -35,7 +35,7 @@ Content editors can fully manage every service's marketing copy (listing card, h
 ```
 Given a service document with title, a deliverables section_title + 3 items (with icons), and a process section_title + 3 ordered steps
 When a visitor loads /services/[slug]
-Then the page renders the CMS title, the deliverables section under its own CMS section title, and the process steps under its own CMS section title, in the given order, with no hardcoded fallback copy and no ServiceWhy section — while each section's eyebrow label stays the same generic hardcoded text
+Then the page renders the CMS title, the deliverables section under its own CMS section title, and the process steps under its own CMS section title, in the given order, with no hardcoded fallback copy and no ServiceWhy section — while each section's subtitle label stays the same generic hardcoded text
 
 Given a service document with the process list empty
 When a visitor loads /services/[slug]
@@ -80,14 +80,14 @@ Rework the `services` collection (`payload.config.ts:30-55`):
 | `process` | group, see below | New. Feeds `NumberedFeatureGrid`. |
 
 `deliverables` field detail:
-- `section_title` (`text`) — feeds `IconFeatureGrid`'s `title` prop only (replaces the hardcoded "From interest to action, we turn your efforts into measurable growth" string). The component's `eyebrow` prop ("What we deliver") stays hardcoded in the template — not sourced from this field.
+- `section_title` (`text`) — feeds `IconFeatureGrid`'s `title` prop only (replaces the hardcoded "From interest to action, we turn your efforts into measurable growth" string). The component's `subtitle` prop ("What we deliver") stays hardcoded in the template — not sourced from this field.
 - `items` (`array`, `minRows: 0`, `maxRows: 6`), each row (unchanged from current schema):
   - `icon` (`upload` → `media`)
   - `title` (`text`, required)
   - `description` (`textarea`)
 
 `process` field detail:
-- `section_title` (`text`) — feeds `NumberedFeatureGrid`'s `title` prop only (replaces the hardcoded "Partner with us for a unique and differentiated approach" string). The component's `eyebrow` prop ("Why choose us") stays hardcoded in the template, same treatment as deliverables.
+- `section_title` (`text`) — feeds `NumberedFeatureGrid`'s `title` prop only (replaces the hardcoded "Partner with us for a unique and differentiated approach" string). The component's `subtitle` prop ("Why choose us") stays hardcoded in the template, same treatment as deliverables.
 - `items` (`array`, `minRows: 0`, `maxRows: 4`), each row:
   - `order` (`number`) — explicit, editor-set sort/step number, rendered as `"01."`-style in the template. Confirmed: real stored field, template sorts by it — not computed from array position.
   - `title` (`text`, required)
@@ -95,7 +95,7 @@ Rework the `services` collection (`payload.config.ts:30-55`):
 
 Removed: `long_description` (richText) — dropped entirely, no replacement.
 
-Note: `CaseStudiesGrid`'s `eyebrow`/`title` ("Featured case studies" / "Our marketing strategy in practice") also stay hardcoded — no CMS field requested for this section's heading, only its `studies` content (via the relationship, below).
+Note: `CaseStudiesGrid`'s `subtitle`/`title` ("Featured case studies" / "Our marketing strategy in practice") also stay hardcoded — no CMS field requested for this section's heading, only its `studies` content (via the relationship, below).
 
 **API contracts**
 No new endpoints — Payload's local API (`payload.find`) used server-side only, consistent with both existing pages.
@@ -135,10 +135,10 @@ No `access` control on `services` today — publicly readable by default, unchan
 **Dependencies:** Task 1
 
 ### Task 3: Rebuild the service detail page
-**What to build:** In `src/app/(site)/services/[slug]/page.tsx`: use `service.title ?? service.description` for `PageHeader`; update `IconFeatureGrid`'s `title` prop to `service.deliverables?.section_title` (fallback to component default, `eyebrow` stays hardcoded) and `items` to `service.deliverables?.items`; remove the `ServiceWhy` import/usage; build `NumberedFeatureGrid`'s `title` prop from `service.process?.section_title` (fallback to component default, `eyebrow` stays hardcoded) and `items` from `process.items` sorted by `order`; add `getRelatedCaseStudies(service.id)` and pass its result into `CaseStudiesGrid`'s `studies` prop (omit/fallback when empty, `eyebrow`/`title` stay hardcoded).
+**What to build:** In `src/app/(site)/services/[slug]/page.tsx`: use `service.title ?? service.description` for `PageHeader`; update `IconFeatureGrid`'s `title` prop to `service.deliverables?.section_title` (fallback to component default, `subtitle` stays hardcoded) and `items` to `service.deliverables?.items`; remove the `ServiceWhy` import/usage; build `NumberedFeatureGrid`'s `title` prop from `service.process?.section_title` (fallback to component default, `subtitle` stays hardcoded) and `items` from `process.items` sorted by `order`; add `getRelatedCaseStudies(service.id)` and pass its result into `CaseStudiesGrid`'s `studies` prop (omit/fallback when empty, `subtitle`/`title` stay hardcoded).
 **Files likely affected:** `src/app/(site)/services/[slug]/page.tsx`
 **Acceptance criteria:**
-1. Hero title, deliverables (with section title, icons, and items), and process steps (with section title, in order) all render from CMS data with no hardcoded copy, while every section's `eyebrow` label remains the same generic hardcoded text as before.
+1. Hero title, deliverables (with section title, icons, and items), and process steps (with section title, in order) all render from CMS data with no hardcoded copy, while every section's `subtitle` label remains the same generic hardcoded text as before.
 2. No `ServiceWhy` section renders.
 3. Case studies grid shows only case studies tagged with this service, falling back gracefully when none are tagged.
 **Dependencies:** Task 1
@@ -156,7 +156,7 @@ No `access` control on `services` today — publicly readable by default, unchan
 **Files likely affected:** none (CMS data only)
 **Acceptance criteria:**
 1. `/services` and `/` render unaffected.
-2. `/services/[fully-populated-slug]` shows CMS title, deliverables (with its own section title, icons, and items), ordered process steps (with its own section title), and only its tagged case stud(ies) — with every eyebrow label matching the old hardcoded text.
+2. `/services/[fully-populated-slug]` shows CMS title, deliverables (with its own section title, icons, and items), ordered process steps (with its own section title), and only its tagged case stud(ies) — with every subtitle label matching the old hardcoded text.
 3. `/services/[empty-slug]` renders without errors, using fallbacks, with the process section omitted and deliverables/process titles falling back to component defaults.
 **Dependencies:** Tasks 1–4
 
@@ -173,4 +173,4 @@ No `access` control on `services` today — publicly readable by default, unchan
 **Confirmed during planning (no longer open):**
 - `process.items[].order` is a real editor-set field; the template sorts by it rather than computing numbering from array position.
 - `deliverables` is restructured to `{ section_title, items[] }`, mirroring `process`, so both CMS-backed sections on the detail page have their own editable section title.
-- Every grid section's `eyebrow` ("What we deliver", "Why choose us", "Featured case studies") stays hardcoded/generic — only each section's `title` is CMS-driven, since eyebrows are confirmed to never vary per service.
+- Every grid section's `subtitle` ("What we deliver", "Why choose us", "Featured case studies") stays hardcoded/generic — only each section's `title` is CMS-driven, since subtitles are confirmed to never vary per service.

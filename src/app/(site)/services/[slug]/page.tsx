@@ -50,7 +50,7 @@ async function RelatedCaseStudies({ serviceId }: { serviceId: string }) {
 
   return (
     <CaseStudiesGrid
-      eyebrow="Featured case studies"
+      subtitle="Featured case studies"
       title="Our marketing strategy in practice"
       studies={relatedCaseStudies}
       limit={3}
@@ -75,14 +75,14 @@ export default async function ServicePage({
   return (
     <div>
       <PageHeader
-        eyebrow={service.service_name}
+        subtitle={service.service_name}
         title={service.title ?? service.description ?? ""}
         description={service.description}
       />
       <div className="space-y-16 pt-16 sm:space-y-32 sm:pt-24">
         {deliverablesHaveDescriptions ? (
           <IconFeatureGrid
-            eyebrow="What we deliver"
+            subtitle="What we deliver"
             title={service.deliverables?.section_title ?? undefined}
             items={deliverables.map((deliverable) => ({
               icon:
@@ -95,7 +95,7 @@ export default async function ServicePage({
           />
         ) : (
           <IconLabelGrid
-            eyebrow="What we deliver"
+            subtitle="What we deliver"
             title={service.deliverables?.section_title ?? undefined}
             description=""
             items={deliverables.map((deliverable) => ({
@@ -112,7 +112,7 @@ export default async function ServicePage({
         </Suspense>
         {(service.process?.items?.length ?? 0) > 0 && (
           <NumberedFeatureGrid
-            eyebrow="Why choose us"
+            subtitle="Why choose us"
             title={service.process?.section_title ?? undefined}
             items={[...(service.process?.items ?? [])]
               .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
