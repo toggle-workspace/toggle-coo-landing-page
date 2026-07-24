@@ -1,5 +1,9 @@
 import Image from "next/image";
 import { TextLink } from "@/components/ui/text-link";
+import {
+  RevealGroup,
+  RevealItem,
+} from "@/components/motion-primitives/reveal";
 
 type Stat = { value: string; label: string };
 
@@ -18,8 +22,8 @@ export function SplitContent({
 }) {
   return (
     <section className="w-full bg-white">
-      <div className="mx-auto flex max-w-325 flex-col items-stretch gap-10 px-6 lg:flex-row lg:px-8">
-        <div className="flex flex-1 flex-col justify-center gap-6">
+      <RevealGroup className="mx-auto flex max-w-325 flex-col items-stretch gap-10 px-6 lg:flex-row lg:px-8">
+        <RevealItem className="flex flex-1 flex-col justify-center gap-6">
           <h2 className="text-2xl leading-snug font-medium text-[#292b2c] lg:text-3xl">
             {title}
           </h2>
@@ -43,11 +47,11 @@ export function SplitContent({
               {link.label}
             </TextLink>
           )}
-        </div>
-        <div className="relative min-h-100 flex-1 overflow-hidden rounded-2xl">
+        </RevealItem>
+        <RevealItem className="relative min-h-100 flex-1 overflow-hidden rounded-2xl">
           <Image alt="" fill className="object-cover" src={image} />
-        </div>
-      </div>
+        </RevealItem>
+      </RevealGroup>
     </section>
   );
 }

@@ -1,5 +1,10 @@
 import Image from "next/image";
 import { Subtitle } from "@/components/subtitle";
+import {
+  Reveal,
+  RevealGroup,
+  RevealItem,
+} from "@/components/motion-primitives/reveal";
 
 type Member = { name: string; role: string; image: string };
 
@@ -30,7 +35,7 @@ export function TeamGrid({
   return (
     <section className="w-full bg-white">
       <div className="mx-auto max-w-325 px-6 lg:px-8">
-        <div className="mb-14 flex flex-col gap-6">
+        <Reveal className="mb-14 flex flex-col gap-6">
           <Subtitle>{subtitle}</Subtitle>
           <h2 className="max-w-2xl text-4xl font-semibold text-[#292b2c] md:text-5xl">
             {title}
@@ -38,15 +43,15 @@ export function TeamGrid({
           {description && (
             <p className="max-w-2xl text-[#565b5d]">{description}</p>
           )}
-        </div>
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        </Reveal>
+        <RevealGroup className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {members.map((member) => (
-            <div key={member.name} className="flex flex-col gap-5">
-              <div className="relative aspect-square overflow-hidden">
+            <RevealItem key={member.name} className="flex flex-col gap-5">
+              <div className="group relative aspect-square overflow-hidden">
                 <Image
                   alt={member.name}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
                   src={member.image}
                 />
                 <div className="absolute inset-x-0 bottom-0 h-3 bg-[#eb332d]" />
@@ -57,9 +62,9 @@ export function TeamGrid({
                 </h3>
                 <p className="text-sm text-[#889091]">{member.role}</p>
               </div>
-            </div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );
