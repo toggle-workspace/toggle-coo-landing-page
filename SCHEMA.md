@@ -112,6 +112,16 @@ is fetched directly by `<img>` tags in the browser, bypassing the local API's
 | `role` | `text` | |
 | `order` | `number` | Sort key |
 
+## `faq`
+
+`admin.useAsTitle`: `question`
+
+| Field | Type | Notes |
+|---|---|---|
+| `question` | `text` (required) | |
+| `answer` | `textarea` (required) | |
+| `order` | `number` | Sort key. Rendered as an accordion on `/services/[slug]` via `FAQ` |
+
 ## `case-studies`
 
 `admin.useAsTitle`: `name`

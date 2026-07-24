@@ -75,6 +75,7 @@ export interface Config {
     team: Team;
     'content-sections': ContentSection;
     testimonials: Testimonial;
+    faq: Faq;
     'case-studies': CaseStudy;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -91,6 +92,7 @@ export interface Config {
     team: TeamSelect<false> | TeamSelect<true>;
     'content-sections': ContentSectionsSelect<false> | ContentSectionsSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    faq: FaqSelect<false> | FaqSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -294,6 +296,18 @@ export interface Testimonial {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq".
+ */
+export interface Faq {
+  id: number;
+  question: string;
+  answer: string;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "case-studies".
  */
 export interface CaseStudy {
@@ -399,6 +413,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'testimonials';
         value: number | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'faq';
+        value: number | Faq;
       } | null)
     | ({
         relationTo: 'case-studies';
@@ -593,6 +611,17 @@ export interface TestimonialsSelect<T extends boolean = true> {
   quote?: T;
   name?: T;
   role?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq_select".
+ */
+export interface FaqSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;

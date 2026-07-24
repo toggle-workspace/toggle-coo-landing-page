@@ -25,6 +25,15 @@ async function getService(slug: string) {
   return docs[0] ?? null;
 }
 
+async function getFAQs() {
+  const payload = await getPayload({ config });
+  const { docs } = await payload.find({
+    collection: "faq",
+    sort: "order",
+  });
+  return docs.map((doc) => ({ question: doc.question, answer: doc.answer }));
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -64,7 +73,7 @@ export default async function ServicePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const service = await getService(slug);
+  const [service, faqs] = await Promise.all([getService(slug), getFAQs()]);
   if (!service) notFound();
 
   const deliverables = service.deliverables?.items ?? [];
@@ -123,7 +132,7 @@ export default async function ServicePage({
               }))}
           />
         )}
-        <FAQ />
+        <FAQ faqs={faqs} />
         <CTA
           title="Ready to grow your brand?"
           description="Take the first step toward marketing success."
