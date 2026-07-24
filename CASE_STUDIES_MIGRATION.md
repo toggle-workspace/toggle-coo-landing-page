@@ -82,7 +82,7 @@ Both return a lightweight `CaseStudySummary` shape (`title`, `company`,
 - **`/case-studies/[slug]`**: fetches the single doc via `payload.find`
   (`depth: 2`, so `client.logo`/`client.industry` resolve). Maps fields to
   the page markup:
-  - Page header eyebrow = `` `${category}  |  ${services.map(s => s.service_name).join(", ")}` ``
+  - Page header subtitle = `` `${category}  |  ${services.map(s => s.service_name).join(", ")}` ``
   - Page header title = `name`
   - "Challenges" / "Our Approach" sections render via `<RichText data={...} />`
   - `StatGrid` items ← `results[]`, description ← `short_description`

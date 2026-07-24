@@ -52,7 +52,7 @@ export default async function CaseStudyPage({
   return (
     <div>
       <PageHeader
-        eyebrow={services[0]?.service_name ?? ""}
+        subtitle={services[0]?.service_name ?? ""}
         title={study.name}
       />
       <div className="space-y-16 pt-16 sm:space-y-32 sm:pt-24">

@@ -1,5 +1,5 @@
 import { TextLink } from "@/components/ui/text-link";
-import { Eyebrow } from "@/components/eyebrow";
+import { Subtitle } from "@/components/subtitle";
 
 type IconFeatureGridItem = {
   icon: string | React.ReactNode;
@@ -10,11 +10,11 @@ type IconFeatureGridItem = {
 };
 
 export function IconFeatureGrid({
-  eyebrow = "What we do",
+  subtitle = "What we do",
   title = "We do marketing that attracts, engages, converts",
   items = [],
 }: {
-  eyebrow?: string;
+  subtitle?: string;
   title?: React.ReactNode;
   items?: IconFeatureGridItem[];
 }) {
@@ -22,7 +22,7 @@ export function IconFeatureGrid({
     <section className="w-full bg-white">
       <div className="mx-auto max-w-325 px-6 lg:px-8">
         <div className="mb-14">
-          <Eyebrow>{eyebrow}</Eyebrow>
+          <Subtitle>{subtitle}</Subtitle>
         </div>
         <h2 className="mb-14 max-w-2xl text-4xl font-semibold text-[#292b2c] md:text-5xl">
           {title}

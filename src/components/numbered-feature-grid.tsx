@@ -1,4 +1,4 @@
-import { Eyebrow } from "@/components/eyebrow";
+import { Subtitle } from "@/components/subtitle";
 
 type NumberedFeatureGridItem = { number: string; title: string; description: string };
 
@@ -24,11 +24,11 @@ const DEFAULT_REASONS: NumberedFeatureGridItem[] = [
 ];
 
 export function NumberedFeatureGrid({
-  eyebrow = "Why work with us",
+  subtitle = "Why work with us",
   title = "What sets us apart",
   items = DEFAULT_REASONS,
 }: {
-  eyebrow?: string;
+  subtitle?: string;
   title?: React.ReactNode;
   items?: NumberedFeatureGridItem[];
 }) {
@@ -36,7 +36,7 @@ export function NumberedFeatureGrid({
     <section className="w-full bg-white">
       <div className="mx-auto max-w-325 px-6 lg:px-8">
         <div className="mb-14">
-          <Eyebrow>{eyebrow}</Eyebrow>
+          <Subtitle>{subtitle}</Subtitle>
         </div>
         <h2 className="mb-14 text-4xl font-semibold text-[#292b2c] md:text-5xl">
           {title}

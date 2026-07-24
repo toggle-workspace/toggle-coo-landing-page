@@ -1,18 +1,18 @@
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import { Eyebrow } from "@/components/eyebrow";
+import { Subtitle } from "@/components/subtitle";
 import { BLOG_POSTS } from "@/data/blog-posts";
 
 type BlogPost = { title: string; tags: string[]; date: string; image: string };
 
 export function BlogPreview({
-  eyebrow = "From our blog",
+  subtitle = "From our blog",
   title = "Latest insights from our blog",
   linkLabel = "View all articles",
   linkHref = "#",
   posts = BLOG_POSTS,
 }: {
-  eyebrow?: string;
+  subtitle?: string;
   title?: React.ReactNode;
   linkLabel?: string;
   linkHref?: string;
@@ -23,7 +23,7 @@ export function BlogPreview({
       <div className="mx-auto max-w-325 px-6 lg:px-8">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <div className="flex flex-col gap-6">
-            <Eyebrow>{eyebrow}</Eyebrow>
+            <Subtitle>{subtitle}</Subtitle>
             <h2 className="text-4xl font-semibold text-[#292b2c] md:text-5xl">
               {title}
             </h2>

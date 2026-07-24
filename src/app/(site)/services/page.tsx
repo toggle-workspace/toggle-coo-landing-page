@@ -36,7 +36,7 @@ export default async function ServicesPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="Services"
+        subtitle="Services"
         title="Marketing services built to grow your brand"
         description="Explore the strategy, creative, and campaign services we use to help brands increase visibility, engagement, and long-term growth."
       />

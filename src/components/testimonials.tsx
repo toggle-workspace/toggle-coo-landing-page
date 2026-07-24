@@ -10,16 +10,16 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { Eyebrow } from "@/components/eyebrow";
+import { Subtitle } from "@/components/subtitle";
 
 type Testimonial = { title: string; quote: string; name: string; role: string };
 
 export function Testimonials({
-  eyebrow = "Testimonials",
+  subtitle = "Testimonials",
   title = "Real feedback from businesses we've helped grow",
   testimonials,
 }: {
-  eyebrow?: string;
+  subtitle?: string;
   title?: React.ReactNode;
   testimonials: Testimonial[];
 }) {
@@ -32,7 +32,7 @@ export function Testimonials({
       <div className="mx-auto max-w-325 px-6 lg:px-8">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <div className="flex flex-col gap-6">
-            <Eyebrow>{eyebrow}</Eyebrow>
+            <Subtitle>{subtitle}</Subtitle>
             <h2 className="text-4xl font-semibold text-[#292b2c] md:text-5xl">
               {title}
             </h2>

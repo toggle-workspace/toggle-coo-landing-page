@@ -16,7 +16,7 @@
 | Sans | Inter | `--font-sans` |
 | Mono | Geist Mono | `--font-geist-mono` |
 
-## Color Tokens (oklch)
+## Color Tokens
 
 ### Light mode
 
@@ -24,10 +24,11 @@
 |-------|-------|-------------|
 | `--background` | `oklch(1 0 0)` | White |
 | `--foreground` | `oklch(0.145 0 0)` | Near black |
-| `--primary` | `oklch(0.205 0 0)` | Dark gray |
-| `--primary-foreground` | `oklch(0.985 0 0)` | Off-white |
-| `--secondary` | `oklch(0.97 0 0)` | Very light gray |
-| `--muted` | `oklch(0.97 0 0)` | Same as secondary |
+| `--primary` | `#eb332d` | Brand red |
+| `--primary-foreground` | `#ffffff` | White |
+| `--secondary` | `#292b2c` | Ink |
+| `--secondary-foreground` | `#ffffff` | White |
+| `--muted` | `oklch(0.97 0 0)` | Very light gray |
 | `--muted-foreground` | `oklch(0.556 0 0)` | Mid gray |
 | `--border` | `oklch(0.922 0 0)` | Light gray |
 | `--input` | `oklch(0.922 0 0)` | Same as border |
@@ -39,7 +40,10 @@
 |-------|-------|
 | `--background` | `oklch(0.145 0 0)` |
 | `--foreground` | `oklch(0.985 0 0)` |
-| `--primary` | `oklch(0.922 0 0)` |
+| `--primary` | `#eb332d` |
+| `--primary-foreground` | `#ffffff` |
+| `--secondary` | `#292b2c` |
+| `--secondary-foreground` | `#ffffff` |
 | `--card` | `oklch(0.205 0 0)` |
 | `--border` | `oklch(1 0 0 / 10%)` |
 | `--input` | `oklch(1 0 0 / 15%)` |
@@ -68,7 +72,7 @@ Base: `--radius: 0.625rem` (10px)
 | Project title | `text-2xl` | default |
 | Body | `text-base md:text-lg` | default |
 | Secondary | `text-sm` | default |
-| Eyebrow / label | `text-xs` tracking-widest uppercase | 600 (semibold) |
+| Subtitle / label | `text-xs` tracking-widest uppercase | 600 (semibold) |
 
 ## Spacing
 
@@ -328,11 +332,14 @@ it any time a decision here changes.
 
 ### Brand tokens (as built)
 
-These are hardcoded hex values inside the components below, **not**
-the oklch theme tokens above — this redesign deliberately didn't touch
-`globals.css`'s `--primary`/`--foreground`/etc., to avoid a global
-side-effect from one section of the site. Use these hex values
-directly when extending this component family.
+These are hardcoded hex values inside the components below. `--primary`
+(brand red) and `--secondary` (ink) in `globals.css` were later aligned to
+match Brand red / Ink so the two stay in sync, but the rest of the oklch
+scaffold (`--foreground`, `--muted`, `--border`, etc.) was deliberately left
+untouched to avoid a global side-effect from one section of the site. Use
+these hex values directly when extending this component family — don't
+switch to `bg-primary`/`text-secondary` etc. across these components, since
+that would be a much larger, unrequested refactor.
 
 | Token | Hex | Use |
 |---|---|---|
@@ -363,22 +370,22 @@ the file.
 
 | Component | Purpose | Key props |
 |---|---|---|
-| `Eyebrow` | small bullet-icon + label, used above section headings | `children` |
-| `Hero` | homepage-only landing hero: centered, with CTA `actions[]` | `eyebrow`, `title`, `description`, `actions[]` |
-| `PageHeader` | inner-page header: left-aligned, no actions. Used by every non-homepage page (`/about`, `/services`, `/services/[slug]`, `/case-studies`, `/case-studies/[slug]`, `/contact`) | `eyebrow`, `title`, `description` |
+| `Subtitle` | small bullet-icon + label, used above section headings | `children` |
+| `Hero` | homepage-only landing hero: centered, with CTA `actions[]` | `subtitle`, `title`, `description`, `actions[]` |
+| `PageHeader` | inner-page header: left-aligned, no actions. Used by every non-homepage page (`/about`, `/services`, `/services/[slug]`, `/case-studies`, `/case-studies/[slug]`, `/contact`) | `subtitle?`, `title`, `description` |
 | `Story` | two-column text + `VideoPanel`. Optional `stats[]` and `link` cover both the homepage and about-page variants | `title`, `description?`, `link?`, `stats?`, `videoImage`, `videoTitle?`, `videoDescription?` |
 | `VideoPanel` | the "watch a video" image card with red play button, used inside `Story` | `image`, `title?`, `description?` |
-| `IconFeatureGrid` | 2-col icon+text feature grid, generic (not services-specific) | `eyebrow`, `title`, `items[]` (`icon: string \| ReactNode`, `title`, `description`, `href?`, `linkLabel?`) |
+| `IconFeatureGrid` | 2-col icon+text feature grid, generic (not services-specific) | `subtitle?`, `title`, `items[]` (`icon: string \| ReactNode`, `title`, `description`, `href?`, `linkLabel?`) |
 | `ClientLogos` | logo marquee (`InfiniteSlider`) on a light gray band | `title`, `logos[]` |
-| `CaseStudiesGrid` | 3-col case study cards with red bottom accent, links to `/case-studies/[slug]` | `eyebrow?`, `title`, `linkLabel`, `linkHref`, `showHeader`, `studies[]` (`slug?`), `limit` |
+| `CaseStudiesGrid` | 3-col case study cards with red bottom accent, links to `/case-studies/[slug]` | `subtitle?`, `title`, `linkLabel`, `linkHref`, `showHeader`, `studies[]` (`slug?`), `limit` |
 | `MarkerList` | single-column list, marker+title header row per item with indented description below | `title`, `description?`, `items[]` (`marker: ReactNode`, `title`, `description`) |
 | `StatGrid` | 2-col (or 4-col) stat tiles on a light card background | `title`, `description?`, `items[]` (`value`, `label`), `columns` (`2 \| 4`) |
 | `ClientInfoCard` | sidebar card: logo, description, industry/location, website link | `name`, `logo`, `description`, `industry`, `location`, `website` |
-| `NumberedFeatureGrid` | 3-col numbered ("01.", "02.", "03.") feature list, generic (not "why us"-specific) | `eyebrow`, `title`, `items[]` |
-| `IconLabelGrid` | 2x4 icon+label tile grid, generic (not values-specific) | `eyebrow`, `title`, `description`, `items[]` |
-| `TeamGrid` | 4-col team member photo grid with red accent bar | `eyebrow`, `title`, `description`, `members[]` |
-| `Testimonials` | quote card carousel (shadcn `Carousel`) | `eyebrow`, `title`, `testimonials[]` |
-| `BlogPreview` | 3-col blog post cards over full-bleed photos | `eyebrow`, `title`, `linkLabel`, `linkHref`, `posts[]` |
+| `NumberedFeatureGrid` | 3-col numbered ("01.", "02.", "03.") feature list, generic (not "why us"-specific) | `subtitle?`, `title`, `items[]` |
+| `IconLabelGrid` | 2x4 icon+label tile grid, generic (not values-specific) | `subtitle?`, `title`, `description`, `items[]` |
+| `TeamGrid` | 4-col team member photo grid with red accent bar | `subtitle?`, `title`, `description`, `members[]` |
+| `Testimonials` | quote card carousel (shadcn `Carousel`) | `subtitle?`, `title`, `testimonials[]` |
+| `BlogPreview` | 3-col blog post cards over full-bleed photos | `subtitle?`, `title`, `linkLabel`, `linkHref`, `posts[]` |
 | `CTA` | closing call-to-action band | `title`, `description`, `buttonLabel`, `buttonHref`, `footnote?` |
 | `Contact` | 2-col `/contact` layout: left contact-details list (call/business/support/location + social icons), right form on a `muted` `Card` | `phone`, `email`, `supportEmail`, `address` |
 
@@ -465,7 +472,7 @@ the section's heading, `items[]` feeds its grid/list.
    existing match.
 3. If a new section is genuinely novel, follow the existing components'
    shape: hardcode today's copy as prop *defaults*, accept overrides,
-   use the brand tokens above, `Eyebrow` for the label-above-heading
+   use the brand tokens above, `Subtitle` for the label-above-heading
    pattern, and the same `max-w-[1300px]` / `px-6 lg:px-8` container
    convention.
 4. Download and commit any new image/icon assets (see Assets above).
