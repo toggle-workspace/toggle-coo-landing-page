@@ -1,4 +1,9 @@
 import { Subtitle } from "@/components/subtitle";
+import {
+  Reveal,
+  RevealGroup,
+  RevealItem,
+} from "@/components/motion-primitives/reveal";
 
 type NumberedFeatureGridItem = { number: string; title: string; description: string };
 
@@ -35,15 +40,17 @@ export function NumberedFeatureGrid({
   return (
     <section className="w-full bg-white">
       <div className="mx-auto max-w-325 px-6 lg:px-8">
-        <div className="mb-14">
+        <Reveal className="mb-14">
           <Subtitle>{subtitle}</Subtitle>
-        </div>
-        <h2 className="mb-14 text-4xl font-semibold text-[#292b2c] md:text-5xl">
-          {title}
-        </h2>
-        <div className="grid grid-cols-1 gap-16 md:grid-cols-3">
+        </Reveal>
+        <Reveal>
+          <h2 className="mb-14 text-4xl font-semibold text-[#292b2c] md:text-5xl">
+            {title}
+          </h2>
+        </Reveal>
+        <RevealGroup className="grid grid-cols-1 gap-16 md:grid-cols-3">
           {items.map((item) => (
-            <div key={item.number} className="flex flex-col gap-5">
+            <RevealItem key={item.number} className="flex flex-col gap-5">
               <span className="text-6xl font-semibold text-[#d7dada]">
                 {item.number}
               </span>
@@ -51,9 +58,9 @@ export function NumberedFeatureGrid({
                 {item.title}
               </h3>
               <p className="text-[#565b5d]">{item.description}</p>
-            </div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

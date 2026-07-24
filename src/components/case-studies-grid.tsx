@@ -2,6 +2,11 @@ import { CaseStudyCard } from "@/components/case-study-card";
 import { TextLink } from "@/components/ui/text-link";
 import { Subtitle } from "@/components/subtitle";
 import type { CaseStudySummary } from "@/lib/case-studies";
+import {
+  Reveal,
+  RevealGroup,
+  RevealItem,
+} from "@/components/motion-primitives/reveal";
 
 export function CaseStudiesGrid({
   subtitle = "Wins worth sharing",
@@ -26,7 +31,7 @@ export function CaseStudiesGrid({
     <section className="w-full bg-background">
       <div className="mx-auto max-w-325 px-6 lg:px-8">
         {showHeader && (
-          <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
+          <Reveal className="mb-14 flex flex-wrap items-end justify-between gap-6">
             <div className="flex flex-col gap-6">
               {subtitle && <Subtitle>{subtitle}</Subtitle>}
               <h2 className="text-4xl font-semibold text-[#292b2c] md:text-5xl">
@@ -36,19 +41,20 @@ export function CaseStudiesGrid({
             <TextLink href={linkHref} className="text-base">
               {linkLabel}
             </TextLink>
-          </div>
+          </Reveal>
         )}
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+        <RevealGroup className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
           {studies.slice(0, limit).map((study) => (
-            <CaseStudyCard
-              key={study.title}
-              href={study.slug ? `/case-studies/${study.slug}` : "#"}
-              logo={study.logo}
-              title={study.title}
-              industry={study.industry}
-            />
+            <RevealItem key={study.title}>
+              <CaseStudyCard
+                href={study.slug ? `/case-studies/${study.slug}` : "#"}
+                logo={study.logo}
+                title={study.title}
+                industry={study.industry}
+              />
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

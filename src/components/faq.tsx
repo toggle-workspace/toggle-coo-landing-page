@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Reveal } from "@/components/motion-primitives/reveal";
 
 const FAQS = [
   {
@@ -47,7 +48,7 @@ export function FAQ() {
   return (
     <section className="w-full">
       <div className="bg-muted py-16 sm:py-24">
-        <div className="mx-auto max-w-3xl px-6 lg:px-8">
+        <Reveal className="mx-auto max-w-3xl px-6 lg:px-8">
           <h2 className="mb-10 text-center text-3xl font-semibold tracking-tight md:text-4xl">
             Frequently Asked Questions
           </h2>
@@ -59,7 +60,7 @@ export function FAQ() {
               </AccordionItem>
             ))}
           </Accordion>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

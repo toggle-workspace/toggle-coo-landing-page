@@ -16,12 +16,12 @@ export function CaseStudyCard({
     <a href={href} className="group block">
       <Card variant="default" className="border-transparent rounded-none">
         <CardContent className="p-0">
-          <div className="relative flex h-45 items-center justify-center bg-[#f2f3f3] p-8">
+          <div className="relative flex h-45 items-center justify-center overflow-hidden bg-[#f2f3f3] p-8">
             {logo && (
               <Image
                 alt={`${title} logo`}
                 fill
-                className="object-contain p-4"
+                className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                 src={logo}
               />
             )}

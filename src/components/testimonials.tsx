@@ -11,6 +11,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { Subtitle } from "@/components/subtitle";
+import { Reveal } from "@/components/motion-primitives/reveal";
 
 type Testimonial = { title: string; quote: string; name: string; role: string };
 
@@ -30,7 +31,7 @@ export function Testimonials({
   return (
     <section className="w-full bg-white">
       <div className="mx-auto max-w-325 px-6 lg:px-8">
-        <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
+        <Reveal className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <div className="flex flex-col gap-6">
             <Subtitle>{subtitle}</Subtitle>
             <h2 className="text-4xl font-semibold text-[#292b2c] md:text-5xl">
@@ -57,7 +58,7 @@ export function Testimonials({
               <span className="sr-only">Next testimonial</span>
             </Button>
           </div>
-        </div>
+        </Reveal>
         <Carousel opts={{ align: "start" }} setApi={setApi} className="w-full">
           <CarouselContent className="-ml-5">
             {testimonials.map((testimonial) => (

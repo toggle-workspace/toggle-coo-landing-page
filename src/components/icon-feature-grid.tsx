@@ -1,5 +1,10 @@
 import { TextLink } from "@/components/ui/text-link";
 import { Subtitle } from "@/components/subtitle";
+import {
+  Reveal,
+  RevealGroup,
+  RevealItem,
+} from "@/components/motion-primitives/reveal";
 
 type IconFeatureGridItem = {
   icon: string | React.ReactNode;
@@ -21,19 +26,21 @@ export function IconFeatureGrid({
   return (
     <section className="w-full bg-white">
       <div className="mx-auto max-w-325 px-6 lg:px-8">
-        <div className="mb-14">
+        <Reveal className="mb-14">
           <Subtitle>{subtitle}</Subtitle>
-        </div>
-        <h2 className="mb-14 max-w-2xl text-4xl font-semibold text-[#292b2c] md:text-5xl">
-          {title}
-        </h2>
-        <div className="grid grid-cols-1 gap-x-16 gap-y-16 md:grid-cols-2">
+        </Reveal>
+        <Reveal>
+          <h2 className="mb-14 max-w-2xl text-4xl font-semibold text-[#292b2c] md:text-5xl">
+            {title}
+          </h2>
+        </Reveal>
+        <RevealGroup className="grid grid-cols-1 gap-x-16 gap-y-16 md:grid-cols-2">
           {items.map((item) => (
-            <div key={item.title} className="flex gap-7">
+            <RevealItem key={item.title} className="group flex gap-7">
               {typeof item.icon === "string" ? (
                 <img
                   alt=""
-                  className="size-14 shrink-0 fill-border"
+                  className="size-14 shrink-0 fill-border transition-transform duration-300 group-hover:scale-110"
                   src={item.icon}
                 />
               ) : (
@@ -50,9 +57,9 @@ export function IconFeatureGrid({
                   </TextLink>
                 )}
               </div>
-            </div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );
